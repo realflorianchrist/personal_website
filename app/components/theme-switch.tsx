@@ -1,5 +1,4 @@
 'use client'
-import styles from './ThemeSwitch.module.css'
 import {useState} from "react";
 import {Switch} from "@mui/material";
 import {grey} from '@mui/material/colors';
@@ -24,7 +23,7 @@ export default function ThemeSwitch() {
     return (
         <button className={'flex fixed bottom-5 left-8'}
         onClick={handleChange}>
-            <GreySwitch className={styles['switch']}
+            <GreySwitch
                         checked={isChecked}
                         size={'small'}
             />
