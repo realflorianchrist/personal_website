@@ -1,5 +1,5 @@
 'use client'
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import {Switch} from "@mui/material";
 import {grey} from '@mui/material/colors';
 import {styled} from "@mui/system";
@@ -11,16 +11,13 @@ export default function ThemeSwitch() {
         if (localStorage.getItem('theme') !== null) {
             preferredTheme = localStorage.getItem('theme');
         } else {
-            preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
+            preferredTheme = 'dark';
         }
         document.documentElement.setAttribute('data-theme', preferredTheme!);
     }, []);
 
-    // TODO: fix this
     const [isLightMode, setIsLightMode] = useState(
-        document.documentElement.getAttribute('data-theme') === 'light');
+        localStorage.getItem('theme') === 'light');
 
     const toggleTheme = () => {
         const newTheme = isLightMode ? 'dark' : 'light';
