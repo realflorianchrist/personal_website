@@ -1,6 +1,6 @@
 #nav-bar {
-    background-color: rgb(var(--foreground-rgb));
-    border: 0.5px solid rgb(var(--accent-rgb));
+    background-color: var(--foreground-color);
+    border: 0.5px solid var(--accent-color);
     border-radius: 5px;
     opacity: 0.92;
     padding: 10px 30px;

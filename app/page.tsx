@@ -4,7 +4,7 @@ import {ProjectData} from "@/public/data/project-data";
 
 export default function Home() {
     return (
-        <main>
+        <main data-theme={'light'}>
             <div className='profile-picture'>
                 <Image
                     src={'/images/passfoto.png'}
