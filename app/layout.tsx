@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
 import NavBar from "@/app/components/nav-bar";
+import ThemeSwitch from "@/app/components/theme-switch";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -15,6 +16,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <html lang="de">
             <body className={inter.className}>
                 <NavBar />
+                <ThemeSwitch />
                 {children}
             </body>
         </html>

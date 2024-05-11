@@ -1,4 +1,6 @@
 import Image from "next/image";
+import ProjectPreview from "@/app/components/project-preview";
+import {ProjectData} from "@/public/data/project-data";
 
 export default function Home() {
     return (
@@ -19,6 +21,17 @@ export default function Home() {
                 experiences that resonate with users. With a foundation in computer sciences and civil engineering
                 I bring a unique perspective to my design process, leveraging technology to push creative boundaries.
             </p>
+            <div id={'project-previews'}>
+                {ProjectData.map((project) => (
+                        <ProjectPreview
+                            key={project.title}
+                            title={project.title}
+                            description={project.description}
+                            picture={project.picturePath}
+                        />
+                    )
+                )}
+            </div>
         </main>
     );
 }

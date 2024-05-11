@@ -1,0 +1,16 @@
+#project-preview {
+    display: flex;
+    padding: 15px;
+    border-bottom: 0.5px;
+    border-style: solid;
+    border-color: rgb(var(--accent-rgb));
+}
+
+#project-preview div {
+    display: flex;
+    flex-direction: column;
+}
+
+#project-infos {
+    width: 40%;
+}
