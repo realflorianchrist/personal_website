@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 :root {
-    --background-color: #a5a5a5;
+    --background-color: #323232;
     --foreground-color: #ffffff;
     --accent-color: #000000;
     --text-color: #000000;
 }
 
 [data-theme="dark"] {
-    --background-color: #141414;
+    --background-color: #323232;
     --foreground-color: #0f0f0f;
     --accent-color: #ffffff;
     --text-color: #ffffff;
