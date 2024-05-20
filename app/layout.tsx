@@ -4,6 +4,7 @@ import "./globals.css";
 import "./animations.css";
 import NavBar from "@/app/components/nav-bar";
 import ThemeSwitch from "@/app/components/theme-switch";
+import {RefProvider} from "@/app/providers/providers";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -16,9 +17,11 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
     return (
         <html lang="de">
             <body className={inter.className}>
-                <NavBar />
-                <ThemeSwitch />
-                {children}
+                <RefProvider>
+                    <NavBar />
+                    <ThemeSwitch />
+                    {children}
+                </RefProvider>
             </body>
         </html>
     );
