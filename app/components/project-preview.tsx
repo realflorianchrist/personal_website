@@ -21,7 +21,7 @@ export default function ProjectPreview(
             <div id={styles['picture']} className={'self-center'}>
                 <Image
                     src={picture}
-                    alt={'profile-picture'}
+                    alt={'project-picture'}
                     width={1500}
                     height={0}>
                 </Image>

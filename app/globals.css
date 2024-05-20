@@ -57,6 +57,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 #profile-picture {
@@ -73,7 +75,6 @@ h1 {
 }
 
 #project-previews {
-    margin-top: 250px;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -82,4 +83,8 @@ h1 {
     /*border-right: 0.5px;*/
     /*border-style: solid;*/
     /*border-color: var(--accent-color);*/
+}
+
+#project-previews > :first-child {
+    margin-top: 100px;
 }

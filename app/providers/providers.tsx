@@ -1,6 +1,17 @@
 "use client";
 import React, {createContext, useContext, useRef} from 'react';
 
+const MainRefContext = createContext<{
+    mainRef: React.RefObject<HTMLDivElement> | null;
+} | undefined>(undefined);
+
+export const useMainRef = () => {
+    const context = useContext(MainRefContext);
+    if (!context) {
+        throw new Error("useMainRef muss innerhalb eines RefProvider verwendet werden");
+    }
+    return context;
+};
 
 const IntroductionRefContext = createContext<{
     introductionRef: React.RefObject<HTMLDivElement> | null;
@@ -27,15 +38,18 @@ export const useProjectPreviewsRef = () => {
 };
 
 
-export const RefProvider = ({children}: { children: React.ReactNode }) => {
+export const RefProvider = ({ children }: { children: React.ReactNode }) => {
+    const mainRef = useRef<HTMLDivElement>(null);
     const introductionRef = useRef<HTMLDivElement>(null);
     const projectPreviewsRef = useRef<HTMLDivElement>(null);
 
     return (
-        <IntroductionRefContext.Provider value={{introductionRef}}>
-            <ProjectPreviewsRefContext.Provider value={{projectPreviewsRef}}>
-                {children}
-            </ProjectPreviewsRefContext.Provider>
-        </IntroductionRefContext.Provider>
+        <MainRefContext.Provider value={{ mainRef }}>
+            <IntroductionRefContext.Provider value={{ introductionRef }}>
+                <ProjectPreviewsRefContext.Provider value={{ projectPreviewsRef }}>
+                    {children}
+                </ProjectPreviewsRefContext.Provider>
+            </IntroductionRefContext.Provider>
+        </MainRefContext.Provider>
     );
 };
