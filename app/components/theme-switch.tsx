@@ -1,5 +1,5 @@
 'use client'
-import {useEffect, useLayoutEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import {Switch} from "@mui/material";
 import {grey} from '@mui/material/colors';
 import {styled} from "@mui/system";
@@ -40,10 +40,10 @@ export default function ThemeSwitch() {
 
     return (
         <button className={'flex fixed bottom-8 left-8'}
-        onClick={toggleTheme}>
+                onClick={toggleTheme}>
             <GreySwitch
-                        checked={isLightMode}
-                        size={'small'}
+                checked={isLightMode}
+                size={'small'}
             />
             <p className={'text-xs self-center pl-1'}>Lights on/off</p>
         </button>
