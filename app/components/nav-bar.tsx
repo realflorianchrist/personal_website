@@ -5,7 +5,6 @@ import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
 import {RefObject, useEffect, useState} from "react";
 import {isInViewport} from "@/app/utils/isElementInView";
-import ContactDropdown from "@/app/components/contact-dropdown";
 
 export default function NavBar() {
     const path = usePathname();
@@ -14,6 +13,11 @@ export default function NavBar() {
     const [isIntroductionVisible, setIsIntroductionVisible] = useState(path === '/');
     const [isProjectPreviewsVisible, setIsProjectPreviewsVisible] = useState(path.includes('/work'));
     const [shouldScrollToProjectPreviews, setShouldScrollToProjectPreviews] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
 
     const {mainRef} = useMainRef();
     const {introductionRef} = useIntroductionRef();
@@ -83,7 +87,25 @@ export default function NavBar() {
                 About
             </Link>
 
-            <ContactDropdown />
+
+            <button id={styles['dropdown']}
+                    onClick={toggleDropdown}
+            >
+                Contact
+            </button>
+
+
+            {isOpen && (
+                <ul id={styles['dropdown-menu']}>
+                    <li id={styles['dropdown-item']}>florian_christ@outlook.com</li>
+                    <li id={styles['dropdown-item']}>
+                        <Link href={'https://www.linkedin.com/in/florian-christ-983651194/'}>
+                            linkedin
+                        </Link>
+                    </li>
+                    <li id={styles['dropdown-item']}>github</li>
+                </ul>
+            )}
         </div>
     );
 }

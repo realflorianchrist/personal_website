@@ -5,4 +5,19 @@
     opacity: 0.92;
     padding: 10px 30px;
     z-index: 1;
+    justify-content: center;
+}
+
+#dropdown-menu {
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+#dropdown-item {
+    cursor: pointer;
+    padding: 5px;
 }
