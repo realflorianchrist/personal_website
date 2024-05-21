@@ -3,23 +3,25 @@ import Styles from './ContactDropdown.module.css'
 import {useState} from "react";
 
 export default function ContactDropdown() {
-    const [isActive, setIsActive] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
-        <div onMouseEnter={() => setIsActive(true)}
-             onMouseLeave={() => setIsActive(false)}>
-
-            <div>
+        <div id={Styles['dropdown']}>
+            <button id={Styles['dropdown-toggle']}
+                 onClick={toggleDropdown}
+            >
                 Contact
-            </div>
+            </button>
 
-            {isActive
-                ? <div id={Styles['contact-dropdown']}>
-                    <div>test</div>
-
-                </div>
-                : <></>
-            }
+            {isOpen && (
+                <ul id={Styles['dropdown-menu']}>
+                    <li id={Styles['dropdown-item']}>test</li>
+                </ul>
+            )}
         </div>
     );
 }
