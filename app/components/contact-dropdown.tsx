@@ -1,4 +1,5 @@
 'use client'
+import Styles from './ContactDropdown.module.css'
 import {useState} from "react";
 
 export default function ContactDropdown() {
@@ -13,7 +14,7 @@ export default function ContactDropdown() {
             </div>
 
             {isActive
-                ? <div id={'contact-dropdown'}>
+                ? <div id={Styles['contact-dropdown']}>
                     <div>test</div>
 
                 </div>
