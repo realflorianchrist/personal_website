@@ -1,5 +1,6 @@
 "use client";
 import React, {createContext, useContext, useRef} from 'react';
+import {ThemeProvider} from 'next-themes';
 
 const MainRefContext = createContext<{
     mainRef: React.RefObject<HTMLDivElement> | null;
@@ -37,19 +38,20 @@ export const useProjectPreviewsRef = () => {
     return context;
 };
 
-
-export const RefProvider = ({ children }: { children: React.ReactNode }) => {
+export const Providers = ({children}: { children: React.ReactNode }) => {
     const mainRef = useRef<HTMLDivElement>(null);
     const introductionRef = useRef<HTMLDivElement>(null);
     const projectPreviewsRef = useRef<HTMLDivElement>(null);
 
     return (
-        <MainRefContext.Provider value={{ mainRef }}>
-            <IntroductionRefContext.Provider value={{ introductionRef }}>
-                <ProjectPreviewsRefContext.Provider value={{ projectPreviewsRef }}>
-                    {children}
-                </ProjectPreviewsRefContext.Provider>
-            </IntroductionRefContext.Provider>
-        </MainRefContext.Provider>
+        <ThemeProvider attribute={'class'} defaultTheme={'system'} enableSystem>
+            <MainRefContext.Provider value={{mainRef}}>
+                <IntroductionRefContext.Provider value={{introductionRef}}>
+                    <ProjectPreviewsRefContext.Provider value={{projectPreviewsRef}}>
+                        {children}
+                    </ProjectPreviewsRefContext.Provider>
+                </IntroductionRefContext.Provider>
+            </MainRefContext.Provider>
+        </ThemeProvider>
     );
 };

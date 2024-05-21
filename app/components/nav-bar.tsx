@@ -4,13 +4,16 @@ import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
 import {RefObject, useEffect, useState} from "react";
+import {isInViewport} from "@/app/utils/isElementInView";
 
 export default function NavBar() {
     const path = usePathname();
     const router = useRouter();
 
     const [isIntroductionVisible, setIsIntroductionVisible] = useState(path === '/');
-    const [isProjectPreviewsVisible, setIsProjectPreviewsVisible] = useState(false);
+    const [isProjectPreviewsVisible, setIsProjectPreviewsVisible] = useState(path.includes('/work'));
+    const [shouldScrollToProjectPreviews, setShouldScrollToProjectPreviews] = useState(false);
+
     const {mainRef} = useMainRef();
     const {introductionRef} = useIntroductionRef();
     const {projectPreviewsRef} = useProjectPreviewsRef();
@@ -19,26 +22,40 @@ export default function NavBar() {
         element?.current?.scrollIntoView({behavior: 'smooth'});
     };
 
-    // const mainElement = document.querySelector('main');
     useEffect(() => {
+        const handleScroll = () => {
+            setIsIntroductionVisible(isInViewport(introductionRef!, 50));
+            setIsProjectPreviewsVisible(isInViewport(projectPreviewsRef!, 50));
+        };
+
         if (mainRef?.current) {
-            mainRef.current.onscroll = () => {
-                setIsIntroductionVisible(isInViewport(introductionRef!));
-                setIsProjectPreviewsVisible(isInViewport(projectPreviewsRef!));
-            };
+            mainRef.current.addEventListener('scroll', handleScroll);
         }
-    }, [mainRef]);
 
-    const isInViewport = (element: RefObject<HTMLDivElement>) => {
-        if (!element.current) return false;
+        return () => {
+            if (mainRef?.current) {
+                mainRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [mainRef, introductionRef, projectPreviewsRef]);
 
-        const rect = element.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    useEffect(() => {
+        setIsIntroductionVisible(path === '/');
+        setIsProjectPreviewsVisible(path.includes('/work'));
 
-        return (
-            rect.top + 50 <= windowHeight &&
-            rect.bottom - 50 >= 0
-        );
+        if (shouldScrollToProjectPreviews && path === '/') {
+            scrollToSection(projectPreviewsRef!);
+            setShouldScrollToProjectPreviews(false);
+        }
+    }, [path, shouldScrollToProjectPreviews, projectPreviewsRef]);
+
+    const handleWorkClick = () => {
+        if (path === '/') {
+            scrollToSection(projectPreviewsRef!);
+        } else {
+            setShouldScrollToProjectPreviews(true);
+            router.push('/');
+        }
     };
 
     return (
@@ -51,13 +68,7 @@ export default function NavBar() {
             >
                 Home
             </div>
-            <div onClick={path === '/'
-                ? () => scrollToSection(projectPreviewsRef!)
-                : () => {
-                    router.push('/')
-                    scrollToSection(projectPreviewsRef!)
-                }
-            }
+            <div onClick={handleWorkClick}
                  className={`cursor-pointer ${isProjectPreviewsVisible ? 'font-bold' : ''}`}
             >
                 Work

@@ -20,7 +20,7 @@ export default function Home() {
                         height={100}>
                     </Image>
                 </div>
-                <h1 className={'animate slideInBottom pb-8'}>Hi, I'm Florian.</h1>
+                <h1 className={'animate slideInBottom pb-8'}>Hi, I&apos;m Florian.</h1>
                 <p className={'animate dur1-3 slideInBottom w-1/2 text-center leading-8'}>
                     A passionate individual with a diverse background spanning computer sciences,
                     design and experiences as an draftsman specialising in civil engineering. I thrive
@@ -34,7 +34,8 @@ export default function Home() {
                 <h1 className={'animate slideInBottom pb-8'}>Work</h1>
                 {ProjectData.map((project) => (
                         <ProjectPreview
-                            key={project.title}
+                            key={project.id}
+                            id={project.id}
                             title={project.title}
                             description={project.description}
                             picture={project.picturePath}

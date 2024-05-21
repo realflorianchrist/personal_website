@@ -1,34 +1,25 @@
 'use client'
-import {useLayoutEffect, useState} from "react";
-import {Switch} from "@mui/material";
+import {useEffect, useLayoutEffect, useState} from "react";
+import {styled, Switch} from "@mui/material";
 import {grey} from '@mui/material/colors';
-import {styled} from "@mui/system";
+import {useTheme} from "next-themes";
 
 export default function ThemeSwitch() {
 
-    useLayoutEffect(() => {
-        let preferredTheme;
-        if (localStorage.getItem('theme') !== null) {
-            preferredTheme = localStorage.getItem('theme');
-        } else {
-            preferredTheme = 'dark';
-        }
-        document.documentElement.setAttribute('data-theme', preferredTheme!);
+    const [mounted, setMounted] = useState(false);
+    const {setTheme, resolvedTheme} = useTheme();
+
+    useEffect(() => {
+        setMounted(true);
     }, []);
 
-    const [isLightMode, setIsLightMode] = useState(
-        localStorage.getItem('theme') === 'light');
-
     const toggleTheme = () => {
-        const newTheme = isLightMode ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        setIsLightMode(!isLightMode);
-    };
+        setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+    }
 
     const GreySwitch = styled(Switch)(() => ({
         '& .MuiSwitch-thumb': {
-            backgroundColor: isLightMode ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+            backgroundColor: resolvedTheme === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
         },
         '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
             backgroundColor: grey[600]
@@ -38,15 +29,16 @@ export default function ThemeSwitch() {
         }
     }));
 
+    if (!mounted) return <></>;
+
     return (
         <button className={'flex fixed bottom-8 left-8'}
                 onClick={toggleTheme}>
             <GreySwitch
-                checked={isLightMode}
+                checked={resolvedTheme === 'dark'}
                 size={'small'}
             />
             <p className={'text-xs self-center pl-1'}>Lights on/off</p>
         </button>
-
     );
 }

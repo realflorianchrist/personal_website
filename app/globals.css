@@ -4,14 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+.light {
     --background-color: #323232;
     --foreground-color: #ffffff;
     --accent-color: #000000;
     --text-color: #000000;
 }
 
-[data-theme="dark"] {
+.dark {
     --background-color: #323232;
     --foreground-color: #0f0f0f;
     --accent-color: #ffffff;
