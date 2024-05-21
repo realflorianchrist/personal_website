@@ -22,10 +22,10 @@ export default function ThemeSwitch() {
             backgroundColor: resolvedTheme === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
         },
         '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-            backgroundColor: grey[600]
+            backgroundColor: 'rgb(137, 137, 137)'
         },
         '& .MuiSwitch-track': {
-            backgroundColor: grey[600]
+            backgroundColor: 'rgb(137, 137, 137)'
         }
     }));
 

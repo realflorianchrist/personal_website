@@ -9,6 +9,7 @@
     --foreground-color: #ffffff;
     --accent-color: #000000;
     --text-color: #000000;
+    --scrollbar-color: #898989;
 }
 
 .dark {
@@ -16,6 +17,7 @@
     --foreground-color: #0f0f0f;
     --accent-color: #ffffff;
     --text-color: #ffffff;
+    --scrollbar-color: #898989;
 }
 
 body {
@@ -26,6 +28,27 @@ body {
     padding: 20px;
     height: 100vh;
     overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--foreground-color) var(--scrollbar-color);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--foreground-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    opacity: 0.1;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 main {
