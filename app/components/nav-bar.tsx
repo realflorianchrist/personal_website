@@ -5,6 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
 import {RefObject, useEffect, useState} from "react";
 import {isInViewport} from "@/app/utils/isElementInView";
+import ContactDropdown from "@/app/components/contact-dropdown";
 
 export default function NavBar() {
     const path = usePathname();
@@ -60,6 +61,7 @@ export default function NavBar() {
 
     return (
         <div id={styles['nav-bar']} className={'fixed flex top-10 self-center text-xs space-x-10'}>
+
             <div onClick={path === '/'
                 ? () => scrollToSection(introductionRef!)
                 : () => router.push('/')
@@ -68,13 +70,20 @@ export default function NavBar() {
             >
                 Home
             </div>
+
             <div onClick={handleWorkClick}
                  className={`cursor-pointer ${isProjectPreviewsVisible ? 'font-bold' : ''}`}
             >
                 Work
             </div>
-            <Link href={'/about'} className={path === '/about' ? 'font-bold' : ''}>About</Link>
-            <Link href={'/contact'} className={path === '/contact' ? 'font-bold' : ''}>Contact</Link>
+
+            <Link href={'/about'}
+                  className={path === '/about' ? 'font-bold' : ''}
+            >
+                About
+            </Link>
+
+            <ContactDropdown />
         </div>
     );
 }
