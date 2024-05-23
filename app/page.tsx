@@ -39,6 +39,7 @@ export default function Home() {
                             title={project.title}
                             description={project.description}
                             picture={project.picturePath}
+                            technologies={project.technologies}
                         />
                     )
                 )}

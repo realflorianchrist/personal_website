@@ -20,3 +20,15 @@
 #project-infos {
     width: 40%;
 }
+
+#technologies {
+    margin-top: 15px;
+    display: flex;
+    background-color: var(--scrollbar-color);
+    border-radius: 10px;
+    justify-content: center;
+}
+
+#technologies li {
+    padding: 5px;
+}

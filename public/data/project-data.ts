@@ -5,21 +5,22 @@ export const ProjectData: Project[] = [
         id: 1,
         title: 'TwitterFX',
         description: 'In my second semester I did a project with JavaFX',
-        picturePath: '/images/javafx.png',
+        picturePath: '/images/projects/javafx.png',
         technologies: [
-            'JavaFX',
-            'css'
+            {name: 'java', path: '/images/logos/Java.png'},
+            {name: 'css', path: '/images/logos/CSS3.png'},
         ]
     }, {
         id: 2,
         title: 'Plan Directory',
         description: 'In my fourth semester I did my first web application',
-        picturePath: '/images/plan-directory.png',
+        picturePath: '/images/projects/plan-directory.png',
         technologies: [
-            'Spring Boot',
-            'Next.js',
-            'React',
-            'Cypress'
+            {name: 'spring', path: '/images/logos/Spring.png'},
+            {name: 'typeScript' , path: '/images/logos/TypeScript.png'},
+            {name: 'nextJS', path: '/images/logos/Next.js.png'},
+            {name: 'react', path: '/images/logos/React.png'},
+            {name: 'cypress', path: '/images/logos/Cypress.png'},
         ]
     }
 ]
