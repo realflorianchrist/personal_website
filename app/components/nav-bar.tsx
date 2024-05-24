@@ -3,7 +3,7 @@ import styles from './NavBar.module.css'
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
-import {RefObject, useEffect, useState} from "react";
+import {RefObject, useEffect, useRef, useState} from "react";
 import {isInViewport} from "@/app/utils/isElementInView";
 import {useOutsideClick} from "@/app/utils/use-outsite-click";
 
@@ -19,7 +19,13 @@ export default function NavBar() {
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-    const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
+
+    const contactButtonRef = useRef<HTMLDivElement>(null);
+    const dropDownRef = useRef<HTMLUListElement>(null);
+
+    useOutsideClick([contactButtonRef, dropDownRef], () => {
+        setIsOpen(false);
+    });
 
     const {mainRef} = useMainRef();
     const {introductionRef} = useIntroductionRef();
@@ -97,15 +103,18 @@ export default function NavBar() {
             </div>
 
             <div id={styles['dropdown']}
-                    className={isOpen ? styles['active'] : ''}
-                    onClick={toggleDropdown}
-                    ref={ref}
+                 className={isOpen ? styles['active'] : ''}
+                 onClick={toggleDropdown}
+                 ref={contactButtonRef}
             >
                 Contact
             </div>
 
 
-            <ul id={styles['dropdown-menu']} className={isOpen ? 'show' : 'hidden'}>
+            <ul id={styles['dropdown-menu']}
+                className={isOpen ? 'show' : 'hidden'}
+                ref={dropDownRef}
+            >
                 <li id={styles['dropdown-item']}>
                     <a href="mailto:florian_christ@outlook.com">florian_christ@outlook.com</a>
                 </li>
