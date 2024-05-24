@@ -5,6 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
 import {RefObject, useEffect, useState} from "react";
 import {isInViewport} from "@/app/utils/isElementInView";
+import {useOutsideClick} from "@/app/utils/use-outsite-click";
 
 export default function NavBar() {
     const path = usePathname();
@@ -18,6 +19,7 @@ export default function NavBar() {
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
+    const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
 
     const {mainRef} = useMainRef();
     const {introductionRef} = useIntroductionRef();
@@ -60,7 +62,6 @@ export default function NavBar() {
         } else {
             router.push('/')
         }
-        setIsOpen(false);
     }
 
     const handleWorkClick = () => {
@@ -70,7 +71,6 @@ export default function NavBar() {
             setShouldScrollToProjectPreviews(true);
             router.push('/');
         }
-        setIsOpen(false);
     };
 
     return (
@@ -78,38 +78,37 @@ export default function NavBar() {
              className={`fixed flex top-10 self-center text-xs space-x-10 ${isOpen ? styles['expand'] : ''}`}>
 
             <div onClick={handleHomeClick}
-                 className={`cursor-pointer ${isIntroductionVisible && !isOpen ? 'font-bold' : ''}`}
+                 className={isIntroductionVisible && !isOpen ? styles['active'] : ''}
             >
                 Home
             </div>
 
             <div onClick={handleWorkClick}
-                 className={`cursor-pointer ${isProjectPreviewsVisible && !isOpen ? 'font-bold' : ''}`}
+                 className={isProjectPreviewsVisible && !isOpen ? styles['active'] : ''}
             >
                 Work
             </div>
 
-            <div onClick={() => {
-                router.push('about');
-                setIsOpen(false);
-            }}
-                 className={path === '/about' && !isOpen ? 'font-bold' : ''}
+            <div onClick={() => router.push('/about')}
+                 className={path === '/about' && !isOpen ? styles['active'] : ''}
 
             >
                 About
             </div>
 
-            <button id={styles['dropdown']}
-                    className={isOpen ? 'font-bold' : ''}
+            <div id={styles['dropdown']}
+                    className={isOpen ? styles['active'] : ''}
                     onClick={toggleDropdown}
+                    ref={ref}
             >
                 Contact
-            </button>
+            </div>
 
 
-            {/*{isOpen && (*/}
             <ul id={styles['dropdown-menu']} className={isOpen ? 'show' : 'hidden'}>
-                <li id={styles['dropdown-item']}>florian_christ@outlook.com</li>
+                <li id={styles['dropdown-item']}>
+                    <a href="mailto:florian_christ@outlook.com">florian_christ@outlook.com</a>
+                </li>
                 <li id={styles['dropdown-item']}>
                     <Link href={'https://www.linkedin.com/in/florian-christ-983651194/'}>
                         linkedin
@@ -117,7 +116,6 @@ export default function NavBar() {
                 </li>
                 <li id={styles['dropdown-item']}>github</li>
             </ul>
-            {/*)}*/}
         </div>
     );
 }

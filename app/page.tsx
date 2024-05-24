@@ -21,7 +21,7 @@ export default function Home() {
                     </Image>
                 </div>
                 <h1 className={'animate slideInBottom pb-8'}>Hi, I&apos;m Florian.</h1>
-                <p className={'animate dur1-3 slideInBottom w-1/2 text-center leading-8'}>
+                <p className={'animate dur1-4 slideInBottom w-1/2 text-center leading-8'}>
                     A passionate individual with a diverse background spanning computer sciences,
                     design and experiences as an draftsman specialising in civil engineering. I thrive
                     on exploring the intersection of technology and creativity, crafting compelling digital
