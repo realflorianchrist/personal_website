@@ -54,6 +54,15 @@ export default function NavBar() {
         }
     }, [path, shouldScrollToProjectPreviews, projectPreviewsRef]);
 
+    const handleHomeClick = () => {
+        if (path === '/') {
+            scrollToSection(introductionRef!)
+        } else {
+            router.push('/')
+        }
+        setIsOpen(false);
+    }
+
     const handleWorkClick = () => {
         if (path === '/') {
             scrollToSection(projectPreviewsRef!);
@@ -61,51 +70,54 @@ export default function NavBar() {
             setShouldScrollToProjectPreviews(true);
             router.push('/');
         }
+        setIsOpen(false);
     };
 
     return (
-        <div id={styles['nav-bar']} className={'fixed flex top-10 self-center text-xs space-x-10'}>
+        <div id={styles['nav-bar']}
+             className={`fixed flex top-10 self-center text-xs space-x-10 ${isOpen ? styles['expand'] : ''}`}>
 
-            <div onClick={path === '/'
-                ? () => scrollToSection(introductionRef!)
-                : () => router.push('/')
-            }
-                 className={`cursor-pointer ${isIntroductionVisible ? 'font-bold' : ''}`}
+            <div onClick={handleHomeClick}
+                 className={`cursor-pointer ${isIntroductionVisible && !isOpen ? 'font-bold' : ''}`}
             >
                 Home
             </div>
 
             <div onClick={handleWorkClick}
-                 className={`cursor-pointer ${isProjectPreviewsVisible ? 'font-bold' : ''}`}
+                 className={`cursor-pointer ${isProjectPreviewsVisible && !isOpen ? 'font-bold' : ''}`}
             >
                 Work
             </div>
 
-            <Link href={'/about'}
-                  className={path === '/about' ? 'font-bold' : ''}
+            <div onClick={() => {
+                router.push('about');
+                setIsOpen(false);
+            }}
+                 className={path === '/about' && !isOpen ? 'font-bold' : ''}
+
             >
                 About
-            </Link>
-
+            </div>
 
             <button id={styles['dropdown']}
+                    className={isOpen ? 'font-bold' : ''}
                     onClick={toggleDropdown}
             >
                 Contact
             </button>
 
 
-            {isOpen && (
-                <ul id={styles['dropdown-menu']}>
-                    <li id={styles['dropdown-item']}>florian_christ@outlook.com</li>
-                    <li id={styles['dropdown-item']}>
-                        <Link href={'https://www.linkedin.com/in/florian-christ-983651194/'}>
-                            linkedin
-                        </Link>
-                    </li>
-                    <li id={styles['dropdown-item']}>github</li>
-                </ul>
-            )}
+            {/*{isOpen && (*/}
+            <ul id={styles['dropdown-menu']} className={isOpen ? 'show' : 'hidden'}>
+                <li id={styles['dropdown-item']}>florian_christ@outlook.com</li>
+                <li id={styles['dropdown-item']}>
+                    <Link href={'https://www.linkedin.com/in/florian-christ-983651194/'}>
+                        linkedin
+                    </Link>
+                </li>
+                <li id={styles['dropdown-item']}>github</li>
+            </ul>
+            {/*)}*/}
         </div>
     );
 }

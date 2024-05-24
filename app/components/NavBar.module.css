@@ -1,11 +1,14 @@
 #nav-bar {
+    height: 38px;
     background-color: var(--foreground-color);
     border: 0.5px solid var(--accent-color);
     border-radius: 5px;
     opacity: 0.92;
     padding: 10px 30px;
     z-index: 1;
+    align-items: flex-start;
     justify-content: center;
+    transition: all 0.5s ease;
 }
 
 #dropdown-menu {
@@ -13,11 +16,19 @@
     position: absolute;
     display: flex;
     z-index: 1;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 0;
+    transition: all 0.5s ease;
 }
 
 #dropdown-item {
     cursor: pointer;
-    padding: 5px;
+    padding: 2px 5px;
+    margin: 0 2px;
+    background-color: var(--scrollbar-color);
+    border-radius: 100px;
+}
+
+#nav-bar.expand {
+    height: 60px;
 }
