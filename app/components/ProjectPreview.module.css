@@ -1,16 +1,16 @@
 #project-preview {
+    background-color: var(--foreground-color);
     display: flex;
     padding: 15px;
     border: 0.5px solid var(--accent-color);
     border-radius: 15px;
-    margin-bottom: 25px;
-    transform: scale(1);
+    margin-bottom: 50px;
     transition: transform 0.8s ease;
 }
 
-#project-preview:hover {
-    transform: scale(1.05);
-}
+/*#project-preview:hover {*/
+/*    transform: scale(1.05);*/
+/*}*/
 
 #project-preview div {
     display: flex;
@@ -31,4 +31,8 @@
 
 #technologies li {
     padding: 5px;
+}
+
+#picture {
+    transition: all 1s ease;
 }
