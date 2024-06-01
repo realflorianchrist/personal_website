@@ -33,6 +33,13 @@ body {
     transition: all 0.5s ease;
 }
 
+/*@media (max-width: 600px) {*/
+/*    body {*/
+/*        overflow-y: auto;*/
+/*        scroll-behavior: smooth;*/
+/*    }*/
+/*}*/
+
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -66,6 +73,12 @@ main {
     scroll-behavior: smooth;
 }
 
+@media (max-width: 600px) {
+    main {
+        padding: 0 10px 15px 10px;
+    }
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
@@ -77,12 +90,28 @@ h1 {
     font-size: xx-large;
 }
 
+@media (max-width: 600px) {
+    h1 {
+        font-size: x-large;
+    }
+}
+
 #introduction {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 8%;
     margin-bottom: 12%;
+}
+
+@media (max-width: 600px) {
+    #introduction {
+        font-size: 15px;
+    }
+
+    #introduction p {
+        width: 100%;
+    }
 }
 
 #introduction h1 {
@@ -102,15 +131,16 @@ h1 {
     margin: 12% 0 6% 0;
 }
 
+@media (max-width: 600px) {
+    #profile-picture {
+        margin: 100px 0 50px 0;
+    }
+}
+
 #project-previews {
     width: 70%;
     display: flex;
     flex-direction: column;
-    /*border-top: 0.5px;*/
-    /*border-left: 0.5px;*/
-    /*border-right: 0.5px;*/
-    /*border-style: solid;*/
-    /*border-color: var(--accent-color);*/
 }
 
 #project-previews > :first-child {
