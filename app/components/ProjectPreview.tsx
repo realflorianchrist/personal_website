@@ -12,13 +12,13 @@ export default function ProjectPreview(
         description,
         picture,
         technologies
-    }: {
+    }: Readonly<{
         id: number
         title: string
         description: string
         picture: string
         technologies: Technology[]
-    }) {
+    }>) {
 
     const router = useRouter();
 

@@ -12,19 +12,19 @@ const en = {
         Timeline: [
             {
                 time: "Sept. 2022 - today",
-                description: "BSc Informatik",
-                organisation: "Fachhochschule Nordwestschweiz",
+                description: "BSc computer science",
+                organisation: "University of Applied Sciences and Arts Northwestern Switzerland",
             }, {
                 time: "Aug. 2019 - today",
-                description: "Zeichner Fachrichtung Ingenieurbau",
+                description: "Draftsman specializing in engineering",
                 organisation: "Aegerter & Bosshardt AG",
             }, {
                 time: "Aug. 2019 - July 2021",
-                description: "Berufsmaturität",
-                organisation: "Technik, Architektur, Life Sciences",
+                description: "Vocational baccalaureate",
+                organisation: "Technology, Architecture, Life Sciences",
             }, {
                 time: "Aug. 2015 - July 2019",
-                description: "Ausbildung zum Zeichner Fachrichtung Ingenieurbau",
+                description: "Apprenticeship to draftsman specializing in engineering",
                 organisation: "Aegerter & Bosshardt AG",
             }
         ] as Waypoint[]
