@@ -1,6 +1,5 @@
 'use client'
 import styles from './NavBar.module.css'
-import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
 import {RefObject, useEffect, useRef, useState} from "react";
@@ -119,11 +118,15 @@ export default function NavBar() {
                     <a href="mailto:florian_christ@outlook.com">florian_christ@outlook.com</a>
                 </li>
                 <li id={styles['dropdown-item']}>
-                    <Link href={'https://www.linkedin.com/in/florian-christ-983651194/'}>
+                    <a href={'https://www.linkedin.com/in/florian-christ-983651194/'} target={'_blank'}>
                         linkedin
-                    </Link>
+                    </a>
                 </li>
-                <li id={styles['dropdown-item']}>github</li>
+                <li id={styles['dropdown-item']}>
+                    <a href={'https://github.com/realflorianchrist'} target={'_blank'}>
+                        github
+                    </a>
+                </li>
             </ul>
         </div>
     );

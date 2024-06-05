@@ -2,7 +2,7 @@
 import {useLanguageContext} from "@/app/providers/language-provider";
 
 export default function LanguageSwitch() {
-    const {changeLanguage} = useLanguageContext();
+    const {i18n, changeLanguage} = useLanguageContext();
 
     return (
         <div className={'fixed right-10 bottom-8 space-x-4'}>
