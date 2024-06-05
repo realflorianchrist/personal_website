@@ -16,7 +16,11 @@ const initialLanguageContext: LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType>(initialLanguageContext);
 
 export const useLanguageContext = () => {
-    return useContext(LanguageContext);
+    const context = useContext(LanguageContext);
+    if (!context) {
+        throw new Error("useLanguageContext has to be used inside the LanguageProvider");
+    }
+    return context;
 };
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
@@ -35,7 +39,8 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         }
     };
 
-    const contextValue = useMemo(() => ({ i18n, changeLanguage }), [i18n]);
+    const contextValue = useMemo(() => (
+        { i18n, changeLanguage }), [i18n]);
 
     return (
         <LanguageContext.Provider value={contextValue}>

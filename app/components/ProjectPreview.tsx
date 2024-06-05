@@ -2,7 +2,7 @@
 import styles from './ProjectPreview.module.css'
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import {Technologies} from "@/app/models/Technologies";
+import {Technology} from "@/app/models/Technology";
 import {Tilt} from 'react-tilt';
 
 export default function ProjectPreview(
@@ -17,7 +17,7 @@ export default function ProjectPreview(
         title: string
         description: string
         picture: string
-        technologies: Technologies[]
+        technologies: Technology[]
     }) {
 
     const router = useRouter();

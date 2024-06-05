@@ -1,7 +1,10 @@
-import {ProjectData} from "@/public/data/project-data";
+'use client'
+import {useLanguageContext} from "@/app/providers/language-provider";
+import {Project} from "@/app/models/Project";
 
-export default function Work({params}: { params: { id: string } }) {
-    const project = ProjectData.find(proj => proj.id === Number(params.id));
+export default function Work({params}: Readonly<{ params: { id: string } }>) {
+    const {i18n} = useLanguageContext();
+    const project = i18n.ProjectData.find((proj: Project)  => proj.id === Number(params.id));
 
     return (
         <main>

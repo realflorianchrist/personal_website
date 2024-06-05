@@ -1,9 +1,9 @@
-import {Technologies} from "@/app/models/Technologies";
+import {Technology} from "@/app/models/Technology";
 
 export type Project = {
     id: number,
     title: string,
     description: string,
     picturePath: string,
-    technologies: Technologies[]
+    technologies: Technology[]
 }

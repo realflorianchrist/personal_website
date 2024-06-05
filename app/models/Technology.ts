@@ -1,4 +1,4 @@
-export type Technologies = {
+export type Technology = {
     name: string;
     path: string;
 }

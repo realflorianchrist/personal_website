@@ -1,34 +1,30 @@
+'use client'
 import styles from './About.module.css';
+import {useLanguageContext} from "@/app/providers/language-provider";
+import {Waypoint} from "@/app/models/Waypoint";
 
 export default function About() {
+    const {i18n} = useLanguageContext();
+
     return (
         <main>
-            <h1 id={styles['title']} className={'animate dur0-6 slideInBottom'}>About me</h1>
-            <ul className={`animate dur0-8 slideInBottom ${styles["timeline"]}`}>
-                <li className={"text-left animate slideInBottom"}>
-                    <article className={"text-right"}>
-                        <h4>Sept. 2022 - heute</h4>
-                        <p>BSc Informatik<br/>Fachhochschule Nordwestschweiz</p>
-                    </article>
-                </li>
-                <li className={"text-right animate dur1-4 slideInBottom"}>
-                    <article className={"text-left"}>
-                        <h4>Aug. 2019 - heute</h4>
-                        <p>Zeichner Fachrichtung Ingenieurbau<br/>Aegerter & Bosshardt AG</p>
-                    </article>
-                </li>
-                <li className={"text-left animate dur1-8 slideInBottom"}>
-                    <article className={"text-right"}>
-                        <h4>Aug. 2019 - Jul. 2021</h4>
-                        <p>Berufsmaturität<br/>Technik, Architektur, Life Sciences</p>
-                    </article>
-                </li>
-                <li className={"text-right animate dur2-2 slideInBottom"}>
-                    <article className={"text-left"}>
-                        <h4>Aug. 2015 - Jul. 2019</h4>
-                        <p>Ausbildung zum Zeichner Fachrichtung Ingenieurbau<br/>Aegerter & Bosshardt AG</p>
-                    </article>
-                </li>
+            <h1 id={styles['title']} className={'animate dur600 slideInBottom'}>About me</h1>
+            <ul className={`animate dur800 slideInBottom ${styles["timeline"]}`}>
+                {i18n.About.Timeline.map((waypoint: Waypoint, index: number) => {
+                    const liClass = index % 2 === 0 ? 'text-left' : 'text-right';
+                    const articleClass = index % 2 === 0 ? 'text-right' : 'text-left';
+                    const durationClass = `dur${1000 + (index * 400)}`;
+
+                    return (
+                        <li key={waypoint.description} className={`animate ${durationClass} slideInBottom ${liClass}`}>
+                            <article className={articleClass}>
+                                <h4>{waypoint.time}</h4>
+                                <div>{waypoint.description}</div>
+                                <div className={'mb-10'}>{waypoint.organisation}</div>
+                            </article>
+                        </li>
+                    );
+                })}
             </ul>
         </main>
     );

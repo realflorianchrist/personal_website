@@ -1,7 +1,6 @@
 'use client'
 import {useEffect, useLayoutEffect, useState} from "react";
 import {styled, Switch} from "@mui/material";
-import {grey} from '@mui/material/colors';
 import {useTheme} from "next-themes";
 
 export default function ThemeSwitch() {
