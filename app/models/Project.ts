@@ -1,4 +1,4 @@
-import {Technologies} from "@/app/models/technologies";
+import {Technologies} from "@/app/models/Technologies";
 
 export type Project = {
     id: number,

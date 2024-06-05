@@ -2,9 +2,10 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
 import "./animations.css";
-import {Providers} from "@/app/providers/providers";
-import NavBar from "@/app/components/nav-bar";
-import ThemeSwitch from "@/app/components/theme-switch";
+import {UseRefProviders} from "@/app/providers/useRef-providers";
+import NavBar from "@/app/components/NavBar";
+import ThemeSwitch from "@/app/components/ThemeSwitch";
+import {LanguageProvider} from "@/app/providers/language-provider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -17,11 +18,13 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
     return (
         <html lang="de" suppressHydrationWarning={true}>
             <body className={inter.className}>
-                <Providers>
-                    <NavBar />
-                    <ThemeSwitch />
-                    {children}
-                </Providers>
+                <LanguageProvider>
+                    <UseRefProviders>
+                        <NavBar />
+                        <ThemeSwitch />
+                        {children}
+                    </UseRefProviders>
+                </LanguageProvider>
             </body>
         </html>
     );

@@ -2,7 +2,7 @@
 import styles from './ProjectPreview.module.css'
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import {Technologies} from "@/app/models/technologies";
+import {Technologies} from "@/app/models/Technologies";
 import {Tilt} from 'react-tilt';
 
 export default function ProjectPreview(

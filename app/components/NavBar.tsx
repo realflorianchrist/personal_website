@@ -2,9 +2,9 @@
 import styles from './NavBar.module.css'
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
-import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
+import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/useRef-providers";
 import {RefObject, useEffect, useRef, useState} from "react";
-import {isInViewport} from "@/app/utils/isElementInView";
+import {isInViewport} from "@/app/utils/use-is-element-in-view";
 import {useOutsideClick} from "@/app/utils/use-outsite-click";
 
 export default function NavBar() {

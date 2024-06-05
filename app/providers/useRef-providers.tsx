@@ -9,7 +9,7 @@ const MainRefContext = createContext<{
 export const useMainRef = () => {
     const context = useContext(MainRefContext);
     if (!context) {
-        throw new Error("useMainRef muss innerhalb eines RefProvider verwendet werden");
+        throw new Error("useMainRef has to be used inside a RefProvider");
     }
     return context;
 };
@@ -21,7 +21,7 @@ const IntroductionRefContext = createContext<{
 export const useIntroductionRef = () => {
     const context = useContext(IntroductionRefContext);
     if (!context) {
-        throw new Error("useIntroductionRef muss innerhalb eines ProjectPreviewsRefProvider verwendet werden");
+        throw new Error("useIntroductionRef has to be used inside a RefProvider");
     }
     return context;
 };
@@ -33,12 +33,12 @@ const ProjectPreviewsRefContext = createContext<{
 export const useProjectPreviewsRef = () => {
     const context = useContext(ProjectPreviewsRefContext);
     if (!context) {
-        throw new Error("useProjectPreviewsRef muss innerhalb eines ProjectPreviewsRefProvider verwendet werden");
+        throw new Error("useProjectPreviewsRef has to be used inside a RefProvider");
     }
     return context;
 };
 
-export const Providers = ({children}: { children: React.ReactNode }) => {
+export const UseRefProviders = ({children}: { children: React.ReactNode }) => {
     const mainRef = useRef<HTMLDivElement>(null);
     const introductionRef = useRef<HTMLDivElement>(null);
     const projectPreviewsRef = useRef<HTMLDivElement>(null);
