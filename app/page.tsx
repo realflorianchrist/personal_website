@@ -13,9 +13,13 @@ export default function Home() {
     const {projectPreviewsRef} = useProjectPreviewsRef();
 
     return (
-        <main ref={mainRef}>
-            <div id={'introduction'} ref={introductionRef}>
-                <div id={'profile-picture'} className={'animate dur600 slideInBottom'}>
+        <main ref={mainRef}
+              className={"pl-12 pb-20 pr-12 flex flex-col items-center w-full h-full rounded-xl overflow-auto scroll-smooth"}>
+            <div id={'introduction'}
+                 ref={introductionRef}
+                 className={"pb-14 mb-20 flex flex-col items-center justify-center"}>
+                <div id={'profile-picture'}
+                     className={"animate dur600 slideInBottom lg:mt-40 lg:mb-16 mt-32 mb-14 flex items-center justify-center w-32 h-32 rounded-full overflow-hidden border"}>
                     <Image
                         src={'/images/passfoto.png'}
                         alt={'profile-picture'}
@@ -23,12 +27,14 @@ export default function Home() {
                         height={100}>
                     </Image>
                 </div>
-                <h1 className={'animate slideInBottom pb-8'}>{i18n.Home.welcome}</h1>
+                <h1 className={'animate slideInBottom pb-8 mb-10'}>{i18n.Home.welcome}</h1>
                 <p className={'animate dur1400 slideInBottom w-1/2 text-center leading-8'}>
                     {i18n.Home.introduction}
                 </p>
             </div>
-            <div id={'project-previews'} ref={projectPreviewsRef}>
+            <div id={'project-previews'}
+                 ref={projectPreviewsRef}
+                 className={"w-2/3"}>
                 <h1 className={'animate slideInBottom pb-8'}>Work</h1>
                 {i18n.ProjectData.map((project: Project) => (
                         <ProjectPreview
