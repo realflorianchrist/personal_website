@@ -19,7 +19,7 @@ export default function Home() {
                  ref={introductionRef}
                  className={"pb-14 mb-20 flex flex-col items-center justify-center"}>
                 <div id={'profile-picture'}
-                     className={"animate dur600 slideInBottom lg:mt-40 lg:mb-16 mt-32 mb-14 flex items-center justify-center w-32 h-32 rounded-full overflow-hidden border"}>
+                     className={"animate dur600 slideInBottom lg:mt-40 lg:mb-16 mt-32 mb-14 flex items-center justify-center w-32 h-32 rounded-full overflow-hidden border border-accent-color"}>
                     <Image
                         src={'/images/passfoto.png'}
                         alt={'profile-picture'}
