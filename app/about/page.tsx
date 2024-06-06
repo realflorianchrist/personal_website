@@ -1,6 +1,7 @@
 "use client";
 import { useLanguageContext } from "@/app/providers/language-provider";
 import { Waypoint } from "@/app/models/Waypoint";
+import { useMainRef } from "@/app/providers/providers";
 
 export default function About() {
   const { i18n } = useLanguageContext();

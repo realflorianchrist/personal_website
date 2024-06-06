@@ -13,8 +13,7 @@ export default function Home() {
     const {projectPreviewsRef} = useProjectPreviewsRef();
 
     return (
-        <main ref={mainRef}
-              className={"pl-12 pb-20 pr-12 flex flex-col items-center w-full h-full rounded-xl overflow-auto scroll-smooth"}>
+        <main ref={mainRef}>
             <div id={'introduction'}
                  ref={introductionRef}
                  className={"pb-14 mb-20 flex flex-col items-center justify-center"}>
