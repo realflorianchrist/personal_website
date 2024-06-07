@@ -5,7 +5,7 @@ export default function LanguageSwitch() {
     const {i18n, changeLanguage} = useLanguageContext();
 
     return (
-        <div className={'fixed right-10 bottom-8 space-x-4'}>
+        <div className={'fixed right-10 bottom-8 space-x-4 z-10'}>
             <button
                 onClick={() => changeLanguage('de')}
             > de

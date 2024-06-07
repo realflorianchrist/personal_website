@@ -31,7 +31,7 @@ export default function ThemeSwitch() {
     if (!mounted) return <></>;
 
     return (
-        <button className={'flex fixed bottom-8 left-8'}
+        <button className={'flex fixed bottom-8 left-8 z-10'}
                 onClick={toggleTheme}>
             <GreySwitch
                 checked={resolvedTheme === 'dark'}

@@ -80,7 +80,7 @@ export default function NavBar() {
 
     return (
         <div id={styles['nav-bar']}
-             className={`fixed flex top-10 self-center text-xs space-x-10 ${isOpen ? styles['expand'] : ''}`}>
+             className={`${isOpen ? styles['expand'] : ''} text-xs space-x-10`}>
 
             <div onClick={handleHomeClick}
                  className={isIntroductionVisible && !isOpen ? styles['active'] : ''}

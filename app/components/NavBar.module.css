@@ -1,5 +1,9 @@
 #nav-bar {
+    position: fixed;
+    display:flex;
+    top: 40px;
     height: 38px;
+    align-self: center;
     background-color: var(--foreground-color);
     border: 0.5px solid var(--accent-color);
     border-radius: 5px;
@@ -42,8 +46,6 @@
     cursor: pointer;
     padding: 2px 5px;
     margin: 5px 2px;
-    /*background-color: var(--scrollbar-color);*/
-    /*border-radius: 100px;*/
 }
 
 #nav-bar.expand {
