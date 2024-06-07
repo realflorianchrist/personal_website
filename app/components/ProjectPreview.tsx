@@ -4,21 +4,9 @@ import Image from "next/image";
 import {useRouter} from "next/navigation";
 import {Technology} from "@/app/models/Technology";
 import {Tilt} from 'react-tilt';
+import {Project} from "@/app/models/Project";
 
-export default function ProjectPreview(
-    {
-        id,
-        title,
-        description,
-        picture,
-        technologies
-    }: Readonly<{
-        id: number
-        title: string
-        description: string
-        picture: string
-        technologies: Technology[]
-    }>) {
+export default function ProjectPreview({project}: Readonly<{ project: Project }>) {
 
     const router = useRouter();
 
@@ -37,13 +25,13 @@ export default function ProjectPreview(
     return (
         <Tilt options={tiltOptions}>
             <div id={styles['project-preview']}
-                 onClick={() => router.push(`work/${id}`)}
+                 onClick={() => router.push(`work/${project.id}`)}
             >
                 <div id={styles['project-infos']} className={'self-center'}>
-                    <h2>{title}</h2>
-                    <p>{description}</p>
+                    <h2>{project.title}</h2>
+                    <p>{project.description}</p>
                     <ul id={styles['technologies']}>
-                        {technologies.map(tech => (
+                        {project.technologies.map(tech => (
                             <li key={tech.name}>
                                 <Image
                                     src={tech.path}
@@ -57,7 +45,7 @@ export default function ProjectPreview(
                 </div>
                 <div id={styles['picture']} className={'self-center'}>
                     <Image
-                        src={picture}
+                        src={project.picturePath}
                         alt={'project-picture'}
                         width={1500}
                         height={400}>

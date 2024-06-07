@@ -36,16 +36,10 @@ export default function Home() {
                  className={"w-2/3"}>
                 <h1 className={'animate slideInBottom pb-8'}>Work</h1>
                 {i18n.ProjectData.map((project: Project) => (
-                        <ProjectPreview
-                            key={project.id}
-                            id={project.id}
-                            title={project.title}
-                            description={project.description}
-                            picture={project.picturePath}
-                            technologies={project.technologies}
-                        />
-                    )
-                )}
+                    <ProjectPreview
+                        key={project.id}
+                        project={project}/>
+                ))}
             </div>
         </main>
     );
