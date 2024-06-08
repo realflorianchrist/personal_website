@@ -96,7 +96,3 @@ h1 {
         font-size: x-large;
     }
 }
-
-#project-previews > :first-child {
-    margin-top: 100px;
-}

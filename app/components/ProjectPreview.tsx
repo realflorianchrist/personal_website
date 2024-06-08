@@ -1,8 +1,6 @@
 'use client'
-import styles from './ProjectPreview.module.css'
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import {Technology} from "@/app/models/Technology";
 import {Tilt} from 'react-tilt';
 import {Project} from "@/app/models/Project";
 
@@ -24,15 +22,15 @@ export default function ProjectPreview({project}: Readonly<{ project: Project }>
 
     return (
         <Tilt options={tiltOptions}>
-            <div id={styles['project-preview']}
+            <div className={'bg-foreground-color flex items-center p-[15px] border-accent-color border-[0.5px] rounded-[15px] mb-[50px]'}
                  onClick={() => router.push(`work/${project.id}`)}
             >
-                <div id={styles['project-infos']} className={'self-center'}>
+                <div className={'w-[40%]'}>
                     <h2>{project.title}</h2>
                     <p>{project.description}</p>
-                    <ul id={styles['technologies']}>
+                    <ul className={'flex bg-scrollbar-color rounded-[10px] content-center mt-[15px]'}>
                         {project.technologies.map(tech => (
-                            <li key={tech.name}>
+                            <li key={tech.name} className={'p-1'}>
                                 <Image
                                     src={tech.path}
                                     alt={'technologies'}
@@ -43,7 +41,7 @@ export default function ProjectPreview({project}: Readonly<{ project: Project }>
                         ))}
                     </ul>
                 </div>
-                <div id={styles['picture']} className={'self-center'}>
+                <div>
                     <Image
                         src={project.picturePath}
                         alt={'project-picture'}
