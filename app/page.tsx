@@ -33,7 +33,7 @@ export default function Home() {
             </div>
             <div id={'project-previews'}
                  ref={projectPreviewsRef}
-                 className={"w-2/3"}>
+                 className={"w-2/3 pt-[100px]"}>
                 <h1 className={'animate slideInBottom pb-8'}>Work</h1>
                 {i18n.ProjectData.map((project: Project) => (
                     <ProjectPreview
