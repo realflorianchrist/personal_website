@@ -21,35 +21,33 @@ export default function ProjectPreview({project}: Readonly<{ project: Project }>
     };
 
     return (
-        <Tilt options={tiltOptions}>
-            <div className={'bg-foreground-color flex items-center p-[15px] border-accent-color border-[0.5px] rounded-[15px] mb-[50px]'}
-                 onClick={() => router.push(`work/${project.id}`)}
-            >
-                <div className={'w-[40%]'}>
-                    <h2>{project.title}</h2>
-                    <p>{project.description}</p>
-                    <ul className={'flex bg-scrollbar-color rounded-[10px] content-center mt-[15px]'}>
-                        {project.technologies.map(tech => (
-                            <li key={tech.name} className={'p-1'}>
-                                <Image
-                                    src={tech.path}
-                                    alt={'technologies'}
-                                    width={30}
-                                    height={30}>
-                                </Image>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div>
-                    <Image
-                        src={project.picturePath}
-                        alt={'project-picture'}
-                        width={1500}
-                        height={400}>
-                    </Image>
-                </div>
+        <div
+            className={'bg-foreground-color flex flex-col items-center border-accent-color border-[0.5px] rounded-[15px] overflow-hidden'}
+            onClick={() => router.push(`work/${project.id}`)}
+        >
+            <div className={'flex mb-10 w-full h-[150px] md:h-[200px] lg:h-[250px] items-center justify-center relative'}>
+                <Image
+                    src={'/images/Placeholder.png'}
+                    alt={'project-picture'}
+                    layout={'fill'}
+                />
             </div>
-        </Tilt>
+            <div>
+                <h2>{project.title}</h2>
+                <p>{project.description}</p>
+                <ul className={'flex bg-scrollbar-color rounded-[10px] content-center mt-[15px]'}>
+                    {project.technologies.map(tech => (
+                        <li key={tech.name} className={'p-1'}>
+                            <Image
+                                src={tech.path}
+                                alt={'technologies'}
+                                width={30}
+                                height={30}>
+                            </Image>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
     );
 }

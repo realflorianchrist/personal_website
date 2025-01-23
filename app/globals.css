@@ -50,8 +50,7 @@ body {
     }
 
     ::-webkit-scrollbar-track {
-        background: var(--foreground-color);
-        border-radius: 10px;
+        background: transparent;
     }
 
     ::-webkit-scrollbar-thumb {

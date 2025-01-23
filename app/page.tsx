@@ -18,7 +18,7 @@ export default function Home() {
                         objectFit={'contain'}
                     />
                 </div>
-                <h1 className={'animate slideInBottom mb-[15%] lg:mb-[8%]'}>{i18n.Home.welcome}</h1>
+                <h1 className={'animate slideInBottom mb-[15%] lg:mb-[7%]'}>{i18n.Home.welcome}</h1>
                 <p className={'animate dur1400 slideInBottom md:w-1/2 text-center leading-6 md:leading-8 text-[15px] md:text-base'}>
                     {i18n.Home.introduction}
                 </p>
