@@ -36,7 +36,7 @@ export default function NavBar() {
 
     return (
         <div id={styles["nav-bar"]}
-             className={`${isOpen ? styles["expand"] : ""} text-xs space-x-10`}>
+             className={`${isOpen ? styles["expand"] : ""} text-xs space-x-5 md:space-x-8 lg:space-x-10`}>
 
             {Object.entries(paths).map(([key, value]) => {
                 const isActive =

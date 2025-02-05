@@ -1,7 +1,7 @@
-import {Project} from "@/app/models/Project";
-import {Waypoint} from "@/app/models/Waypoint";
+import {TECHNOLOGIES} from "@/i18n/Technologies";
+import {I18nType} from "@/i18n/I18nType";
 
-const de = {
+const de: I18nType = {
     Home: {
         welcome: "Hallo, ich bin Florian.",
         introduction: "Eine leidenschaftliche Person mit einem vielfältigen Hintergrund in Informatik, Design und Erfahrungen " +
@@ -29,43 +29,44 @@ const de = {
                 description: "Ausbildung zum Zeichner Fachrichtung Ingenieurbau",
                 organisation: "Aegerter & Bosshardt AG",
             }
-        ] as Waypoint[]
+        ]
     },
-    ProjectData: {
-        TourBooking: {
+    ProjectData: [
+        {
             id: 1,
-            title: 'Tour Booking Station Ritz',
+            title: 'Tour Booking',
             description: 'In meinem dritten und vierten Semester konnten wir im Rahmen der Projektschiene 2 Semester an einer Tour Buchung Webseite arbeiten bei der',
             previewPicturePath: '/images/projects/javafx.png',
             technologies: [
-                {name: 'java', path: '/images/logos/Java.png'},
-                {name: 'css', path: '/images/logos/CSS3.png'},
-            ]
-        },
-        TwitterFX: {
+                TECHNOLOGIES.SPRING,
+                TECHNOLOGIES.TYPESCRIPT,
+                TECHNOLOGIES.NEXTJS,
+                TECHNOLOGIES.REACT,
+                TECHNOLOGIES.CYPRESS,
+            ],
+        }, {
             id: 2,
             title: 'TwitterFX',
             description: 'In my second semester I did a project with JavaFX',
             previewPicturePath: '/images/projects/javafx.png',
             technologies: [
-                {name: 'java', path: '/images/logos/Java.png'},
-                {name: 'css', path: '/images/logos/CSS3.png'},
-            ]
-        },
-        PlanDirectory: {
+                TECHNOLOGIES.JAVA,
+                TECHNOLOGIES.CSS
+            ],
+        }, {
             id: 3,
             title: 'Plan Directory',
             description: 'In my fourth semester I did my first web application',
             previewPicturePath: '/images/projects/plan-directory.png',
             technologies: [
-                {name: 'spring', path: '/images/logos/Spring.png'},
-                {name: 'typeScript', path: '/images/logos/TypeScript.png'},
-                {name: 'nextJS', path: '/images/logos/Next.js.png'},
-                {name: 'react', path: '/images/logos/React.png'},
-                {name: 'cypress', path: '/images/logos/Cypress.png'},
-            ]
+                TECHNOLOGIES.SPRING,
+                TECHNOLOGIES.TYPESCRIPT,
+                TECHNOLOGIES.NEXTJS,
+                TECHNOLOGIES.REACT,
+                TECHNOLOGIES.CYPRESS,
+            ],
         }
-    }
+    ]
 }
 
 export default de;

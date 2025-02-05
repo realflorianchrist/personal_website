@@ -10,10 +10,9 @@ export default function Work() {
         <main>
             <div id={'project-previews'}
                  className={"w-2/3 pt-[100px]"}>
-                <h1 className={'animate slideInBottom pb-8'}>Work</h1>
-                <ul className={'flex flex-col lg:flex-row gap-5'}>
-                    {Object.values(i18n.ProjectData as Record<string, Project>).map((project: Project) => (
-                        <li key={project.id}>
+                <ul className={'flex flex-col lg:flex-row gap-x-5 gap-y-14'}>
+                    {i18n.ProjectData.map((project: Project) => (
+                        <li key={project.id} className={'flex-1'}>
                             <ProjectPreview
                                 key={project.id}
                                 project={project}/>

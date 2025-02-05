@@ -85,9 +85,17 @@ main {
 }
 
 
-h1 {
+h1, h2 {
     font-family: "Rock Salt", serif;
+}
+
+h1 {
     font-size: xx-large;
+}
+
+h2 {
+    font-size: large;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 600px) {
