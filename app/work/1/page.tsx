@@ -6,7 +6,7 @@ export default function TourBooking() {
 
     return (
         <main>
-            {i18n.ProjectData.TourBooking.title}
+
         </main>
     )
 
