@@ -9,7 +9,7 @@ export default function Work() {
     return (
         <main>
             <div id={'project-previews'}
-                 className={"w-2/3 pt-[100px]"}>
+                 className={"w-2/3 mt-36"}>
                 <ul className={'flex flex-col lg:flex-row gap-x-5 gap-y-14'}>
                     {i18n.ProjectData.map((project: Project) => (
                         <li key={project.id} className={'flex-1'}>
