@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-import {Project} from "@/app/models/Project";
+import {ProjectPreviewType} from "@/app/models/ProjectPreviewType";
 
-export default function ProjectPreview({project}: Readonly<{ project: Project }>) {
+export default function ProjectPreview({project}: Readonly<{ project: ProjectPreviewType }>) {
 
     const router = useRouter();
 

@@ -31,7 +31,7 @@ const de: I18nType = {
             }
         ]
     },
-    ProjectData: [
+    ProjectPreviews: [
         {
             id: 1,
             title: 'Tour Booking',

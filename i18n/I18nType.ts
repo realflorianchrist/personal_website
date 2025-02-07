@@ -1,5 +1,5 @@
 import {Waypoint} from "@/app/models/Waypoint";
-import {Project} from "@/app/models/Project";
+import {ProjectPreviewType} from "@/app/models/ProjectPreviewType";
 
 export type I18nType = {
     Home: {
@@ -9,5 +9,41 @@ export type I18nType = {
     About: {
         Timeline: Waypoint[]
     },
-    ProjectData: Project[]
+    ProjectPreviews: ProjectPreviewType[],
+    TourBooking: {
+        title: string,
+        intro: string,
+        leadImage: string,
+        problemSection: {
+            title: string,
+            text: string,
+        }
+        goalSection: {
+            title: string,
+            text: string
+        },
+        pictureSection: {
+            tourBrowser: {
+                title: string,
+                path: string,
+                description: string,
+            },
+            tourBookingForm: {
+                title: string,
+                path: string,
+                description: string,
+            },
+            adminPage: {
+                title: string,
+                path: string,
+                description: string,
+            },
+        },
+        developedSolutionSection: {
+            title: string,
+            introText: string,
+            bulletPoints: string[],
+            outroText: string
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import {Technology} from "@/app/models/Technology";
 
-export type Project = {
+export type ProjectPreviewType = {
     id: number,
     title: string,
     description: string,
