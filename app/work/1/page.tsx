@@ -2,11 +2,11 @@
 import {useLanguageContext} from "../../providers/language-provider";
 
 export default function TourBooking() {
-    const {i18n} = useLanguageContext();
+    const tourBooking = useLanguageContext('TourBooking');
 
     return (
         <main>
-
+            {tourBooking.title}
         </main>
     )
 
