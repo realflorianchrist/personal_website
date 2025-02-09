@@ -70,7 +70,8 @@ main {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding: 0 10px 15px 10px;
+    min-height: 100vh;
+    padding: 0 10px 100px 10px;
     justify-items: center;
     align-items: center;
 }
@@ -81,6 +82,7 @@ main {
         padding: 0 40px 60px 40px;
         overflow: auto;
         scroll-behavior: smooth;
+        min-height: 0;
     }
 }
 

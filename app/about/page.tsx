@@ -9,7 +9,7 @@ export default function About() {
   return (
     <main>
       <h1 className={"animate dur600 slideInBottom mt-36 mb-20"}>About me</h1>
-      <ul className={`animate dur800 slideInBottom flex-col content-center pt-10 mb-14`}>
+      <ul className={`animate dur800 slideInBottom flex-col content-center pt-10`}>
         {i18n.About.Timeline.map((waypoint: Waypoint, index: number) => {
           const liClass = index % 2 === 0 ? "pr-52 md:pr-96" : "pl-52 md:pl-96";
           const articleClass = index % 2 === 0 ? "text-right" : "text-left";

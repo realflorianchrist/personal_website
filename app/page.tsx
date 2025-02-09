@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <main>
             <div id={'introduction'}
-                 className={"pb-14 mb-20 flex flex-col items-center justify-center"}>
+                 className={"pb-14 flex flex-col items-center justify-center"}>
                 <div id={'profile-picture'}
                      className={"animate dur600 slideInBottom lg:mt-[12%] lg:mb-[7%] mt-32 mb-14 flex items-center justify-center w-32 h-32 rounded-full overflow-hidden border border-accent-color"}>
                     <Image
