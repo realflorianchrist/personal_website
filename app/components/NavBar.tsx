@@ -1,9 +1,7 @@
 "use client";
 import styles from "./NavBar.module.css";
 import {usePathname, useRouter} from "next/navigation";
-import {useMainRef, useIntroductionRef, useProjectPreviewsRef} from "@/app/providers/providers";
-import {RefObject, useEffect, useRef, useState} from "react";
-import {isInViewport} from "@/app/utils/use-is-element-in-view";
+import {useRef, useState} from "react";
 import {useOutsideClick} from "@/app/utils/use-outsite-click";
 
 
