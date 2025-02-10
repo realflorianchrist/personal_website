@@ -7,6 +7,8 @@ import { ThemeProvider } from "next-themes";
 import NavBar from "@/app/components/NavBar";
 import ThemeSwitch from "@/app/components/ThemeSwitch";
 import LanguageSwitch from "@/app/components/LanguageSwitch";
+import ComputerScene from "@/app/components/ComputerScene";
+import { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,16 +17,18 @@ export const metadata: Metadata = {
   description: "This is my personal website"
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode; }>) {
   return (
     <html lang="de" suppressHydrationWarning={true}>
     <body className={inter.className}>
     <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
       <LanguageProvider>
         <NavBar />
-        <ThemeSwitch />
+        {/*<ThemeSwitch />*/}
         <LanguageSwitch />
-        {children}
+        <ComputerScene>
+
+        </ComputerScene>
       </LanguageProvider>
     </ThemeProvider>
     </body>
