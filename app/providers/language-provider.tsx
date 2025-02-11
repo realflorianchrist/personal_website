@@ -1,18 +1,20 @@
 "use client";
-import React, { createContext, useState, useContext, useMemo } from "react";
-import de from "../../i18n/de";
+import React, { createContext, useState, useContext, useMemo, useEffect } from "react";
 import en from "../../i18n/en";
 import { I18nType } from "@/i18n/I18nType";
 
+const defaultLanguage = "de";
+
 interface LanguageContextType {
-  i18n: I18nType;
+  i18n: I18nType | null;
   changeLanguage: (lang: string) => void;
+  selectedLanguage: string | null;
 }
 
 const initialLanguageContext: LanguageContextType = {
-  i18n: en,
-  changeLanguage: () => {
-  }
+  i18n: null,
+  changeLanguage: () => {},
+  selectedLanguage: null
 };
 
 const LanguageContext = createContext<LanguageContextType>(initialLanguageContext);
@@ -26,13 +28,27 @@ export function useLanguageContext(namespace?: keyof I18nType) {
     throw new Error("useLanguageContext must be used within LanguageProvider");
   }
 
-  if (namespace) {
+  if (namespace && context.i18n) {
     return context.i18n[namespace];
   }
 
   return context;
 }
 
+const getI18n = async (language: string | null): Promise<I18nType> => {
+  if (!language) return (await import((`../../i18n/${defaultLanguage}`))).default;
+  try {
+    return (await import((`../../i18n/${language}`))).default;
+  } catch (error) {
+    return (await import((`../../i18n/${defaultLanguage}`))).default;
+  }
+};
+
+const getStoredLanguage = () => {
+  let storedLanguage = localStorage.getItem("language");
+  if (storedLanguage) storedLanguage = JSON.parse(storedLanguage);
+  return storedLanguage;
+};
 
 export const LanguageProvider = (
   {
@@ -41,23 +57,37 @@ export const LanguageProvider = (
     children: React.ReactNode
   }) => {
 
-  const [i18n, setI18n] = useState(en);
+  const [i18n, setI18n] = useState<I18nType | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
-  const changeLanguage = (lang: string) => {
-    switch (lang) {
-      case "de":
-        setI18n(de);
-        break;
-      case "en":
-        setI18n(en);
-        break;
-      default:
-        setI18n(en);
-    }
+
+  useEffect(() => {
+    const initializeLanguage = async () => {
+      const storedLanguage = getStoredLanguage();
+      if (storedLanguage) {
+        document.documentElement.lang = storedLanguage;
+        setSelectedLanguage(storedLanguage);
+      } else {
+        setSelectedLanguage(defaultLanguage);
+      }
+      setI18n(await getI18n(storedLanguage));
+    };
+
+    initializeLanguage();
+  }, []);
+
+  useEffect(() => {
+    if (selectedLanguage) document.documentElement.lang = selectedLanguage;
+  }, [selectedLanguage]);
+
+  const changeLanguage = async (language: string) => {
+    setI18n(await getI18n(language));
+    localStorage.setItem('language', JSON.stringify(language));
+    setSelectedLanguage(language);
   };
 
   const contextValue = useMemo(() => (
-    { i18n, changeLanguage }), [i18n]);
+    { i18n, changeLanguage, selectedLanguage, }), [i18n, selectedLanguage]);
 
   return (
     <LanguageContext.Provider value={contextValue}>

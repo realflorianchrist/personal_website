@@ -15,7 +15,7 @@ function Portfolio() {
       </motion.div>
 
       <div className='mt-10 md:mt-20 flex flex-col gap-10 md:gap-20'>
-        {i18n.ProjectPreviews.map((project, index) => (
+        {i18n?.ProjectPreviews.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} project={project} />
         ))}
       </div>

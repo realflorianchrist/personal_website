@@ -6,13 +6,18 @@ import SectionWrapper from "@/app/utils/SectionWrapper";
 import ExperienceCard from "@/app/components/ExperienceCard";
 import ExperienceDetails from "@/app/components/ExperienceDetails";
 import { useLanguageContext } from "@/app/providers/language-provider";
+import { Waypoint } from "@/app/models/Waypoint";
 
 function Experience() {
   const {i18n} = useLanguageContext();
-  const experiences = i18n.About.Timeline;
+  const experiences = i18n?.About.Timeline;
 
-  const [selectedJob, setSelectedJob] = useState(i18n.About.Timeline[0]);
+  const [selectedJob, setSelectedJob] = useState<Waypoint | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if(experiences) setSelectedJob(experiences[0])
+  }, [experiences]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,7 +42,7 @@ function Experience() {
 
       <div className="relative mt-10 md:mt-20 md:p-20 flex flex-col items-center sm:flex-row sm:items-start">
         <div className="flex flex-col z-10 sm:w-auto sm:w-full">
-          {experiences.map((experience, index) => (
+          {experiences?.map((experience, index) => (
             <ExperienceCard
               key={`experience-${index}`}
               experience={experience}
@@ -49,7 +54,7 @@ function Experience() {
         </div>
 
         <div className="flex justify-end z-10 sm:block hidden">
-          <ExperienceDetails experience={selectedJob} />
+          <ExperienceDetails experience={selectedJob!} />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "@/public/nav_links";
+import { IoCloseSharp, IoMenu } from "react-icons/io5";
 
 export default function Navbar() {
   const [active, setActive] = useState("hero");
@@ -62,9 +63,20 @@ export default function Navbar() {
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <div
+            className='w-[35px] h-[35px] object-contain pointer-events-auto cursor-pointer'
+            onClick={() => setToggle(!toggle)}
+          >
+            {toggle ? (
+              <IoCloseSharp className={'flex h-full w-full'} />
+            ):(
+              <IoMenu className={'flex h-full w-full'} />
+            )}
+          </div>
+
+          <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-30 rounded-xl`}
+            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-50 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (

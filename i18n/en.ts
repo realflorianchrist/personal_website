@@ -13,19 +13,23 @@ const en: I18nType = {
         Timeline: [
             {
                 time: "Sept. 2022 - today",
-                description: "BSc computer science",
+                title: "BSc computer science",
+                description: "tbd",
                 organisation: "University of Applied Sciences and Arts Northwestern Switzerland",
             }, {
                 time: "Aug. 2019 - today",
-                description: "Draftsman specializing in engineering",
+                title: "Draftsman specializing in engineering",
+                description: "tbd",
                 organisation: "Aegerter & Bosshardt AG",
             }, {
                 time: "Aug. 2019 - July 2021",
-                description: "Vocational baccalaureate",
+                title: "Vocational baccalaureate",
+                description: "tbd",
                 organisation: "Technology, Architecture, Life Sciences",
             }, {
                 time: "Aug. 2015 - July 2019",
-                description: "Apprenticeship to draftsman specializing in engineering",
+                title: "Apprenticeship to draftsman specializing in engineering",
+                description: "tbd",
                 organisation: "Aegerter & Bosshardt AG",
             }
         ]

@@ -14,19 +14,23 @@ const de: I18nType = {
     Timeline: [
       {
         time: "Sept. 2022 - heute",
-        description: "BSc Informatik",
+        title: "BSc Informatik",
+        description: "tbd",
         organisation: "Fachhochschule Nordwestschweiz"
       }, {
         time: "Aug. 2019 - heute",
-        description: "Zeichner Fachrichtung Ingenieurbau",
+        title: "Zeichner Fachrichtung Ingenieurbau",
+        description: "tbd",
         organisation: "Aegerter & Bosshardt AG"
       }, {
         time: "Aug. 2019 - Juli 2021",
-        description: "Berufsmaturität",
+        title: "Berufsmaturität",
+        description: "tbd",
         organisation: "Technik, Architektur, Life Sciences"
       }, {
         time: "Aug. 2015 - Juli 2019",
-        description: "Ausbildung zum Zeichner Fachrichtung Ingenieurbau",
+        title: "Ausbildung zum Zeichner Fachrichtung Ingenieurbau",
+        description: "tbd",
         organisation: "Aegerter & Bosshardt AG"
       }
     ]
@@ -46,15 +50,6 @@ const de: I18nType = {
       ]
     }, {
       id: 2,
-      title: "TwitterFX",
-      description: "In my second semester I did a project with JavaFX",
-      previewPicturePath: "/images/projects/javafx.png",
-      technologies: [
-        TECHNOLOGIES.JAVA,
-        TECHNOLOGIES.CSS
-      ]
-    }, {
-      id: 3,
       title: "Plan Directory",
       description: "In my fourth semester I did my first web application",
       previewPicturePath: "/images/projects/plan-directory.png",
@@ -65,7 +60,16 @@ const de: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ]
-    }
+    }, {
+      id: 3,
+      title: "TwitterFX",
+      description: "In my second semester I did a project with JavaFX",
+      previewPicturePath: "/images/projects/javafx.png",
+      technologies: [
+        TECHNOLOGIES.JAVA,
+        TECHNOLOGIES.CSS
+      ]
+    },
   ],
   TourBooking: {
     title: "Tour Booking",

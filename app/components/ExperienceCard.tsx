@@ -28,14 +28,21 @@ export default function ExperienceCard(
           isActive || isMobile ? "text-quaternary" : "text-slate-600"
         }`}
       >
-        {experience.description}
+        {experience.title}
       </h3>
       <p
         className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 ${
           isActive || isMobile ? "text-white" : "text-slate-600"
         }`}
       >
-        {experience.organisation} | {experience.time}
+        {experience.organisation}
+      </p>
+      <p
+        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 ${
+          isActive || isMobile ? "text-white" : "text-slate-600"
+        }`}
+      >
+        {experience.time}
       </p>
     </div>
   );
