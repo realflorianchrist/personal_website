@@ -65,6 +65,7 @@ export default function SpacemanCanvas({ scrollContainer }: { scrollContainer: R
           <Spaceman
             scale={new Vector3(...scale)}
             position={new Vector3(...position)}
+            isMobile={isMobile}
           />
         </SpacemanCamera>
       </Suspense>

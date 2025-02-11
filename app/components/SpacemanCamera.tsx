@@ -1,6 +1,5 @@
-import React, { ReactNode, useRef } from "react";
-import { Group } from "three";
-import { useFrame } from "@react-three/fiber";
+import React, { ReactNode } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 
 export default function SpacemanCamera(
@@ -12,20 +11,18 @@ export default function SpacemanCamera(
     children: ReactNode
   }) {
 
-  const groupRef = useRef<Group>(null);
+  const { camera } = useThree();
 
-  useFrame((state, delta, frame) => {
+  useFrame((state, delta) => {
     if (!isMobile) {
-      easing.dampE(state.camera.rotation,
+      easing.dampE(
+        camera.rotation,
         [state.pointer.y / 20, -state.pointer.x / 20, 0],
         0.25,
-        delta);
+        delta
+      );
     }
   });
 
-  return (
-    <group ref={groupRef}>
-      {children}
-    </group>
-  );
+  return <group>{children}</group>;
 }
