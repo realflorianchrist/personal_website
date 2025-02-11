@@ -2,12 +2,13 @@ import { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { Mesh, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
+import { easing } from "maath";
 
 export default function Spaceman(
   {
     scale,
     position,
-    isMobile,
+    isMobile
   }: {
     scale: Vector3;
     position: Vector3;
@@ -32,10 +33,11 @@ export default function Spaceman(
 
   useFrame((state, delta) => {
     if (!isMobile && spacemanRef.current) {
-      spacemanRef.current.rotation.set(
-        state.pointer.y / 15,
-        initialRotationY + state.pointer.x / 15,
-        0
+      easing.dampE(
+        spacemanRef.current.rotation,
+        [state.pointer.y / 10, initialRotationY + state.pointer.x / 10, 0],
+        0.5,
+        delta
       );
     }
   });
