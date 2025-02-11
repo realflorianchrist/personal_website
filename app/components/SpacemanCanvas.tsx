@@ -3,12 +3,17 @@ import { Canvas } from "@react-three/fiber";
 import Spaceman from "@/app/components/Spaceman";
 import CanvasLoader from "@/app/components/CanvasLoader";
 import { Vector3 } from "three";
+import SpacemanCamera from "@/app/components/SpacemanCamera";
+import { useMediaQuery } from "react-responsive";
+import { PerspectiveCamera } from "@react-three/drei";
 
 export default function SpacemanCanvas({ scrollContainer }: { scrollContainer: RefObject<HTMLElement> }) {
   const [rotationX, setRotationX] = useState(0);
   const [rotationY, setRotationY] = useState(0);
   const [scale, setScale] = useState([2, 2, 2]);
   const [position, setPosition] = useState([0.2, -0.7, 0]);
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,12 +60,13 @@ export default function SpacemanCanvas({ scrollContainer }: { scrollContainer: R
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 5, 10]} intensity={2} />
         <spotLight position={[0, 50, 10]} angle={0.15} penumbra={1} intensity={2} />
-        {/*<hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />*/}
 
-        <Spaceman
-          scale={new Vector3(...scale)}
-          position={new Vector3(...position)}
-        />
+        <SpacemanCamera isMobile={isMobile}>
+          <Spaceman
+            scale={new Vector3(...scale)}
+            position={new Vector3(...position)}
+          />
+        </SpacemanCamera>
       </Suspense>
     </Canvas>
   );
