@@ -32,9 +32,11 @@ export default function Spaceman(
 
   useFrame((state, delta) => {
     if (!isMobile && spacemanRef.current) {
-      const mouseRotation = state.pointer.x / 15;
-
-      spacemanRef.current.rotation.y = initialRotationY + mouseRotation;
+      spacemanRef.current.rotation.set(
+        state.pointer.y / 15,
+        initialRotationY + state.pointer.x / 15,
+        0
+      );
     }
   });
 
