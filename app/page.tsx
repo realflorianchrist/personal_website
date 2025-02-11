@@ -1,28 +1,30 @@
-'use client'
-import Image from "next/image";
-import {useLanguageContext} from "@/app/providers/language-provider";
+"use client";
+import { useRef } from "react";
+import Navbar from "@/app/components/Navbar";
+import Hero from "@/app/components/Hero";
+import Experience from "@/app/components/Experience";
+import Portfolio from "@/app/components/Portfolio";
 
 export default function Home() {
-    const {i18n} = useLanguageContext();
+  const wrapperRef = useRef(null);
 
-    return (
-        <main>
-            <div id={'introduction'}
-                 className={"pb-14 flex flex-col items-center justify-center"}>
-                <div id={'profile-picture'}
-                     className={"animate dur600 slideInBottom lg:mt-[12%] lg:mb-[7%] mt-32 mb-14 flex items-center justify-center w-32 h-32 rounded-full overflow-hidden border border-accent-color"}>
-                    <Image
-                        src={'/images/passfoto.png'}
-                        alt={'profile-picture'}
-                        layout={'fill'}
-                        objectFit={'contain'}
-                    />
-                </div>
-                <h1 className={'animate slideInBottom mb-[15%] lg:mb-[7%]'}>{i18n.Home.welcome}</h1>
-                <p className={'animate dur1400 slideInBottom md:w-1/2 text-center leading-6 md:leading-8 text-[15px] md:text-base'}>
-                    {i18n.Home.introduction}
-                </p>
-            </div>
-        </main>
-    );
+  return (
+    <div className="relative z-0 bg-primary">
+      <Navbar />
+      <div className="wrapper" ref={wrapperRef}>
+        <div id="hero" className="z-10">
+          <Hero scrollContainer={wrapperRef} />
+        </div>
+        <div id="portfolio" className="relative z-30 bg-primary mt-[-2px]">
+          <Portfolio />
+        </div>
+        <div id="experience" className="relative z-30 bg-primary">
+          <Experience />
+        </div>
+        <div id="contact" className="relative z-30 bg-primary">
+          {/*<Contact />*/}
+        </div>
+      </div>
+    </div>
+  );
 }
