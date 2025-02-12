@@ -2,8 +2,11 @@ import {TECHNOLOGIES} from "@/i18n/Technologies";
 import {I18nType} from "@/i18n/I18nType";
 
 const en: I18nType = {
-    Home: {
-        welcome: "Hi, I'm Florian.",
+    Hero: {
+        positions: [
+            "Software Developer",
+            "Draftsman"
+        ],
         introduction: "A passionate individual with a diverse background spanning computer sciences, design and experiences " +
             "as an draftsman specialising in civil engineering. I thrive on exploring the intersection of technology and creativity, " +
             "crafting compelling digital experiences that resonate with users. With a foundation in computer sciences and civil " +

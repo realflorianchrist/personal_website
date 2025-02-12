@@ -2,8 +2,8 @@ import {Waypoint} from "@/app/models/Waypoint";
 import {ProjectPreviewType} from "@/app/models/ProjectPreviewType";
 
 export type I18nType = {
-    Home: {
-        welcome: string,
+    Hero: {
+        positions: string[],
         introduction: string
     },
     About: {

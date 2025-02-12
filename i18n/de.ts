@@ -2,8 +2,11 @@ import { TECHNOLOGIES } from "@/i18n/Technologies";
 import { I18nType } from "@/i18n/I18nType";
 
 const de: I18nType = {
-  Home: {
-    welcome: "Hallo, ich bin Florian.",
+  Hero: {
+    positions: [
+      "Software Entwickler",
+      "Zeichner"
+    ],
     introduction: "Eine leidenschaftliche Person mit einem vielfältigen Hintergrund in Informatik, Design und Erfahrungen " +
       "als Bauzeichner Fachrichtung Bauingenieurwesen. Ich liebe es, die Schnittstelle zwischen Technologie und Kreativität " +
       "zu erkunden und überzeugende digitale Erlebnisse zu schaffen, die bei den Nutzern Anklang finden. Mit einer Grundlage in " +
