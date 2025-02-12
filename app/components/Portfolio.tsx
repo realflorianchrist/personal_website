@@ -40,7 +40,7 @@ function Portfolio() {
   const currentProject = projects[selectedProjectIndex];
 
   return (
-    <div className="text-center md:text-left md:px-20 lg:px-40">
+    <div className="text-center mb-20 md:text-left md:px-20 lg:px-40">
       <motion.div variants={textVariant()}>
         <h2 className={`${styles.sectionText}`}>{i18n.Sections.portfolio}</h2>
       </motion.div>
