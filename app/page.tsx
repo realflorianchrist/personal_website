@@ -4,6 +4,7 @@ import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
 import Experience from "@/app/components/Experience";
 import Portfolio from "@/app/components/Portfolio";
+import Contact from "@/app/components/Contact";
 
 export default function Home() {
   const wrapperRef = useRef(null);
@@ -22,7 +23,7 @@ export default function Home() {
           <Experience />
         </div>
         <div id="contact" className="relative z-30 bg-primary">
-          {/*<Contact />*/}
+          <Contact />
         </div>
       </div>
     </div>

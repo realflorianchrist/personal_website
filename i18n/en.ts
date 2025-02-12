@@ -47,6 +47,7 @@ const en: I18nType = {
                 TECHNOLOGIES.REACT,
                 TECHNOLOGIES.CYPRESS,
             ],
+            texture: "/textures/project/project1.mp4"
         }, {
             id: 2,
             title: 'TwitterFX',
@@ -56,6 +57,7 @@ const en: I18nType = {
                 TECHNOLOGIES.JAVA,
                 TECHNOLOGIES.CSS
             ],
+            texture: "/textures/project/project1.mp4"
         }, {
             id: 3,
             title: 'Plan Directory',
@@ -68,6 +70,7 @@ const en: I18nType = {
                 TECHNOLOGIES.REACT,
                 TECHNOLOGIES.CYPRESS,
             ],
+            texture: "/textures/project/project1.mp4"
         }
     ],
     TourBooking: {

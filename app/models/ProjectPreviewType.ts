@@ -5,5 +5,6 @@ export type ProjectPreviewType = {
     title: string,
     description: string,
     previewPicturePath: string,
-    technologies: Technology[]
+    technologies: Technology[],
+    texture: string,
 }
