@@ -11,6 +11,7 @@ import { Canvas } from "@react-three/fiber";
 import { Center, OrbitControls } from "@react-three/drei";
 import CanvasLoader from "@/app/components/CanvasLoader";
 import DemoComputer from "@/app/components/DemoComputer";
+import Image from "next/image";
 
 function Portfolio() {
   const { i18n } = useLanguageContext();
@@ -44,18 +45,10 @@ function Portfolio() {
         <h2 className={`${styles.sectionText}`}>Portfolio</h2>
       </motion.div>
 
-      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
-        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
-          <div className="absolute top-0 right-0">
-            {/*<img src={currentProject.spotlight} alt="spotlight" className="w-full h-96 object-cover rounded-xl" />*/}
-          </div>
+      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full min-h-[500px]">
+        <div className="flex bg-primaryDark flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black">
 
-          {/*<div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg" style={currentProject.logoStyle}>*/}
-          <div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg">
-            {/*<img className="w-10 h-10 shadow-sm" src={currentProject.logo} alt="logo" />*/}
-          </div>
-
-          <div className="flex flex-col gap-5 text-white-600 my-5">
+          <div className="flex flex-col gap-5 text-white-600 my-5 mb-auto">
             <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
 
             <p className="animatedText">{currentProject.description}</p>
@@ -66,7 +59,7 @@ function Portfolio() {
             <div className="flex items-center gap-3">
               {currentProject.technologies.map((tech, index) => (
                 <div key={index} className="tech-logo">
-                  <img src={tech.path} alt={tech.name} />
+                  <Image src={tech.path} alt={tech.name} height={40} width={40} />
                 </div>
               ))}
             </div>
@@ -92,7 +85,7 @@ function Portfolio() {
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
+        <div className="bg-primaryDark rounded-lg h-96 md:h-full shadow-2xl shadow-black">
           <Canvas>
             <ambientLight intensity={Math.PI} />
             <directionalLight position={[10, 10, 5]} />
