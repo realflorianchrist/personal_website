@@ -1,8 +1,11 @@
 import Position from "@/app/components/Position";
 import { RefObject } from "react";
 import SpacemanCanvas from "@/app/components/SpacemanCanvas";
+import { useLanguageContext } from "@/app/providers/language-provider";
 
 export default function Hero({ scrollContainer }: { scrollContainer: RefObject<HTMLElement> }) {
+  const { i18n } = useLanguageContext();
+
   return (
     <section className="parallax">
       <div className='parallax__content absolute top-[10%] sm:top-[16%] lg:top-[24%] w-full mx-auto lg:pl-[38vh] lg:pr-[30vh] xl:pl-96 xl:pr-72 2xl:px-40 3xl:px-60 flex flex-col lg:flex-row items-start z-10'>
@@ -14,7 +17,7 @@ export default function Hero({ scrollContainer }: { scrollContainer: RefObject<H
         </div>
         <div className="flex-1 flex justify-start lg:justify-end mt-4 sm:mt-14 ml-8 xs:ml-[-4vh] sm:ml-[-17vh] md:ml-[-26vh] lg:mt-10 2xl:mt-0">
           <div className='font-bold text-[20px] sm:text-[30px] md:text-[36px] 2xl:text-[46px] sm:leading-[40px] md:leading-[50px] 2xl:leading-[60px] streaky-glow max-w-sm 2xl:max-w-lg text-white text-left'>
-            I love crafting captivating experiences for the digital world to savor.
+            {i18n?.Hero.introduction}
           </div>
         </div>
       </div>

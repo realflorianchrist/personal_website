@@ -42,7 +42,7 @@ function Portfolio() {
   return (
     <div className="text-center md:text-left md:px-20 lg:px-40">
       <motion.div variants={textVariant()}>
-        <h2 className={`${styles.sectionText}`}>Portfolio</h2>
+        <h2 className={`${styles.sectionText}`}>{i18n.Sections.portfolio}</h2>
       </motion.div>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full min-h-[500px]">

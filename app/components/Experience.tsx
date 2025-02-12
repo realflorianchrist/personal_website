@@ -10,7 +10,7 @@ import { Waypoint } from "@/app/models/Waypoint";
 
 function Experience() {
   const {i18n} = useLanguageContext();
-  const experiences = i18n?.About.Timeline;
+  const experiences = i18n?.Experience.Timeline;
 
   const [selectedJob, setSelectedJob] = useState<Waypoint | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -33,10 +33,10 @@ function Experience() {
   }, []);
 
   return (
-    <div className="sm:my-20">
+    <div>
       <motion.div variants={textVariant()}>
         <h2 className={`${styles.sectionText} text-center`}>
-          Experience
+          {i18n?.Sections.experience}
         </h2>
       </motion.div>
 

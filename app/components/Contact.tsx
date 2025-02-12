@@ -3,9 +3,12 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { styles } from "@/app/utils/styles";
 import SectionWrapper from "@/app/utils/SectionWrapper";
+import { useLanguageContext } from "@/app/providers/language-provider";
 
 
 function Contact() {
+  const { i18n } = useLanguageContext();
+
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
@@ -44,7 +47,7 @@ function Contact() {
         }}
         className='flex-[0.8] md:pb-40 mx-4 sm:mx-auto'
       >
-        <h3 className={styles.sectionText}>Contact</h3>
+        <h3 className={styles.sectionText}>{i18n?.Sections.contact}</h3>
 
         <form
           // action="https://getform.io/f/8b086558-47d4-49d0-852d-ec8c22da40f7"

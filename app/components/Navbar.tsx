@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { navLinks } from "@/public/nav_links";
 import { IoCloseSharp, IoMenu } from "react-icons/io5";
+import { useLanguageContext } from "@/app/providers/language-provider";
 
 export default function Navbar() {
+  const { i18n } = useLanguageContext();
+
   const [active, setActive] = useState("hero");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,31 +47,31 @@ export default function Navbar() {
       <div className="w-full flex justify-between items-start mx-auto">
 
         <ul className="list-none hidden ml-auto sm:flex flex-col gap-5">
-          {navLinks.map((nav) => (
+          {Object.entries(i18n?.Sections ?? {}).map(([key, value]) => (
             <li
-              key={nav.id}
+              key={key}
               className={`relative flex items-center ${
-                active === nav.id ? "text-white" : "text-slate-500"
+                active === key ? "text-white" : "text-slate-500"
               } hover:text-white text-[18px] lg:text-[24px] font-bold pointer-events-auto cursor-pointer`}
-              onClick={() => setActive(nav.id)}
+              onClick={() => setActive(key)}
             >
-              {active === nav.id && (
+              {active === key && (
                 <div className="fixed right-10 w-2 h-6 lg:h-8 bg-quaternary"></div>
               )}
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${key}`}>{value}</a>
             </li>
           ))}
         </ul>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <div
-            className='w-[35px] h-[35px] object-contain pointer-events-auto cursor-pointer'
+            className="w-[35px] h-[35px] object-contain pointer-events-auto cursor-pointer"
             onClick={() => setToggle(!toggle)}
           >
             {toggle ? (
-              <IoCloseSharp className={'flex h-full w-full'} />
-            ):(
-              <IoMenu className={'flex h-full w-full'} />
+              <IoCloseSharp className={"flex h-full w-full"} />
+            ) : (
+              <IoMenu className={"flex h-full w-full"} />
             )}
           </div>
 
@@ -79,18 +81,18 @@ export default function Navbar() {
             } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-50 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
-              {navLinks.map((nav) => (
+              {Object.entries(i18n?.Sections ?? {}).map(([key, value]) => (
                 <li
-                  key={nav.id}
+                  key={key}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.id ? "text-quaternary" : "text-secondary"
+                    active === key ? "text-quaternary" : "text-secondary"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
-                    setActive(nav.id);
+                    setActive(key);
                   }}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  <a href={`#${key}`}>{value}</a>
                 </li>
               ))}
             </ul>
