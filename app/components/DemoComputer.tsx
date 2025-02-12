@@ -976,4 +976,4 @@ export default function DemoComputer(props: { texture?: string }) {
   );
 };
 
-useGLTF.preload("/models/computer.glb");
+useGLTF.preload("/3d/computer.glb");
