@@ -56,16 +56,6 @@ const en: I18nType = {
       texture: "/textures/project/project1.mp4"
     }, {
       id: 2,
-      title: "TwitterFX",
-      description: "In my second semester I did a project with JavaFX",
-      previewPicturePath: "/images/projects/javafx.png",
-      technologies: [
-        TECHNOLOGIES.JAVA,
-        TECHNOLOGIES.CSS
-      ],
-      texture: "/textures/project/project1.mp4"
-    }, {
-      id: 3,
       title: "Plan Directory",
       description: "In my fourth semester I did my first web application",
       previewPicturePath: "/images/projects/plan-directory.png",
@@ -76,8 +66,18 @@ const en: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project1.mp4"
-    }
+      texture: "/textures/project/project2.mp4"
+    }, {
+      id: 3,
+      title: "TwitterFX",
+      description: "In my second semester I did a project with JavaFX",
+      previewPicturePath: "/images/projects/javafx.png",
+      technologies: [
+        TECHNOLOGIES.JAVA,
+        TECHNOLOGIES.CSS
+      ],
+      texture: "/textures/project/project3.mp4"
+    },
   ],
   TourBooking: {
     title: "Tour Booking",

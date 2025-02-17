@@ -66,7 +66,7 @@ const de: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project1.mp4"
+      texture: "/textures/project/project2.mp4"
     }, {
       id: 3,
       title: "TwitterFX",
@@ -76,7 +76,7 @@ const de: I18nType = {
         TECHNOLOGIES.JAVA,
         TECHNOLOGIES.CSS
       ],
-      texture: "/textures/project/project1.mp4"
+      texture: "/textures/project/project3.mp4"
     },
   ],
   TourBooking: {
