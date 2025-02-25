@@ -55,7 +55,10 @@ const de: I18nType = {
       ],
       texture: "/textures/project/project1.mp4",
       repoPath: "https://gitlab.com/realflorianchrist/tourbooking-station-ritz",
-      furtherLink: "https://web0.fhnw.ch/ht/informatik/ip34/25bb/booking/index.html",
+      furtherLink: {
+        link: "https://web0.fhnw.ch/ht/informatik/ip34/25bb/booking/index.html",
+        linkText: "Mehr Infos"
+      }
     }, {
       id: 2,
       title: "Plan Directory",

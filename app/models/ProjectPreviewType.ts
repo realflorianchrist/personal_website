@@ -8,5 +8,8 @@ export type ProjectPreviewType = {
     technologies: Technology[],
     texture: string,
     repoPath?: string,
-    furtherLink?: string,
+    furtherLink?: {
+        link: string,
+        linkText: string
+    },
 }

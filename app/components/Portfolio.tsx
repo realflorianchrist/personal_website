@@ -4,14 +4,13 @@ import { styles } from "@/app/utils/styles";
 import { useLanguageContext } from "@/app/providers/language-provider";
 import SectionWrapper from "@/app/utils/SectionWrapper";
 import { Suspense, useState } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Canvas } from "@react-three/fiber";
 import { Center, OrbitControls } from "@react-three/drei";
 import CanvasLoader from "@/app/components/CanvasLoader";
 import DemoComputer from "@/app/components/DemoComputer";
 import Image from "next/image";
+import { FiArrowUpRight } from "react-icons/fi";
 
 function Portfolio() {
   const { i18n } = useLanguageContext();
@@ -39,13 +38,12 @@ function Portfolio() {
         <h2 className={`${styles.sectionText}`}>{i18n.Sections.portfolio}</h2>
       </motion.div>
 
-      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full min-h-[500px]">
+      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
         <div className="flex bg-primaryDark flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black">
 
-          <div className="flex flex-col gap-5 text-white-600 my-5 mb-auto">
+          <div className="flex flex-col gap-5 text-white-600 my-5 mb-auto min-h-72">
             <p className="text-white text-2xl font-semibold">{currentProject.title}</p>
             <p>{currentProject.description}</p>
-            {/*<p className="animatedText">{currentProject.subdesc}</p>*/}
           </div>
 
           <div className="flex items-center justify-between flex-wrap gap-5">
@@ -57,14 +55,16 @@ function Portfolio() {
               ))}
             </div>
 
-            {/*<a*/}
-            {/*  className="flex items-center gap-2 cursor-pointer text-white-600"*/}
-            {/*  href={currentProject.href}*/}
-            {/*  target="_blank"*/}
-            {/*  rel="noreferrer">*/}
-            {/*  <p>Check Live Site</p>*/}
-            {/*  <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />*/}
-            {/*</a>*/}
+            {currentProject.furtherLink &&
+              <a
+                className="flex items-center gap-2 cursor-pointer text-white-600"
+                href={currentProject.furtherLink.link}
+                target="_blank"
+                rel="noreferrer">
+                <p>{currentProject.furtherLink.linkText}</p>
+                <FiArrowUpRight />
+              </a>
+            }
           </div>
 
           <div className="flex justify-between items-center mt-7">
