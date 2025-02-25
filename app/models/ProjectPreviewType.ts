@@ -7,4 +7,6 @@ export type ProjectPreviewType = {
     previewPicturePath: string,
     technologies: Technology[],
     texture: string,
+    repoPath?: string,
+    furtherLink?: string,
 }

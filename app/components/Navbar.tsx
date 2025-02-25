@@ -42,11 +42,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className="w-full flex items-center bg-gradient-to-b from-black sm:bg-none p-8 sm:px-16 sm:py-10 fixed z-40 pointer-events-none"
+      className="right-2 flex items-center sm:bg-none p-8 sm:px-16 sm:py-10 fixed z-40 pointer-events-none"
     >
-      <div className="w-full flex justify-between items-start mx-auto">
+      <div className="flex justify-between items-start mx-auto">
 
-        <ul className="list-none hidden ml-auto sm:flex flex-col gap-5">
+        <ul className="list-none hidden sm:flex flex-col gap-5">
           {Object.entries(i18n?.Sections ?? {}).map(([key, value]) => (
             <li
               key={key}

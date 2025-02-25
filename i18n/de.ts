@@ -1,4 +1,4 @@
-import { TECHNOLOGIES } from "@/i18n/Technologies";
+import { TECHNOLOGIES } from "@/i18n/technologies";
 import { I18nType } from "@/i18n/I18nType";
 
 const de: I18nType = {
@@ -6,7 +6,7 @@ const de: I18nType = {
     hero: "Hero",
     portfolio: "Portfolio",
     experience: "Erfahrung",
-    contact: "Kontakt",
+    contact: "Kontakt"
   },
   Hero: {
     positions: [
@@ -20,22 +20,22 @@ const de: I18nType = {
       {
         time: "Sept. 2022 - heute",
         title: "BSc Informatik",
-        description: "tbd",
+        description: "Mein Informatikstudium an der FHNW vermittelt mir ein breites Wissen in Softwareentwicklung, Systemarchitektur und modernen Technologien. Neben theoretischen Grundlagen arbeite ich an praxisnahen Projekten, die meine Fähigkeiten in der Entwicklung und Implementierung von Anwendungen stärken. Mein Fokus liegt auf der Backend-Entwicklung, verteilten Systemen und Webtechnologien.",
         organisation: "Fachhochschule Nordwestschweiz"
       }, {
         time: "Aug. 2019 - heute",
         title: "Zeichner Fachrichtung Ingenieurbau",
-        description: "tbd",
+        description: "Seit 2019 arbeite ich als Zeichner Fachrichtung Ingenieurbau bei Aegerter & Bosshardt AG. Ich erstelle Baupläne, Konstruktionszeichnungen und 3D-Modelle zur Visualisierung von Projekten. Durch meine CAD-Erfahrung und technisches Verständnis trage ich zur präzisen und effizienten Umsetzung bei.",
         organisation: "Aegerter & Bosshardt AG"
       }, {
         time: "Aug. 2019 - Juli 2021",
         title: "Berufsmaturität",
-        description: "tbd",
+        description: "Im Rahmen der Berufsmaturität vertiefte ich mein Wissen in den Bereichen Technik, Architektur und Life Sciences. Der interdisziplinäre Lehrplan ermöglichte mir, meine analytischen und wissenschaftlichen Fähigkeiten weiterzuentwickeln und eine solide Grundlage für mein anschließendes Informatikstudium zu schaffen.",
         organisation: "Technik, Architektur, Life Sciences"
       }, {
         time: "Aug. 2015 - Juli 2019",
         title: "Ausbildung zum Zeichner Fachrichtung Ingenieurbau",
-        description: "tbd",
+        description: "Während meiner vierjährigen Ausbildung zum Zeichner mit Fachrichtung Ingenieurbau habe ich fundierte Kenntnisse in der Planung und Konstruktion von Bauprojekten erworben. Ich arbeitete mit CAD-Software, erstellte Baupläne und unterstützte Ingenieure bei der Umsetzung verschiedener Projekte. Diese Erfahrung hat mein technisches Verständnis geschärft und meine Präzision im Umgang mit komplexen Strukturen gefestigt.",
         organisation: "Aegerter & Bosshardt AG"
       }
     ]
@@ -53,7 +53,9 @@ const de: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project1.mp4"
+      texture: "/textures/project/project1.mp4",
+      repoPath: "https://gitlab.com/realflorianchrist/tourbooking-station-ritz",
+      furtherLink: "https://web0.fhnw.ch/ht/informatik/ip34/25bb/booking/index.html",
     }, {
       id: 2,
       title: "Plan Directory",
@@ -66,7 +68,7 @@ const de: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project2.mp4"
+      texture: "/textures/project/project2.mp4",
     }, {
       id: 3,
       title: "TwitterFX",
@@ -76,50 +78,9 @@ const de: I18nType = {
         TECHNOLOGIES.JAVA,
         TECHNOLOGIES.CSS
       ],
-      texture: "/textures/project/project3.mp4"
-    },
-  ],
-  TourBooking: {
-    title: "Tour Booking",
-    intro: "Experience the historic charm of Niederwald and learn about the life and legacy of world-renowned hotelier Cäsar Ritz. Book your guided tour digitally and dive into a journey through time.",
-    leadImage: "/images/projects/tour_booking/lead_image.png",
-    problemSection: {
-      title: "Initial Situation/Problem statement",
-      text: "In 2017, the Verein Besucherzentrum Niederwald, founded by the municipality of Goms, the Landschaftspark Binntal, and Obergoms Tourismus AG, began transforming Niederwald's former train station into the Station Ritz. Officially opened in December 2019, the visitor center celebrates the legacy of the renowned hotelier Cäsar Ritz. The center features a permanent exhibition dedicated to Ritz’s life and achievements, alongside additional offerings such as annual temporary exhibitions, a guided village tour, and a themed walking trail that highlights key moments from the lives of Cäsar Ritz and other notable figures. Visitors can also enjoy the charming Stationsbistro, which serves breakfast and light refreshments.\n" +
-        "\n" +
-        "However, organizing tours for guests used to be a significant challenge. Requests, whether for tours with or without a village walk, in languages such as German, English, French, and Italian, often came by phone or email. This led to numerous follow-ups to clarify details like date, time, group size, and type. Finding available and suitable guides was time-intensive, and all guide arrangements and confirmations were handled manually. Additionally, feedback collection and invoicing were done manually, resulting in inefficiencies and potential errors."
-    },
-    goalSection: {
-      title: "Project Goal",
-      text: "The goal is to streamline this process with a web application that simplifies requests, making them more transparent and efficient for guests. This platform will ease administrative tasks by automating the guide selection process, invoicing, and feedback collection, reducing the need for manual correspondence. Guides will also benefit from receiving relevant information in a standardized format, enhancing their engagement."
-    },
-    pictureSection: {
-      tourBrowser: {
-        title: "Tour Browser",
-        path: "https://",
-        description: "Customers browse available tours to find their ideal match."
-      },
-      tourBookingForm: {
-        title: "Tour Booking Form",
-        path: "https://",
-        description: "The booking form allows customers to reserve spots for their desired tours."
-      },
-      adminPage: {
-        title: "Admin Page",
-        path: "https://",
-        description: "The admin page provides tools to efficiently manage and monitor all bookings."
-      }
-    },
-    developedSolutionSection: {
-      title: "Developed Solution and its Benefits",
-      introText: "We developed a comprehensive web application tourbooking.stationritz.ch that revolutionizes the tour booking process at the Niederwald Visitor Center. This platform digitizes and automates tasks like request handling, scheduling, guide assignment, invoicing, and feedback collection. By reducing manual effort, it simplifies guest interactions and boosts administrative efficiency, benefiting both visitors and guides.",
-      bulletPoints: [
-        "",
-        ""
-      ],
-      outroText: "By streamlining operations and reducing errors, this solution delivers a seamless experience for both visitors and administrative staff, ensuring a smoother and more efficient process for all."
+      texture: "/textures/project/project3.mp4",
     }
-  }
+  ],
 };
 
 export default de;

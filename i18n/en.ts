@@ -1,4 +1,4 @@
-import { TECHNOLOGIES } from "@/i18n/Technologies";
+import { TECHNOLOGIES } from "@/i18n/technologies";
 import { I18nType } from "@/i18n/I18nType";
 
 const en: I18nType = {
@@ -20,22 +20,22 @@ const en: I18nType = {
       {
         time: "Sept. 2022 - today",
         title: "BSc computer science",
-        description: "tbd",
+        description: "My Computer Science studies at FHNW provide me with a solid foundation in software development, system architecture, and modern technologies. In addition to theoretical concepts, I work on practical projects that enhance my skills in developing and implementing applications. My focus is on backend development, distributed systems, and web technologies.",
         organisation: "University of Applied Sciences and Arts Northwestern Switzerland"
       }, {
         time: "Aug. 2019 - today",
         title: "Draftsman specializing in engineering",
-        description: "tbd",
+        description: "Since 2019, I have been working as a structural engineering draftsman at Aegerter & Bosshardt AG. In this role, I create precise construction plans and technical drawings, collaborate closely with engineers, and support the planning of construction projects. Additionally, I work with 3D modeling to visualize designs and enhance project accuracy. My experience with CAD software and my technical expertise contribute to the efficient execution of projects.",
         organisation: "Aegerter & Bosshardt AG"
       }, {
         time: "Aug. 2019 - July 2021",
         title: "Vocational baccalaureate",
-        description: "tbd",
+        description: "As part of my vocational baccalaureate, I deepened my knowledge in the fields of technology, architecture, and life sciences. The interdisciplinary curriculum allowed me to develop my analytical and scientific skills, providing a solid foundation for my subsequent computer science studies.",
         organisation: "Technology, Architecture, Life Sciences"
       }, {
         time: "Aug. 2015 - July 2019",
         title: "Apprenticeship to draftsman specializing in engineering",
-        description: "tbd",
+        description: "Since 2019, I have been working as a structural engineering draftsman at Aegerter & Bosshardt AG. I create construction plans, technical drawings, and 3D models to visualize projects. With my CAD experience and technical expertise, I contribute to precise and efficient execution.",
         organisation: "Aegerter & Bosshardt AG"
       }
     ]
@@ -53,7 +53,9 @@ const en: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project1.mp4"
+      texture: "/textures/project/project1.mp4",
+      repoPath: "https://gitlab.com/realflorianchrist/tourbooking-station-ritz",
+      furtherLink: "https://web0.fhnw.ch/ht/informatik/ip34/25bb/booking/index.html",
     }, {
       id: 2,
       title: "Plan Directory",
@@ -66,7 +68,7 @@ const en: I18nType = {
         TECHNOLOGIES.REACT,
         TECHNOLOGIES.CYPRESS
       ],
-      texture: "/textures/project/project2.mp4"
+      texture: "/textures/project/project2.mp4",
     }, {
       id: 3,
       title: "TwitterFX",
@@ -76,50 +78,9 @@ const en: I18nType = {
         TECHNOLOGIES.JAVA,
         TECHNOLOGIES.CSS
       ],
-      texture: "/textures/project/project3.mp4"
+      texture: "/textures/project/project3.mp4",
     },
   ],
-  TourBooking: {
-    title: "Tour Booking",
-    intro: "Experience the historic charm of Niederwald and learn about the life and legacy of world-renowned hotelier Cäsar Ritz. Book your guided tour digitally and dive into a journey through time.",
-    leadImage: "/images/projects/tour_booking/lead_image.png",
-    problemSection: {
-      title: "Initial Situation/Problem statement",
-      text: "In 2017, the Verein Besucherzentrum Niederwald, founded by the municipality of Goms, the Landschaftspark Binntal, and Obergoms Tourismus AG, began transforming Niederwald's former train station into the Station Ritz. Officially opened in December 2019, the visitor center celebrates the legacy of the renowned hotelier Cäsar Ritz. The center features a permanent exhibition dedicated to Ritz’s life and achievements, alongside additional offerings such as annual temporary exhibitions, a guided village tour, and a themed walking trail that highlights key moments from the lives of Cäsar Ritz and other notable figures. Visitors can also enjoy the charming Stationsbistro, which serves breakfast and light refreshments.\n" +
-        "\n" +
-        "However, organizing tours for guests used to be a significant challenge. Requests, whether for tours with or without a village walk, in languages such as German, English, French, and Italian, often came by phone or email. This led to numerous follow-ups to clarify details like date, time, group size, and type. Finding available and suitable guides was time-intensive, and all guide arrangements and confirmations were handled manually. Additionally, feedback collection and invoicing were done manually, resulting in inefficiencies and potential errors."
-    },
-    goalSection: {
-      title: "Project Goal",
-      text: "The goal is to streamline this process with a web application that simplifies requests, making them more transparent and efficient for guests. This platform will ease administrative tasks by automating the guide selection process, invoicing, and feedback collection, reducing the need for manual correspondence. Guides will also benefit from receiving relevant information in a standardized format, enhancing their engagement."
-    },
-    pictureSection: {
-      tourBrowser: {
-        title: "Tour Browser",
-        path: "https://",
-        description: "Customers browse available tours to find their ideal match."
-      },
-      tourBookingForm: {
-        title: "Tour Booking Form",
-        path: "https://",
-        description: "The booking form allows customers to reserve spots for their desired tours."
-      },
-      adminPage: {
-        title: "Admin Page",
-        path: "https://",
-        description: "The admin page provides tools to efficiently manage and monitor all bookings."
-      }
-    },
-    developedSolutionSection: {
-      title: "Developed Solution and its Benefits",
-      introText: "We developed a comprehensive web application tourbooking.stationritz.ch that revolutionizes the tour booking process at the Niederwald Visitor Center. This platform digitizes and automates tasks like request handling, scheduling, guide assignment, invoicing, and feedback collection. By reducing manual effort, it simplifies guest interactions and boosts administrative efficiency, benefiting both visitors and guides.",
-      bulletPoints: [
-        "",
-        ""
-      ],
-      outroText: "By streamlining operations and reducing errors, this solution delivers a seamless experience for both visitors and administrative staff, ensuring a smoother and more efficient process for all."
-    }
-  }
 };
 
 export default en;
