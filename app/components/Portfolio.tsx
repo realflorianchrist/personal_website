@@ -27,12 +27,6 @@ function Portfolio() {
     });
   };
 
-  // useGSAP(() => {
-  //   gsap.fromTo(`.animatedText`,
-  //     { opacity: 0 },
-  //     { opacity: 1, duration: 1, stagger: 0.2, ease: "power2.inOut" });
-  // }, [selectedProjectIndex]);
-
   if (!i18n) return null;
 
   const projects = i18n.ProjectPreviews;
@@ -49,9 +43,8 @@ function Portfolio() {
         <div className="flex bg-primaryDark flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black">
 
           <div className="flex flex-col gap-5 text-white-600 my-5 mb-auto">
-            <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
-
-            <p className="animatedText">{currentProject.description}</p>
+            <p className="text-white text-2xl font-semibold">{currentProject.title}</p>
+            <p>{currentProject.description}</p>
             {/*<p className="animatedText">{currentProject.subdesc}</p>*/}
           </div>
 
@@ -75,11 +68,11 @@ function Portfolio() {
           </div>
 
           <div className="flex justify-between items-center mt-7">
-            <button className="arrow-btn" onClick={() => handleNavigation('previous')}>
+            <button className="arrow-btn" onClick={() => handleNavigation("previous")}>
               <FaArrowLeft />
             </button>
 
-            <button className="arrow-btn" onClick={() => handleNavigation('next')}>
+            <button className="arrow-btn" onClick={() => handleNavigation("next")}>
               <FaArrowRight />
             </button>
           </div>

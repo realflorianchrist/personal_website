@@ -11,7 +11,7 @@ const de: I18nType = {
   Hero: {
     positions: [
       "Software Entwickler",
-      "Zeichner"
+      "3D Modelierer"
     ],
     introduction: "Ich liebe es, fesselnde Erlebnisse für die digitale Welt zu schaffen."
   },
@@ -44,7 +44,7 @@ const de: I18nType = {
     {
       id: 1,
       title: "Tour Booking",
-      description: "In meinem dritten und vierten Semester konnten wir im Rahmen der Projektschiene 2 Semester an einer Tour Buchung Webseite arbeiten bei der",
+      description: "Im dritten und vierten Semester entwickelten wir in einem agilen Team im Rahmen der Projektschiene eine Webanwendung zur digitalen Tourbuchung für das Besucherzentrum Niederwald. Die Plattform automatisiert Anfragen, Guide-Zuweisung, Rechnungsstellung und Feedback-Erfassung, wodurch der manuelle Aufwand reduziert wird. So wird der Buchungsprozess effizienter und transparenter für Gäste, Guides und die Verwaltung.",
       previewPicturePath: "/images/projects/javafx.png",
       technologies: [
         TECHNOLOGIES.SPRING,
@@ -59,7 +59,7 @@ const de: I18nType = {
     }, {
       id: 2,
       title: "Plan Directory",
-      description: "In my fourth semester I did my first web application",
+      description: "Im vierten Semester entwickelte ich meine erste Webanwendung für ein digitales Planverzeichnis. Die Plattform durchsucht Windows-Laufwerke, extrahiert relevante Informationen und speichert sie strukturiert ab, sodass Baupläne effizient verwaltet, durchsucht und kategorisiert werden können. Dies verbessert den Zugriff und die Organisation im Bauingenieurbüro erheblich.",
       previewPicturePath: "/images/projects/plan-directory.png",
       technologies: [
         TECHNOLOGIES.SPRING,
@@ -72,7 +72,7 @@ const de: I18nType = {
     }, {
       id: 3,
       title: "TwitterFX",
-      description: "In my second semester I did a project with JavaFX",
+      description: "Im zweiten Semester entwickelte ich das Übungsprojekt TwitterFX, meine erste Anwendung mit JavaFX. Dabei konnte ich erste Erfahrungen in der UI-Entwicklung sammeln und mich mit der Gestaltung und Funktionalität von Desktop-Anwendungen vertraut machen.",
       previewPicturePath: "/images/projects/javafx.png",
       technologies: [
         TECHNOLOGIES.JAVA,

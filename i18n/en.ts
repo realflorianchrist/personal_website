@@ -11,7 +11,7 @@ const en: I18nType = {
   Hero: {
     positions: [
       "Software Developer",
-      "Draftsman"
+      "3D Modeler"
     ],
     introduction: "I love crafting captivating experiences for the digital world to savor."
   },
@@ -44,7 +44,7 @@ const en: I18nType = {
     {
       id: 1,
       title: "Tour Booking",
-      description: "In meinem dritten und vierten Semester konnten wir im Rahmen der Projektschiene 2 Semester an einer Tour Buchung Webseite arbeiten bei der",
+      description: "In the third and fourth semester, we developed a digital tour booking platform for the Niederwald Visitor Center as part of our project track, working in an agile team. The platform automates tour requests, guide assignments, invoicing, and feedback collection, reducing manual effort. This makes the booking process more efficient and transparent for guests, guides, and administrators.",
       previewPicturePath: "/images/projects/javafx.png",
       technologies: [
         TECHNOLOGIES.SPRING,
@@ -59,7 +59,7 @@ const en: I18nType = {
     }, {
       id: 2,
       title: "Plan Directory",
-      description: "In my fourth semester I did my first web application",
+      description: "In my fourth semester, I developed my first web application for a digital plan directory. The platform scans Windows drives, extracts relevant information, and stores it in a structured way, enabling efficient management, search, and categorization of construction plans. This significantly improves accessibility and organization in the engineering office.",
       previewPicturePath: "/images/projects/plan-directory.png",
       technologies: [
         TECHNOLOGIES.SPRING,
@@ -72,7 +72,7 @@ const en: I18nType = {
     }, {
       id: 3,
       title: "TwitterFX",
-      description: "In my second semester I did a project with JavaFX",
+      description: "In my second semester, I developed TwitterFX as a practice project, my first application using JavaFX. This allowed me to gain initial experience in UI development and explore the design and functionality of desktop applications.",
       previewPicturePath: "/images/projects/javafx.png",
       technologies: [
         TECHNOLOGIES.JAVA,
