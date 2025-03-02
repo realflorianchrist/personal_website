@@ -7,7 +7,10 @@ export type Project = {
     previewPicturePath: string,
     technologies: Technology[],
     texture: string,
-    repoPath?: string,
+    repoPath?:{
+        link: string,
+        linktText: string
+    },
     furtherLink?: {
         link: string,
         linkText: string

@@ -5,12 +5,14 @@ import { useLanguageContext } from "@/app/providers/language-provider";
 import SectionWrapper from "@/app/utils/SectionWrapper";
 import { Suspense, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaGitlab } from "react-icons/fa6";
 import { Canvas } from "@react-three/fiber";
 import { Center, OrbitControls } from "@react-three/drei";
 import CanvasLoader from "@/app/components/CanvasLoader";
 import DemoComputer from "@/app/components/DemoComputer";
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
+import Link from "next/link";
 
 function Portfolio() {
   const { i18n } = useLanguageContext();
@@ -46,7 +48,7 @@ function Portfolio() {
             <p>{currentProject.description}</p>
           </div>
 
-          <div className="flex items-center justify-between flex-wrap gap-5">
+          <div className="flex items-end justify-between flex-wrap gap-5">
             <div className="flex items-center gap-3">
               {currentProject.technologies.map((tech, index) => (
                 <div key={index} className="tech-logo">
@@ -55,16 +57,31 @@ function Portfolio() {
               ))}
             </div>
 
+            <div className={"flex flex-col items-end"}>
+            {
+              currentProject.repoPath &&
+              <Link
+                className="flex items-center gap-2 cursor-pointer text-white-600"
+                href={currentProject.repoPath.link}
+                target="_blank"
+              >
+                {currentProject.repoPath.linktText}
+                <FaGitlab />
+                <FiArrowUpRight />
+              </Link>
+            }
+
             {currentProject.furtherLink &&
-              <a
+              <Link
                 className="flex items-center gap-2 cursor-pointer text-white-600"
                 href={currentProject.furtherLink.link}
                 target="_blank"
                 rel="noreferrer">
                 <p>{currentProject.furtherLink.linkText}</p>
                 <FiArrowUpRight />
-              </a>
+              </Link>
             }
+            </div>
           </div>
 
           <div className="flex justify-between items-center mt-7">

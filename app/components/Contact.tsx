@@ -11,14 +11,14 @@ function Contact() {
 
 
   return (
-    <div className="text-center h-screen md:text-left md:px-20">
-      <motion.div variants={textVariant()}>
-        <h3 className={styles.sectionText}>{i18n?.Sections.contact}</h3>
-      </motion.div>
-
-
+    <div className={'mb-60'}>
 
     </div>
+    // <div className="text-center h-screen md:text-left md:px-20">
+    //   <motion.div variants={textVariant()}>
+    //     <h3 className={styles.sectionText}>{i18n?.Sections.contact}</h3>
+    //   </motion.div>
+    // </div>
   );
 }
 

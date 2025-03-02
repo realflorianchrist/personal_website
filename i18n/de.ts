@@ -6,7 +6,7 @@ const de: I18nType = {
     hero: "Hero",
     portfolio: "Portfolio",
     experience: "Erfahrung",
-    contact: "Kontakt"
+    // contact: "Kontakt"
   },
   Hero: {
     positions: [
@@ -54,7 +54,10 @@ const de: I18nType = {
         TECHNOLOGIES.CYPRESS
       ],
       texture: "/textures/project/project1.mp4",
-      repoPath: "https://gitlab.com/realflorianchrist/tourbooking-station-ritz",
+      repoPath: {
+        link: "https://gitlab.com/realflorianchrist/tourbooking-station-ritz",
+        linktText: "GitLab"
+      },
       furtherLink: {
         link: "https://web0.fhnw.ch/ht/informatik/ip34/25bb/booking/index.html",
         linkText: "Mehr Infos"
