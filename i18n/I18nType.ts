@@ -1,5 +1,5 @@
 import { Waypoint } from "@/app/models/Waypoint";
-import { ProjectPreviewType } from "@/app/models/ProjectPreviewType";
+import { Project } from "@/app/models/Project";
 
 export type SectionKeys = "hero" | "portfolio" | "experience" | "contact";
 
@@ -12,5 +12,5 @@ export type I18nType = {
   Experience: {
     Timeline: Waypoint[]
   },
-  ProjectPreviews: ProjectPreviewType[],
+  ProjectPreviews: Project[],
 }
