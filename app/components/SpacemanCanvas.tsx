@@ -26,11 +26,11 @@ export default function SpacemanCanvas({ scrollContainer }: { scrollContainer: R
 
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setScale([1, 1, 1]);
-        setPosition([0.2, -0.1, 0]);
+        setScale([1.25, 1.25, 1.25]);
+        setPosition([0.2, -2, 0]);
       } else if (window.innerWidth < 1024) {
         setScale([1.33, 1.33, 1.33]);
-        setPosition([0.2, -0.3, 0]);
+        setPosition([0.2, -1.5, 0]);
       } else if (window.innerWidth < 1280) {
         setScale([1.5, 1.5, 1.5]);
         setPosition([0.2, -0.4, 0]);

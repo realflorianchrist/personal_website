@@ -22,9 +22,9 @@ export default function Home() {
         <div id="experience" className="relative z-30 bg-primary">
           <Experience />
         </div>
-        <div id="contact" className="relative z-30 bg-primary">
-          <Contact />
-        </div>
+        {/*<div id="contact" className="relative z-30 bg-primary">*/}
+        {/*  <Contact />*/}
+        {/*</div>*/}
       </div>
     </div>
   );
