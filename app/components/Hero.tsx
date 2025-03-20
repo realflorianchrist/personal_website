@@ -8,7 +8,7 @@ export default function Hero({ scrollContainer }: { scrollContainer: RefObject<H
 
   return (
     <section className="parallax">
-      <div className="parallax__content z-10 h-full w-full absolute top-32">
+      <div className="parallax__content z-10 h-full w-full absolute top-20">
         <div className="absolute left-5 md:left-10 md:top-40">
           <h1 className="text-white text-3xl mb-2 md:text-7xl">
             FLORIAN CHRIST

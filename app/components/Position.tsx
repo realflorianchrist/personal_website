@@ -36,12 +36,10 @@ export default function Position() {
 
   return (
     <div className="text-left leading-[5px] md:text-2xl md:leading-[10px]">
-      <div className="">
+      <div>
         {animatedText[0]}
       </div>
-      <div className=""
-           style={{ opacity: showSecondText ? 1 : 0 }}
-      >
+      <div style={{ opacity: showSecondText ? 1 : 0 }}>
         {animatedText[1]}
       </div>
     </div>
