@@ -13,9 +13,9 @@ export default function Hero({ scrollContainer }: { scrollContainer: RefObject<H
           <h1 className="text-white text-3xl mb-2 md:text-7xl">
             FLORIAN CHRIST
           </h1>
-          <Position />
+          {/*<Position />*/}
         </div>
-        <div className="absolute left-5 pt-24 w-[90%] md:top-40 md:left-auto md:right-10 md:text-4xl md:w-[25%]">
+        <div className="absolute left-5 pt-24 w-[90%] md:top-28 md:left-auto md:right-16 md:text-4xl md:w-[25%]">
           <div className="font-bold streaky-glow text-left">
             {i18n?.Hero.introduction}
           </div>
