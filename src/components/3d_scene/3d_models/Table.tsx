@@ -2,6 +2,7 @@ import * as THREE from "three";
 import React, { JSX, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import modelUrls from "@/constants/model-urls";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,7 +24,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Table(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/3d_models/hologram_table.glb") as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF(modelUrls.table) as unknown as GLTFResult;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/immutability
@@ -111,4 +112,4 @@ export default function Table(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/3d_models/hologram_table.glb");
+useGLTF.preload(modelUrls.table);
