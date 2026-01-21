@@ -6,22 +6,30 @@ type SelectedProfessionState = {
   setProfession: (professionId: number) => void;
 };
 
-const professions: Profession[] = [
-  { id: 1, name: "drawer" },
-  { id: 2, name: "software engineer" },
-  { id: 3, name: "student" },
-];
+type profKey = "drawer" | "student" | "softwareEngineer";
+
+export const professions: Record<profKey, Profession> = {
+  drawer: {
+    id: 0, name: "drawer"
+  },
+  student: {
+    id: 1, name: "student"
+  },
+  softwareEngineer: {
+    id: 2, name: "software engineer"
+  }
+};
 
 const useSelectedProfessionStore = create<SelectedProfessionState>((set) => ({
-  profession: professions[0],
+  profession: professions.drawer,
 
   setProfession: (professionId) => {
-    const profession = professions.find(
+    const profession = Object.values(professions).find(
       (p) => p.id === professionId
     ) ?? null;
 
     set({ profession });
-  },
+  }
 }));
 
 export default useSelectedProfessionStore;

@@ -6,6 +6,7 @@ import { useFrame } from "@react-three/fiber";
 
 type Props = JSX.IntrinsicElements["group"] & {
   src: string;
+  professionId?: number;
 };
 
 export default function HoloModel({ src, ...groupProps }: Props) {

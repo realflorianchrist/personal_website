@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { Vector3 } from "three";
 import HoloModel from "@/components/3d_scene/3d_models/HoloModel";
 import modelUrls from "@/constants/model-urls";
-import useSelectedProfessionStore from "@/stores/selectedProfessionStore";
+import useSelectedProfessionStore, { professions } from "@/stores/selectedProfessionStore";
 import { useHoloAnimations } from "@/animations/holoAnimations";
 
 export default function Scene() {
@@ -16,45 +16,35 @@ export default function Scene() {
   const closedPosition: Vector3 = new Vector3(0, 0.3, 0);
   const { open, close, initClosed } = useHoloAnimations(openPosition, closedPosition);
 
-  const excavatorRef = useRef<THREE.Group>(null);
-  const macbookRef = useRef<THREE.Group>(null);
-  const graduationHatRef = useRef<THREE.Group>(null);
 
+  const holoByIdRef = useRef(new Map<number, THREE.Group>());
+
+  const setHoloRef = (id: number) => (node: THREE.Group | null) => {
+    const map = holoByIdRef.current;
+    if (node) map.set(id, node);
+    else map.delete(id);
+  };
 
   useEffect(() => {
-    if (excavatorRef.current) initClosed(excavatorRef);
-    if (macbookRef.current) initClosed(macbookRef);
-    if (graduationHatRef.current) initClosed(graduationHatRef);
+    holoByIdRef.current.forEach((g) => {
+      initClosed(g);
+    });
   }, [initClosed]);
 
+
   useEffect(() => {
-    const id = profession?.id;
+    const selectedId = profession?.id;
 
-    if (!id) {
-      if (excavatorRef.current) close(excavatorRef);
-      if (macbookRef.current) close(macbookRef);
-      if (graduationHatRef.current) close(graduationHatRef)
-      return;
-    }
+    holoByIdRef.current.entries().forEach(([id, ref]) => {
+      if (!ref) return;
 
-    if (id === 1) {
-      if (macbookRef.current) close(macbookRef);
-      if (excavatorRef.current) open(excavatorRef);
-      if (graduationHatRef.current) close(graduationHatRef);
-    }
-
-    if (id === 2) {
-      if (excavatorRef.current) close(excavatorRef);
-      if (macbookRef.current) open(macbookRef);
-      if (graduationHatRef.current) close(graduationHatRef);
-    }
-
-    if (id === 3) {
-      if (excavatorRef.current) close(excavatorRef);
-      if (macbookRef.current) close(macbookRef);
-      if (graduationHatRef.current) open(graduationHatRef);
-    }
-  }, [profession?.id, open, close]);
+      if (Number(id) === selectedId) {
+        open(ref);
+      } else {
+        close(ref);
+      }
+    });
+  }, [profession?.id, open, close, holoByIdRef]);
 
   return (
     <>
@@ -63,26 +53,28 @@ export default function Scene() {
 
       <Floor />
 
-      <group
-      >
+      <group>
         <Table scale={10} />
 
         <HoloModel
-          ref={excavatorRef}
+          ref={setHoloRef(professions.drawer.id)}
+          professionId={professions.drawer.id}
           src={modelUrls.excavator}
           scale={0.015}
           rotation={[0, Math.PI / 2, 0]}
         />
 
         <HoloModel
-          ref={macbookRef}
-          src={modelUrls.macbook}
+          ref={setHoloRef(professions.student.id)}
+          professionId={professions.student.id}
+          src={modelUrls.graduationHat}
+          scale={0.2}
         />
 
         <HoloModel
-          ref={graduationHatRef}
-          src={modelUrls.graduationHat}
-          scale={0.2}
+          ref={setHoloRef(professions.softwareEngineer.id)}
+          professionId={professions.softwareEngineer.id}
+          src={modelUrls.macbook}
         />
       </group>
     </>

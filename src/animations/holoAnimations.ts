@@ -1,9 +1,7 @@
 import gsap from "gsap";
 import * as THREE from "three";
-import { RefObject, useCallback, useState } from "react";
 import { Vector3 } from "three";
-
-type GroupRef = RefObject<THREE.Group | null>;
+import { useCallback, useState } from "react";
 
 export const useHoloAnimations = (
   openPosition: Vector3,
@@ -46,9 +44,9 @@ export const useHoloAnimations = (
     );
   };
 
-  const initClosed = useCallback((holoRef: GroupRef) => {
+  const initClosed = useCallback((holoRef: THREE.Group) => {
     if (!initialised) {
-      const g = holoRef.current;
+      const g = holoRef;
       if (!g) return;
 
       g.position.copy(closedPosition);
@@ -61,17 +59,17 @@ export const useHoloAnimations = (
     }
   }, [closedPosition, initialised]);
 
-  const open = useCallback((holoRef: GroupRef) => {
-    const g = holoRef.current;
+  const open = useCallback((holoRef: THREE.Group) => {
+    const g = holoRef;
     if (!g) return;
 
     // eslint-disable-next-line
     const mat = (g as any).userData.holoMat as THREE.ShaderMaterial | undefined;
-    if (mat) animateTo(g, mat, openPosition, 1);
+    if (mat) animateTo(g, mat, openPosition, 0.3);
   }, [openPosition]);
 
-  const close = useCallback((holoRef: GroupRef) => {
-    const g = holoRef.current;
+  const close = useCallback((holoRef: THREE.Group) => {
+    const g = holoRef;
     if (!g) return;
 
     // eslint-disable-next-line
