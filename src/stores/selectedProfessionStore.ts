@@ -8,7 +8,8 @@ type SelectedProfessionState = {
 
 const professions: Profession[] = [
   { id: 1, name: "drawer" },
-  { id: 2, name: "software engineer" }
+  { id: 2, name: "software engineer" },
+  { id: 3, name: "student" },
 ];
 
 const useSelectedProfessionStore = create<SelectedProfessionState>((set) => ({

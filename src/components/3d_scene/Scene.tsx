@@ -18,11 +18,13 @@ export default function Scene() {
 
   const excavatorRef = useRef<THREE.Group>(null);
   const macbookRef = useRef<THREE.Group>(null);
+  const graduationHatRef = useRef<THREE.Group>(null);
 
 
   useEffect(() => {
     if (excavatorRef.current) initClosed(excavatorRef);
     if (macbookRef.current) initClosed(macbookRef);
+    if (graduationHatRef.current) initClosed(graduationHatRef);
   }, [initClosed]);
 
   useEffect(() => {
@@ -31,17 +33,26 @@ export default function Scene() {
     if (!id) {
       if (excavatorRef.current) close(excavatorRef);
       if (macbookRef.current) close(macbookRef);
+      if (graduationHatRef.current) close(graduationHatRef)
       return;
     }
 
     if (id === 1) {
       if (macbookRef.current) close(macbookRef);
       if (excavatorRef.current) open(excavatorRef);
+      if (graduationHatRef.current) close(graduationHatRef);
     }
 
     if (id === 2) {
       if (excavatorRef.current) close(excavatorRef);
       if (macbookRef.current) open(macbookRef);
+      if (graduationHatRef.current) close(graduationHatRef);
+    }
+
+    if (id === 3) {
+      if (excavatorRef.current) close(excavatorRef);
+      if (macbookRef.current) close(macbookRef);
+      if (graduationHatRef.current) open(graduationHatRef);
     }
   }, [profession?.id, open, close]);
 
@@ -66,6 +77,12 @@ export default function Scene() {
         <HoloModel
           ref={macbookRef}
           src={modelUrls.macbook}
+        />
+
+        <HoloModel
+          ref={graduationHatRef}
+          src={modelUrls.graduationHat}
+          scale={0.2}
         />
       </group>
     </>
