@@ -41,7 +41,7 @@ export default function Desk(props: JSX.IntrinsicElements["group"]) {
           <meshStandardMaterial
             color="black"
             transparent
-            opacity={0.4}
+            opacity={0.6}
           />
         </mesh>
         <mesh

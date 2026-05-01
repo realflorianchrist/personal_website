@@ -10,6 +10,8 @@ import Keyboard from "@/components/3d_scene/3d_models/furniture/Keyboard";
 import Stool from "@/components/3d_scene/3d_models/furniture/Stool";
 import Desk from "@/components/3d_scene/3d_models/furniture/Desk";
 import PS5 from "@/components/3d_scene/3d_models/furniture/PS5";
+import MacComputer from "@/components/3d_scene/3d_models/furniture/mac_computer/MacComputer";
+import Wall from "@/components/3d_scene/3d_models/Wall";
 
 
 export default function Scene() {
@@ -20,13 +22,29 @@ export default function Scene() {
 
       <Floor width={5.5} depth={4.5} />
 
+      <Wall
+        dim={[4.6, 2.5, 0.2]}
+        position={[-0.45, 1.25, -2.35]}
+      />
+
+      <Wall
+        dim={[0.9, 0.5, 0.2]}
+        position={[2.3, 2.25, -2.35]}
+      />
+
+      <Wall
+        dim={[4.7, 2.5, 0.2]}
+        rotation={[0, -Math.PI / 2, 0]}
+        position={[2.85, 1.25, -0.1]}
+      />
+
       {/*<HoloTable*/}
       {/*  rotation={[0, Math.PI / 3, 0]}*/}
       {/*  position={[-2, 0, -2]}*/}
       {/*/>*/}
 
       <Wardrobe
-        scale={[1.6, 1, 1.2]}
+        scale={[1.6, 0.95, 1.2]}
         position={[-1.3, 0, -1.82]}
       />
 
@@ -41,6 +59,9 @@ export default function Scene() {
         position={[2.75, 0, -1.95]}
       />
 
+      <MacComputer
+        position={[1, 0.72, -1.8]}
+      />
 
       <Bed
         scale={[0.85, 1.25, 1.1]}
@@ -64,7 +85,7 @@ export default function Scene() {
 
       <PS5
         rotation={[0, -Math.PI / 2, 0]}
-        position={[2.6, 0, 0.9]}
+        position={[2.7, 1.12, 0.6]}
       />
 
       <TV
