@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { JSX, useRef } from "react";
+import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/model-urls";

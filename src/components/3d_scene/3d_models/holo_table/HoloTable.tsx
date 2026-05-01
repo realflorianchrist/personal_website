@@ -1,11 +1,11 @@
 import React, { JSX, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { Vector3 } from "three";
-import Table from "@/components/3d_scene/3d_models/holo_table/Table";
 import HoloModel from "@/components/3d_scene/3d_models/holo_table/HoloModel";
 import useSelectedProfessionStore, { professions } from "@/stores/selectedProfessionStore";
 import modelUrls from "@/constants/model-urls";
 import { useHoloAnimations } from "@/animations/holoAnimations";
+import HoloProjector from "@/components/3d_scene/3d_models/holo_table/HoloProjector";
 
 type Props = JSX.IntrinsicElements["group"];
 
@@ -49,7 +49,8 @@ export default function HoloTable(props: Props) {
 
   return (
     <group {...props}>
-      <Table scale={10} />
+      {/*<Table scale={10} />*/}
+      <HoloProjector scale={0.2} />
 
       <HoloModel
         ref={setHoloRef(professions.drawer.id)}
