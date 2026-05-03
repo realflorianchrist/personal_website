@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "@/components/3d_scene/Scene";
-import Camera from "@/components/3d_scene/Camera";
 import { OrbitControls } from "@react-three/drei";
+import CanvasLoader from "@/components/3d_scene/CanvasLoader/CanvasLoader";
 
 export default function SceneCanvas() {
   return (
@@ -11,14 +11,16 @@ export default function SceneCanvas() {
       <Canvas camera={{
         position: [-3, 3, 3]
       }}>
-        {/*<Camera />*/}
-        <OrbitControls
-          // minDistance={2}
-          // maxDistance={6}
-          // minPolarAngle={Math.PI / 4}
-          // maxPolarAngle={Math.PI / (2 * 1.01)}
-        />
-        <Scene />
+        <Suspense fallback={<CanvasLoader />}>
+          {/*<Camera />*/}
+          {/*<OrbitControls*/}
+          {/*  // minDistance={2}*/}
+          {/*  // maxDistance={6}*/}
+          {/*  // minPolarAngle={Math.PI / 4}*/}
+          {/*  // maxPolarAngle={Math.PI / (2 * 1.01)}*/}
+          {/*/>*/}
+          <Scene />
+        </Suspense>
       </Canvas>
     </div>
   );

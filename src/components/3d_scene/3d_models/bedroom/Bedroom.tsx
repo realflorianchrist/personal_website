@@ -14,8 +14,14 @@ import GlassTable from "@/components/3d_scene/3d_models/bedroom/furniture/GlassT
 import GamingChair from "@/components/3d_scene/3d_models/bedroom/furniture/GamingChair";
 import Door from "@/components/3d_scene/3d_models/bedroom/Door";
 import WallShelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf";
+import { useThree } from "@react-three/fiber";
+import { Matrix4, Quaternion, Vector3 } from "three";
+import gsap from "gsap";
 
 export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
+
+  const { camera } = useThree();
+
   return (
     <group {...props} dispose={null}>
       <Floor width={5.5} depth={4.5} />
@@ -57,6 +63,30 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
       />
 
       <MacComputer
+        onClick={() => {
+            const targetPosition = new Vector3(1, 1.105, -1.72);
+            const startOrientation = camera.quaternion.clone();
+            const lookAtTarget = new Vector3(1, 1.105, -1.8);
+
+            gsap.to(camera.position, {
+                x: targetPosition.x,
+                y: targetPosition.y,
+                z: targetPosition.z,
+                duration: 2.5,
+                ease: "power2.inOut",
+            });
+
+            const targetQuaternion = new Quaternion().setFromRotationMatrix(
+              new Matrix4().lookAt(targetPosition, lookAtTarget, new Vector3(0, 1, 0))
+            );
+
+            gsap.to({}, {
+                duration: 2,
+                onUpdate: function () {
+                    camera.quaternion.copy(startOrientation).slerp(targetQuaternion, this.progress());
+                }
+            });
+        }}
         position={[1, 0.72, -1.8]}
       />
 
