@@ -3,6 +3,7 @@ import Football from "@/components/3d_scene/3d_models/bedroom/furniture/book_she
 import Kallax from "@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/Kallax";
 import PS5 from "@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/PS5";
 import PS5Controller from "@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/PS5Controller";
+import Books from "@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/Books";
 
 export default function BookShelf(props: JSX.IntrinsicElements["group"]) {
   return (
@@ -14,6 +15,15 @@ export default function BookShelf(props: JSX.IntrinsicElements["group"]) {
       <Kallax
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0.56, 0]}
+      />
+
+      <Books
+        position={[0, 0.75, -1.09]}
+      />
+
+      <Books
+        scale={[1, 1, -1]}
+        position={[0, 0.75, -0.05]}
       />
 
       <PS5

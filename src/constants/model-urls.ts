@@ -21,6 +21,7 @@ const modelUrls = {
   stool: "/3d_models/stool.glb",
   ps5: "/3d_models/ps5.glb",
   ps5Controller: "/3d_models/ps5_controller.glb",
+  books: "/3d_models/books.glb",
   football: "/3d_models/football.glb",
   spiderman: "/3d_models/spider-man.glb",
   ezio: "/3d_models/ezio.glb",
