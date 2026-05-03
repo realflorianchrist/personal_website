@@ -2,7 +2,6 @@ import React, { JSX } from "react";
 import Floor from "@/components/3d_scene/3d_models/bedroom/Floor";
 import Wall from "@/components/3d_scene/3d_models/bedroom/Wall";
 import Wardrobe from "@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe";
-import Shelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/Shelf";
 import Desk from "@/components/3d_scene/3d_models/bedroom/furniture/Desk";
 import MacComputer from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacComputer";
 import Bed from "@/components/3d_scene/3d_models/bedroom/furniture/Bed";
@@ -15,12 +14,14 @@ import GamingChair from "@/components/3d_scene/3d_models/bedroom/furniture/Gamin
 import Door from "@/components/3d_scene/3d_models/bedroom/Door";
 import WallShelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf";
 import { useThree } from "@react-three/fiber";
-import { Matrix4, Quaternion, Vector3 } from "three";
+import { Vector3 } from "three";
 import gsap from "gsap";
+import useOrbitControlsStore from "@/stores/orbitControlsStore";
 
 export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
 
   const { camera } = useThree();
+  const { controls, pauseControls } = useOrbitControlsStore();
 
   return (
     <group {...props} dispose={null}>
@@ -64,28 +65,28 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
 
       <MacComputer
         onClick={() => {
-            const targetPosition = new Vector3(1, 1.105, -1.72);
-            const startOrientation = camera.quaternion.clone();
-            const lookAtTarget = new Vector3(1, 1.105, -1.8);
+          if (!controls) return;
 
-            gsap.to(camera.position, {
-                x: targetPosition.x,
-                y: targetPosition.y,
-                z: targetPosition.z,
-                duration: 2.5,
-                ease: "power2.inOut",
-            });
+          const targetPosition = new Vector3(1, 1.105, -1.72);
+          const lookAtTarget = new Vector3(1, 1.105, -1.8);
 
-            const targetQuaternion = new Quaternion().setFromRotationMatrix(
-              new Matrix4().lookAt(targetPosition, lookAtTarget, new Vector3(0, 1, 0))
-            );
+          gsap.to(camera.position, {
+            x: targetPosition.x,
+            y: targetPosition.y,
+            z: targetPosition.z,
+            duration: 2.5,
+            ease: "power2.inOut"
+          });
 
-            gsap.to({}, {
-                duration: 2,
-                onUpdate: function () {
-                    camera.quaternion.copy(startOrientation).slerp(targetQuaternion, this.progress());
-                }
-            });
+          gsap.to(controls.target, {
+            x: lookAtTarget.x,
+            y: lookAtTarget.y,
+            z: lookAtTarget.z,
+            duration: 2,
+            ease: "power2.inOut",
+            onComplete: () => pauseControls()
+          });
+
         }}
         position={[1, 0.72, -1.8]}
       />
