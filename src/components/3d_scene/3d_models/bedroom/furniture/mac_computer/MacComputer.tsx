@@ -17,8 +17,8 @@ export default function MacComputer(props: JSX.IntrinsicElements["group"]) {
         position={[0, 0, -0.2]}
       />
       <Display
-        dimensions={[0.685, 0.385]}
-        position={[0, 0.3865, -0.195]}
+        dimensions={[0.685, 0.383]}
+        position={[0, 0.3864, -0.195]}
       />
 
       <MacPro

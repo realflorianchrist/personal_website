@@ -1,11 +1,11 @@
 import SceneCanvas from "@/components/3d_scene/SceneCanvas";
-import Nav from "@/components/Nav";
+import MacOS from "@/components/mac_os/MacOS";
 
 export default function Home() {
   return (
     <>
-      <Nav />
-      <SceneCanvas />
+      {/*<SceneCanvas />*/}
+      <MacOS/>
     </>
   );
 }
