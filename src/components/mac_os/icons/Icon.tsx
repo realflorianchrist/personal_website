@@ -1,5 +1,4 @@
-"use client";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import cn from "@/utils/cn";
 import ToolTip from "@/components/mac_os/ToolTip";
 
@@ -18,27 +17,19 @@ export default function Icon(
     children: ReactNode;
   }>) {
 
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div>
-      {isHovered &&
-        <div className={"absolute bottom-20 justify-self-center"}>
-          <ToolTip text={"hovered"} />
-        </div>
-      }
-      <div>
-        <div
-          className={cn("w-10 h-10 rounded-lg overflow-hidden bg-white", className)}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {children}
-        </div>
-        {active &&
-          <div className={"w-1 h-1 bg-background rounded-full absolute justify-self-center bottom-0.5"} />
-        }
+    <div className="relative group flex flex-col items-center">
+      <div className="absolute -top-14 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100">
+        <ToolTip text="hovered" />
       </div>
+
+      <div className={cn("w-10 h-10 rounded-lg overflow-hidden bg-white", className)}>
+        {children}
+      </div>
+
+      {active && (
+        <div className="absolute -bottom-2.5 w-1 h-1 bg-background rounded-full" />
+      )}
     </div>
   );
 }

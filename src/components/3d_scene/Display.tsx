@@ -20,6 +20,7 @@ export default function Display({ dimensions = [1, 1], ...props }: Props) {
         center
         distanceFactor={1}
         scale={1 / scale}
+        className={'overflow-hidden'}
       >
         <div
           className={"flex flex-col items-center justify-center overflow-hidden"}

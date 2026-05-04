@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 type DockState = {
-  activeProgramms: number[];
+  activePrograms: number[];
 };
 
 const useDockStore = create<DockState>((set, get) => ({
-  activeProgramms: []
+  activePrograms: []
 }));
 
 export default useDockStore;

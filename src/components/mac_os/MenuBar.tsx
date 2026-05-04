@@ -19,7 +19,7 @@ export default function MenuBar({ children, className, ...props }: Props) {
   const d = formatDate(date);
 
   return (
-    <div className={cn("flex w-full text-sm items-center px-4 py-2", className)}
+    <div className={cn("flex w-full text-sm items-center px-4 py-2 select-none", className)}
          {...props}
     >
       <FaApple size={20} />
