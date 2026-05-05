@@ -1,12 +1,13 @@
-import Icon, { IconProps } from "@/components/mac_os/icons/Icon";
+import Icon, { IconProps } from "@/components/mac_os/programs/icons/Icon";
+import cn from "@/utils/cn";
 
-export default function SafariIcon(props: IconProps) {
+export default function SafariIcon({ className, ...props }: IconProps) {
   return (
-    <Icon className={'p-0.5'} {...props}>
+    <Icon className={cn("p-0.5", className)} {...props}>
       <svg
         viewBox="0 0 256 256"
         xmlns="http://www.w3.org/2000/svg"
-           preserveAspectRatio="xMidYMid">
+        preserveAspectRatio="xMidYMid">
         <defs>
           <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="a">
             <stop stopColor="#DBDBDA" offset="25%" />

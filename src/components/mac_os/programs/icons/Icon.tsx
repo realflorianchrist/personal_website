@@ -1,26 +1,30 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import cn from "@/utils/cn";
 import ToolTip from "@/components/mac_os/ToolTip";
 
 export type IconProps = {
+  programName: string;
   className?: string;
   active?: boolean;
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
 
 export default function Icon(
   {
+    programName,
     children,
     className,
-    active
+    active,
+    onClick
   }: Readonly<
     IconProps & {
     children: ReactNode;
   }>) {
 
   return (
-    <div className="relative group flex flex-col items-center">
+    <div onClick={onClick} className="relative group flex flex-col items-center">
       <div className="absolute -top-14 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100">
-        <ToolTip text="hovered" />
+        <ToolTip text={programName} />
       </div>
 
       <div className={cn("w-10 h-10 rounded-lg overflow-hidden bg-white", className)}>

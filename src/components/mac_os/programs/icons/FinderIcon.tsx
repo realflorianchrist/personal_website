@@ -1,4 +1,4 @@
-import Icon, { IconProps } from "@/components/mac_os/icons/Icon";
+import Icon, { IconProps } from "@/components/mac_os/programs/icons/Icon";
 
 export default function FinderIcon(props: IconProps) {
   return (
