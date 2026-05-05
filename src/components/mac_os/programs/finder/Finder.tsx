@@ -9,7 +9,7 @@ export default function Finder() {
 
   const program = useProgramsStore(s => s.programs[1]);
 
-  const { openProgram, closeProgram, openProgramIds, setDragOffset } = useProgramsStore();
+  const { openProgram, closeProgram, openProgramIds, setDragOffset, usableScreenRect } = useProgramsStore();
 
   return (
     <>
@@ -26,10 +26,14 @@ export default function Finder() {
           <div
             className={"h-10 flex items-center px-3"}
             onPointerDown={(e) => {
+              if (!usableScreenRect) return;
+
               setDragOffset({
-                x: e.clientX - program.windowPosition.x,
-                y: e.clientY - program.windowPosition.y
+                x: e.clientX - usableScreenRect.x - program.windowPosition.x,
+                y: e.clientY - usableScreenRect.y - program.windowPosition.y
               });
+
+              e.currentTarget.parentElement?.setPointerCapture(e.pointerId);
             }}
           >
             <CloseButton

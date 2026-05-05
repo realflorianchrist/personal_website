@@ -14,7 +14,14 @@ export default function Program({ children, programId }: Props) {
 
   const program = useProgramsStore(s => s.programs[programId]);
 
-  const { dragOffset, setDragOffset, setWindowPosition, openProgramIds, focusedProgramId } = useProgramsStore();
+  const {
+    dragOffset,
+    setDragOffset,
+    setWindowPosition,
+    openProgramIds,
+    focusedProgramId,
+    usableScreenRect
+  } = useProgramsStore();
 
   useEffect(() => {
     setPortalTarget(document.getElementById("usable-screen"));
@@ -24,7 +31,7 @@ export default function Program({ children, programId }: Props) {
     portalTarget &&
     openProgramIds.includes(program.id) &&
     createPortal(
-      <div className={`absolute ${focusedProgramId === program.id ? 'z-50' : 'z-10'}`}
+      <div className={`absolute ${focusedProgramId === program.id ? "z-50" : "z-10"}`}
            style={{
              width: program.windowDimensions.width,
              height: program.windowDimensions.height,
@@ -33,11 +40,11 @@ export default function Program({ children, programId }: Props) {
            }}
            onPointerDown={(e) => e.currentTarget.setPointerCapture(e.pointerId)}
            onPointerMove={(e) => {
-             if (!dragOffset) return;
+             if (!dragOffset || !usableScreenRect) return;
 
              setWindowPosition(program.id, {
-               x: e.clientX - dragOffset.x,
-               y: e.clientY - dragOffset.y
+               x: e.clientX - usableScreenRect.x - dragOffset.x,
+               y: e.clientY - usableScreenRect.y - dragOffset.y
              });
            }}
            onPointerUp={(e) => {

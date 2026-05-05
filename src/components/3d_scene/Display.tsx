@@ -20,17 +20,15 @@ export default function Display({ dimensions = [1, 1], ...props }: Props) {
         center
         distanceFactor={1}
         scale={1 / scale}
-        className={'overflow-hidden'}
+        className={'overflow-hidden bg-transparent'}
       >
-        <div
-          className={"flex flex-col items-center justify-center overflow-hidden"}
+        <iframe
+          src="/macos"
           style={{
             width: `${w * pixelsPerUnit * scale}px`,
             height: `${h * pixelsPerUnit * scale}px`
           }}
-        >
-          <MacOS />
-        </div>
+        />
       </Html>
     </mesh>
   );
