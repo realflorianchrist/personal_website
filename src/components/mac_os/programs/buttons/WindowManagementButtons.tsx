@@ -8,7 +8,7 @@ import useProgramsStore from "@/stores/programsStore";
 import { ProgramId } from "@/types/program";
 
 type Props = React.ComponentProps<"div"> & {
-  children: ReactNode;
+  children?: ReactNode;
   programId: ProgramId;
 }
 

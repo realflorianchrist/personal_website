@@ -1,6 +1,5 @@
 "use client";
 
-import CloseButton from "@/components/mac_os/programs/buttons/CloseButton";
 import useProgramsStore from "@/stores/programsStore";
 import Program from "@/components/mac_os/programs/Program";
 import FinderIcon from "@/components/mac_os/programs/icons/FinderIcon";
