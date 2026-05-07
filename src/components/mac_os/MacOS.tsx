@@ -4,6 +4,7 @@ import ContactsIcon from "@/components/mac_os/programs/icons/ContactsIcon";
 import SafariIcon from "@/components/mac_os/programs/icons/SafariIcon";
 import Finder from "@/components/mac_os/programs/finder/Finder";
 import UsableScreenRect from "@/components/mac_os/UsableScreenRect";
+import Contacts from "@/components/mac_os/programs/contact/Contacts";
 
 export default function MacOS() {
   return (
@@ -12,7 +13,7 @@ export default function MacOS() {
       <UsableScreenRect>
         <Dock className={"absolute bottom-1 left-1/2 -translate-x-1/2"}>
           <Finder />
-          <ContactsIcon programName={"Contact"} />
+          <Contacts />
           <SafariIcon programName={"Safari"} />
 
           {/*[ Finder ] → About*/}

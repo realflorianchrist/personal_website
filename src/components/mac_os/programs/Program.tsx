@@ -20,6 +20,7 @@ export default function Program({ children, programId }: Props) {
     setWindowPosition,
     openProgramIds,
     focusedProgramId,
+    focusProgram,
     usableScreenRect
   } = useProgramsStore();
 
@@ -38,7 +39,10 @@ export default function Program({ children, programId }: Props) {
              top: program.windowPosition.y,
              left: program.windowPosition.x
            }}
-           onPointerDown={(e) => e.currentTarget.setPointerCapture(e.pointerId)}
+           onPointerDown={(e) => {
+             focusProgram(programId);
+             e.currentTarget.setPointerCapture(e.pointerId);
+           }}
            onPointerMove={(e) => {
              if (!dragOffset || !usableScreenRect) return;
 

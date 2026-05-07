@@ -8,6 +8,13 @@ export type Vec2 = {
   y: number;
 }
 
+export type Rect = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export type ProgramId = number;
 
 export type Program = {

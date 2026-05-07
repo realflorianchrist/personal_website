@@ -1,12 +1,5 @@
 import { create } from "zustand";
-import { Program, ProgramId, Vec2, Dim2 } from "@/types/program";
-
-type Rect = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
+import { Program, ProgramId, Vec2, Dim2, Rect } from "@/types/program";
 
 type ProgramsState = {
   programs: Record<ProgramId, Program>;
@@ -25,18 +18,18 @@ type ProgramsState = {
 };
 
 const initialPrograms: Record<ProgramId, Program> = {
-  1: {
-    id: 1,
-    name: "Finder",
+  0: {
+    id: 0,
+    name: "About me",
     windowDimensions: { width: 800, height: 500 },
     windowPosition: { x: 50, y: 50 },
     isResizable: true
   },
-  2: {
-    id: 2,
+  1: {
+    id: 1,
     name: "Contact",
-    windowDimensions: { width: 400, height: 500 },
-    windowPosition: { x: 120, y: 80 },
+    windowDimensions: { width: 800, height: 500 },
+    windowPosition: { x: 200, y: 100 },
     isResizable: true
   }
 };

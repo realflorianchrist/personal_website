@@ -1,6 +1,6 @@
 export default function ToolTip({ text }: { text: string }) {
   return (
-    <div className="relative inline-flex items-center justify-center px-3 py-0.5 text-sm">
+    <div className="relative items-center justify-center px-3 py-0.5 text-sm text-nowrap">
       <svg
         className="absolute inset-0 w-full h-full overflow-visible"
         viewBox="0 0 100 32"

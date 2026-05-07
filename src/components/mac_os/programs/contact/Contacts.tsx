@@ -2,23 +2,26 @@
 import React from "react";
 import useProgramsStore from "@/stores/programsStore";
 import Program from "@/components/mac_os/programs/Program";
-import FinderIcon from "@/components/mac_os/programs/icons/FinderIcon";
 import {
-  MacOSWindow, MacOSWindowContent,
+  MacOSWindow,
+  MacOSWindowContent,
   MacOSWindowContentContainer,
   MacOSWindowContentHeader,
-  MacOSWindowSidebarContainer, MacOSWindowSidebarContent, MacOSWindowSidebarHeader
+  MacOSWindowSidebarContainer,
+  MacOSWindowSidebarContent,
+  MacOSWindowSidebarHeader
 } from "@/components/mac_os/programs/MacOSWindow";
+import ContactsIcon from "@/components/mac_os/programs/icons/ContactsIcon";
 
-export default function Finder() {
+export default function Contacts() {
 
-  const program = useProgramsStore(s => s.programs[0]);
+  const program = useProgramsStore(s => s.programs[1]);
 
   const { openProgram, openProgramIds } = useProgramsStore();
 
   return (
     <>
-      <FinderIcon
+      <ContactsIcon
         programName={program.name}
         onClick={() => openProgram(program.id)}
         active={openProgramIds.includes(program.id)}
