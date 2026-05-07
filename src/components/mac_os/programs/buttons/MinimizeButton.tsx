@@ -1,17 +1,15 @@
 import React from "react";
 import cn from "@/utils/cn";
 import { HiOutlineMinusSm } from "react-icons/hi";
+import ActionButton from "@/components/mac_os/programs/buttons/ActionButton";
 
 export default function MinimizeButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
-    <button
-      className={cn("group flex justify-center items-center bg-minimize",
-        "border border-minimize-border rounded-full w-fit h-fit p-[1.5px] text-minimize-border",
-        "active:opacity-85",
+    <ActionButton
+      icon={HiOutlineMinusSm}
+      className={cn("bg-minimize border-minimize-border text-minimize-border",
         className)}
       {...props}
-    >
-      <HiOutlineMinusSm size={12} className={"opacity-0 group-hover:opacity-100"} />
-    </button>
+    />
   );
 }

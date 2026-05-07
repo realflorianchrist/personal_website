@@ -18,8 +18,7 @@ export default function WindowManagementButtons({ programId, className, ...props
 
   return (
     <div
-      className={cn("flex gap-1",
-        className)}
+      className={cn("group flex gap-2", className)}
       {...props}
     >
       <CloseButton

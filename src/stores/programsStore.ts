@@ -12,19 +12,14 @@ type ProgramsState = {
   programs: Record<ProgramId, Program>;
   openProgramIds: ProgramId[];
   focusedProgramId: ProgramId | null;
-
   dragOffset: Vec2 | null;
-
   usableScreenRect: Rect | null;
 
   openProgram: (id: ProgramId) => void;
   closeProgram: (id: ProgramId) => void;
   focusProgram: (id: ProgramId) => void;
-
   setDragOffset: (offset: Vec2 | null) => void;
-
   setUsableScreenRect: (rect: Rect) => void;
-
   setWindowPosition: (id: ProgramId, position: Vec2) => void;
   setWindowDimensions: (id: ProgramId, dimensions: Dim2) => void;
 };
@@ -33,7 +28,7 @@ const initialPrograms: Record<ProgramId, Program> = {
   1: {
     id: 1,
     name: "Finder",
-    windowDimensions: { width: 500, height: 300 },
+    windowDimensions: { width: 800, height: 500 },
     windowPosition: { x: 50, y: 50 },
     isResizable: true
   },

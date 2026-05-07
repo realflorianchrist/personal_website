@@ -17,14 +17,14 @@
     --accent: oklch(0.448 0.145 11.164);
     --accent-foreground: oklch(0.985 0 0);
 
-    --destructive: oklch(0.595 0.204 24.359);
-    --destructive-border: oklch(0.396 0.141 25.723);
+    --destructive: oklch(0.665 0.19 22.467);
+    --destructive-border: oklch(0.406 0.108 21.728);
 
-    --minimize: oklch(0.779 0.162 64.654);
-    --minimize-border: oklch(0.58 0.128 67.602);
+    --minimize: oklch(0.82 0.167 90.605);
+    --minimize-border: oklch(0.497 0.098 89.966);
 
-    --maximize: oklch(0.62 0.205 141.309);
-    --maximize-border: oklch(0.485 0.158 140.59);
+    --maximize: oklch(0.701 0.184 147.414);
+    --maximize-border: oklch(0.425 0.104 147.235);
 
     --border: oklch(0.503 0 0);
     --input: oklch(0.448 0.145 11.164);

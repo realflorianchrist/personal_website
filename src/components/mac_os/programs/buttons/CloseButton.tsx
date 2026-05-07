@@ -1,17 +1,15 @@
 import React from "react";
 import cn from "@/utils/cn";
 import { IoClose } from "react-icons/io5";
+import ActionButton from "@/components/mac_os/programs/buttons/ActionButton";
 
 export default function CloseButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
-    <button
-      className={cn("group flex justify-center items-center bg-destructive",
-        "border border-destructive-border rounded-full w-fit h-fit p-[1.5px] text-destructive-border",
-        "active:opacity-85",
+    <ActionButton
+      icon={IoClose}
+      className={cn("bg-destructive border-destructive-border text-destructive-border",
         className)}
       {...props}
-    >
-      <IoClose size={12} className={"opacity-0 group-hover:opacity-100"} />
-    </button>
+    />
   );
 }
