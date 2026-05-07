@@ -1,9 +1,10 @@
 "use client";
 
-import CloseButton from "@/components/mac_os/programs/CloseButton";
+import CloseButton from "@/components/mac_os/programs/buttons/CloseButton";
 import useProgramsStore from "@/stores/programsStore";
 import Program from "@/components/mac_os/programs/Program";
 import FinderIcon from "@/components/mac_os/programs/icons/FinderIcon";
+import WindowManagementButtons from "@/components/mac_os/programs/buttons/WindowManagementButtons";
 
 export default function Finder() {
 
@@ -36,10 +37,7 @@ export default function Finder() {
               e.currentTarget.parentElement?.setPointerCapture(e.pointerId);
             }}
           >
-            <CloseButton
-              onPointerDown={(e) => e.stopPropagation()}
-              onClick={() => closeProgram(program.id)}
-            />
+            <WindowManagementButtons programId={program.id} />
           </div>
 
           <div className={"p-3"}>

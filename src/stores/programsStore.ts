@@ -39,7 +39,7 @@ const initialPrograms: Record<ProgramId, Program> = {
   },
   2: {
     id: 2,
-    name: "Contacts",
+    name: "Contact",
     windowDimensions: { width: 400, height: 500 },
     windowPosition: { x: 120, y: 80 },
     isResizable: true

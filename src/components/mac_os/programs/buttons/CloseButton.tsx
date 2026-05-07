@@ -5,8 +5,8 @@ import { IoClose } from "react-icons/io5";
 export default function CloseButton({ className, ...props }: React.ComponentProps<"button">) {
   return (
     <button
-      className={cn("group flex justify-center items-center bg-destructive-foreground",
-        "border border-destructive rounded-full w-fit h-fit p-[1.5px] text-destructive",
+      className={cn("group flex justify-center items-center bg-destructive",
+        "border border-destructive-border rounded-full w-fit h-fit p-[1.5px] text-destructive-border",
         "active:opacity-85",
         className)}
       {...props}
