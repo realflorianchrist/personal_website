@@ -1,6 +1,5 @@
 import Dock from "@/components/mac_os/Dock";
 import MenuBar from "@/components/mac_os/MenuBar";
-import ContactsIcon from "@/components/mac_os/programs/icons/ContactsIcon";
 import SafariIcon from "@/components/mac_os/programs/icons/SafariIcon";
 import Finder from "@/components/mac_os/programs/finder/Finder";
 import UsableScreenRect from "@/components/mac_os/UsableScreenRect";

@@ -25,7 +25,7 @@ export default function Finder() {
       />
 
       <Program programId={program.id}>
-        <MacOSWindow programId={program.id}>
+        <MacOSWindow>
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />
             <MacOSWindowSidebarContent>

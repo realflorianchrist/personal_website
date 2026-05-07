@@ -1,8 +1,9 @@
-import React, { createContext, ReactNode, useContext } from "react";
+import React, { ReactNode } from "react";
 import useProgramsStore from "@/stores/programsStore";
 import cn from "@/utils/cn";
 import WindowManagementButtons from "@/components/mac_os/programs/buttons/WindowManagementButtons";
 import { ProgramId } from "@/types/program";
+import { useProgramContext } from "@/components/mac_os/programs/Program";
 
 export {
   MacOSWindow,
@@ -13,22 +14,6 @@ export {
   MacOSWindowContentHeader,
   MacOSWindowContent
 };
-
-type ContextType = {
-  programId: ProgramId
-}
-
-const MacOSWindowContext = createContext<ContextType | null>(null);
-
-function useMacOSWindow() {
-  const context = useContext(MacOSWindowContext);
-
-  if (!context) {
-    throw new Error("MacOSWindow components must be used inside MacOSWindow");
-  }
-
-  return context;
-}
 
 const useHandleDrag = (
   programId: ProgramId
@@ -54,22 +39,18 @@ function MacOSWindow(
   {
     children,
     className,
-    programId,
     ...props
   }: React.ComponentProps<"div"> & {
     children?: ReactNode;
-    programId: ProgramId;
   }) {
   return (
-    <MacOSWindowContext.Provider value={{ programId }}>
-      <div
-        className={cn("flex w-full h-full bg-popover border-0.5 border-border rounded-3xl overflow-hidden p-2",
-          className)}
-        {...props}
-      >
-        {children}
-      </div>
-    </MacOSWindowContext.Provider>
+    <div
+      className={cn("flex w-full h-full bg-popover border-0.5 border-border rounded-3xl overflow-hidden p-2",
+        className)}
+      {...props}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -102,13 +83,13 @@ function MacOSWindowSidebarHeader(
     children?: ReactNode;
   }) {
 
-  const { programId } = useMacOSWindow();
+  const { programId } = useProgramContext();
 
   const { handleDrag } = useHandleDrag(programId);
 
   return (
     <div
-      className={"h-10 flex p-2"}
+      className={cn("h-10 flex p-2", className)}
       onPointerDown={(e) => {
         onPointerDown?.(e);
         handleDrag(e);
@@ -167,7 +148,7 @@ function MacOSWindowContentHeader(
     children?: ReactNode;
   }) {
 
-  const { programId } = useMacOSWindow();
+  const { programId } = useProgramContext();
 
   const { handleDrag } = useHandleDrag(programId);
 

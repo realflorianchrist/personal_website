@@ -28,7 +28,7 @@ export default function Contacts() {
       />
 
       <Program programId={program.id}>
-        <MacOSWindow programId={program.id}>
+        <MacOSWindow>
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />
             <MacOSWindowSidebarContent>
