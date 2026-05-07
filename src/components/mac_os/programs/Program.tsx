@@ -31,7 +31,7 @@ export default function Program({ children, programId }: Props) {
     portalTarget &&
     openProgramIds.includes(program.id) &&
     createPortal(
-      <div className={`absolute ${focusedProgramId === program.id ? "z-50" : "z-10"}`}
+      <div className={`absolute select-none ${focusedProgramId === program.id ? "z-50" : "z-10"}`}
            style={{
              width: program.windowDimensions.width,
              height: program.windowDimensions.height,

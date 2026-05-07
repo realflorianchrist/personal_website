@@ -32,7 +32,7 @@ export default function Icon(
       </div>
 
       {active && (
-        <div className="absolute -bottom-2.5 w-1 h-1 bg-background rounded-full" />
+        <div className="absolute -bottom-2.5 w-1 h-1 bg-gray-400 rounded-full" />
       )}
     </div>
   );
