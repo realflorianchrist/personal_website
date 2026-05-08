@@ -1,5 +1,20 @@
 import { create } from "zustand";
 import { Program, ProgramId, Vec2, Dim2, Rect } from "@/types/program";
+import { ResizeHandleType } from "@/components/mac_os/programs/ResizeHandle";
+
+type ResizeState = {
+  programId: ProgramId;
+  type: ResizeHandleType;
+
+  startMouseX: number;
+  startMouseY: number;
+
+  startWidth: number;
+  startHeight: number;
+
+  startX: number;
+  startY: number;
+};
 
 type ProgramsState = {
   programs: Record<ProgramId, Program>;
@@ -7,6 +22,7 @@ type ProgramsState = {
   focusedProgramId: ProgramId | null;
   dragOffset: Vec2 | null;
   usableScreenRect: Rect | null;
+  resizeState: ResizeState | null;
 
   openProgram: (id: ProgramId) => void;
   closeProgram: (id: ProgramId) => void;
@@ -15,6 +31,7 @@ type ProgramsState = {
   setUsableScreenRect: (rect: Rect) => void;
   setWindowPosition: (id: ProgramId, position: Vec2) => void;
   setWindowDimensions: (id: ProgramId, dimensions: Dim2) => void;
+  setResizeState: (state: ResizeState | null) => void;
 };
 
 const initialPrograms: Record<ProgramId, Program> = {
@@ -38,10 +55,9 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
   programs: initialPrograms,
   openProgramIds: [],
   focusedProgramId: null,
-
   dragOffset: null,
-
   usableScreenRect: null,
+  resizeState: null,
 
   openProgram: (id) => {
     const { openProgramIds } = get();
@@ -112,7 +128,9 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
         }
       }
     });
-  }
+  },
+
+  setResizeState: (state) => set({ resizeState: state })
 }));
 
 const clamp = (value: number, min: number, max: number) => {

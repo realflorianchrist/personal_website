@@ -3,6 +3,8 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { ProgramId } from "@/types/program";
 import useProgramsStore from "@/stores/programsStore";
 import { createPortal } from "react-dom";
+import ResizeHandle, { resizeHandleTypes } from "@/components/mac_os/programs/ResizeHandle";
+import { useWindowResize } from "../../../hooks/useWindowResize";
 
 type ProgramContextType = {
   programId: ProgramId
@@ -40,6 +42,8 @@ export default function Program({ children, programId }: Props) {
     usableScreenRect
   } = useProgramsStore();
 
+  const { startResize, resize, stopResize } = useWindowResize(programId);
+
   useEffect(() => {
     setPortalTarget(document.getElementById("usable-screen"));
   }, []);
@@ -61,18 +65,31 @@ export default function Program({ children, programId }: Props) {
                e.currentTarget.setPointerCapture(e.pointerId);
              }}
              onPointerMove={(e) => {
-               if (!dragOffset || !usableScreenRect) return;
+               if (dragOffset && usableScreenRect) {
+                 setWindowPosition(program.id, {
+                   x: e.clientX - usableScreenRect.x - dragOffset.x,
+                   y: e.clientY - usableScreenRect.y - dragOffset.y
+                 });
+               }
 
-               setWindowPosition(program.id, {
-                 x: e.clientX - usableScreenRect.x - dragOffset.x,
-                 y: e.clientY - usableScreenRect.y - dragOffset.y
-               });
+               resize(e);
              }}
              onPointerUp={(e) => {
                setDragOffset(null);
-               e.currentTarget.releasePointerCapture(e.pointerId);
+               stopResize(e);
+               if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                 e.currentTarget.releasePointerCapture(e.pointerId);
+               }
              }}
         >
+          {resizeHandleTypes.map((type) => (
+            <ResizeHandle
+              key={type}
+              type={type}
+              onResizeStart={startResize}
+            />
+          ))}
+
           {children}
         </div>
       </ ProgramContext.Provider>, portalTarget)
