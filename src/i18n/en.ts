@@ -19,9 +19,11 @@ const en: I18nType = {
       Tags: [
         "Computer Science Student",
         "Fullstack Development",
-        "React & TypeScript",
+        "Java",
         "Spring Boot",
-        "3D Modeler",
+        "TypeScript",
+        "React",
+        "3D Modeling",
         "3D Web",
         "Switzerland",
       ],
