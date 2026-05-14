@@ -102,8 +102,12 @@ const de: I18nType = {
           Title: "Softwareentwickler",
           Company: "Aegerter & Bosshardt",
           Period: "2022 – Heute",
-          Description:
-            "Entwicklung interner Anwendungen und Fullstack Systeme mit modernen Webtechnologien.",
+          Points: [
+            "Entwicklung moderner Fullstack Anwendungen",
+            "Arbeit mit React, TypeScript und Spring Boot",
+            "Konzeption und Umsetzung interner Tools",
+            "Fokus auf Benutzerfreundlichkeit und Performance",
+          ],
         },
 
         {
@@ -111,8 +115,12 @@ const de: I18nType = {
           Title: "Zeichner Ingenieurbau",
           Company: "Aegerter & Bosshardt",
           Period: "2015 – 2022",
-          Description:
-            "Planung und Konstruktion im Bereich Ingenieurbau mit CAD und BIM Software.",
+          Points: [
+            "Planung und Konstruktion im Ingenieurbau",
+            "Arbeit mit CAD und BIM Software",
+            "Erstellung technischer Pläne und Modelle",
+            "Zusammenarbeit mit Ingenieuren und Projektleitern",
+          ],
         },
       ],
     },
@@ -127,7 +135,6 @@ const de: I18nType = {
           Title: "Bachelor of Science FHNW",
           Institution: "Fachhochschule Nordwestschweiz",
           Period: "2022 – Heute",
-          Description: "Studium der Informatik.",
         },
 
         {

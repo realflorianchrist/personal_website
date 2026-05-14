@@ -47,7 +47,7 @@ function MacOSWindow(
   }) {
   return (
     <div
-      className={cn("flex w-full h-full bg-popover border-0.5 border-border rounded-3xl overflow-hidden p-2",
+      className={cn("flex w-full h-full bg-popover border-0.5 border-border rounded-3xl overflow-hidden p-2 shadow-xl shadow-black/60",
         className)}
       {...props}
     >

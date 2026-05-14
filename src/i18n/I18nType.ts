@@ -39,7 +39,7 @@ type TimelineItem = {
   Id: AboutMeExperienceItemId;
   Title: string;
   Period: string;
-  Description?: string;
+  Points?: string[];
 };
 
 type ExperienceItem = TimelineItem & {

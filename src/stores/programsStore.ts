@@ -38,8 +38,8 @@ const initialPrograms: Record<ProgramId, Program> = {
   0: {
     id: 0,
     name: "About me",
-    windowDimensions: { width: 800, height: 500 },
-    windowPosition: { x: 50, y: 50 },
+    windowDimensions: { width: 900, height: 600 },
+    windowPosition: { x: 150, y: 50 },
     isResizable: true
   },
   1: {

@@ -1,24 +1,22 @@
 import { useI18n } from "@/hooks/useI18n";
 
-type Props = {};
-
-export function About(props: Props) {
+export default function About() {
     const i18n = useI18n("AboutMe.About");
 
     return (
-        <div className="flex flex-col gap-6 max-w-4xl">
+        <div className="flex flex-col gap-6">
             <div className="flex flex-wrap gap-2">
                 {i18n.Tags.map((tag) => (
                     <span
                         key={tag}
-                        className="px-3 py-1 rounded-full bg-primary border-0.5 border-border text-sm text-white/70 backdrop-blur-sm"
+                        className="px-3 py-1 rounded-full bg-primary border-0.5 border-border text-sm text-white/70"
                     >
                         {tag}
                     </span>
                 ))}
             </div>
 
-            <p className="text-lg leading-relaxed max-w-3xl">
+            <p className="text-lg leading-relaxed">
                 {i18n.Intro}
             </p>
 
@@ -26,7 +24,7 @@ export function About(props: Props) {
                 {i18n.Cards.map((card) => (
                     <div
                         key={card.Id}
-                        className="rounded-2xl border-0.5 border-border bg-primary backdrop-blur-mdp-5 p-2"
+                        className="rounded-2xl border-0.5 border-border bg-primary p-2"
                     >
                         <h2 className="text-lg mb-2">
                             {card.Title}

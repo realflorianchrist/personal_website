@@ -105,8 +105,12 @@ const en: I18nType = {
           Title: "Software Developer",
           Company: "Aegerter & Bosshardt",
           Period: "2022 – Present",
-          Description:
-            "Development of internal applications and fullstack systems using modern web technologies.",
+          Points: [
+            "Development of modern fullstack applications",
+            "Working with React, TypeScript and Spring Boot",
+            "Design and implementation of internal tools",
+            "Focus on usability and performance",
+          ],
         },
 
         {
@@ -114,8 +118,12 @@ const en: I18nType = {
           Title: "Civil Engineering Draftsman",
           Company: "Aegerter & Bosshardt",
           Period: "2015 – 2022",
-          Description:
-            "Planning and construction work in the field of civil engineering using CAD and BIM software.",
+          Points: [
+            "Planning and construction work in civil engineering",
+            "Working with CAD and BIM software",
+            "Creation of technical drawings and models",
+            "Collaboration with engineers and project managers",
+          ],
         },
       ],
     },
@@ -130,7 +138,6 @@ const en: I18nType = {
           Title: "Bachelor of Science FHNW",
           Institution: "University of Applied Sciences and Arts Northwestern Switzerland",
           Period: "2022 – Present",
-          Description: "Computer Science studies.",
         },
 
         {
