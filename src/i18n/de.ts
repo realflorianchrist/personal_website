@@ -99,12 +99,12 @@ const de: I18nType = {
       Items: [
         {
           Id: "softwaredeveloper",
-          Title: "Softwareentwickler",
+          Title: "Fullstack Softwareentwickler",
           Company: "Aegerter & Bosshardt",
           Period: "2022 – Heute",
           Points: [
             "Entwicklung moderner Fullstack Anwendungen",
-            "Arbeit mit React, TypeScript und Spring Boot",
+            "Projekte mit Java, Spring Boot, TypeScript und React",
             "Konzeption und Umsetzung interner Tools",
             "Fokus auf Benutzerfreundlichkeit und Performance",
           ],
@@ -112,7 +112,7 @@ const de: I18nType = {
 
         {
           Id: "draftsman",
-          Title: "Zeichner Ingenieurbau",
+          Title: "Zeichner Fachrichtung Ingenieurbau",
           Company: "Aegerter & Bosshardt",
           Period: "2015 – 2022",
           Points: [
@@ -155,9 +155,9 @@ const de: I18nType = {
           Id: "frontend",
           Title: "Frontend",
           Technologies: [
+            "TypeScript",
             "React",
             "Next.js",
-            "TypeScript",
             "Tailwind CSS",
           ],
         },
@@ -166,9 +166,9 @@ const de: I18nType = {
           Id: "backend",
           Title: "Backend",
           Technologies: [
-            "Node.js",
-            "Spring Boot",
             "Java",
+            "Spring Boot",
+            "Node.js",
             "Express",
           ],
         },

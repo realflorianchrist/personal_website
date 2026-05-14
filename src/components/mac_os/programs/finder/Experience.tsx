@@ -4,7 +4,7 @@ export default function Experience() {
     const i18n = useI18n("AboutMe.Experience");
 
     return (
-        <div className="flex flex-wrap gap-4 h-fit">
+        <div className="flex flex-col shrink-0 gap-4 h-fit">
             {i18n.Items.map((item) => (
                 <div
                     key={item.Id}

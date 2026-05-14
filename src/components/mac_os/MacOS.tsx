@@ -14,11 +14,6 @@ export default function MacOS() {
           <Finder />
           <Contacts />
           <SafariIcon programName={"Safari"} />
-
-          {/*[ Finder ] → About*/}
-          {/*[ Terminal ] → Experiments / Tech*/}
-          {/*[ Contact ] → Contact*/}
-          {/*[ Safari ] → Projects*/}
         </Dock>
       </UsableScreenRect>
     </div>
