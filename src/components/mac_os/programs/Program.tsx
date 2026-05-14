@@ -71,12 +71,9 @@ export default function Program({ children, programId }: Props) {
                 y: e.clientY - usableScreenRect.y - dragOffset.y
               });
             }
-
-            resize(e);
           }}
           onPointerUp={(e) => {
             setDragOffset(null);
-            stopResize(e);
             if (e.currentTarget.hasPointerCapture(e.pointerId)) {
               e.currentTarget.releasePointerCapture(e.pointerId);
             }
@@ -87,6 +84,8 @@ export default function Program({ children, programId }: Props) {
               key={type}
               type={type}
               onResizeStart={startResize}
+              onResize={resize}
+              onResizeEnd={stopResize}
             />
           ))}
 

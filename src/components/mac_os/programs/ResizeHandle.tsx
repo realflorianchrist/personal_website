@@ -1,3 +1,5 @@
+import { useWindowResize } from '@/hooks/useWindowResize';
+import { ProgramId } from '@/types/program';
 import cn from "@/utils/cn";
 import React from "react";
 
@@ -70,15 +72,23 @@ type Props = {
     type: ResizeHandleType,
     e: React.PointerEvent<HTMLDivElement>
   ) => void;
+  onResize: (e: React.PointerEvent<HTMLDivElement>) => void;
+  onResizeEnd: (e: React.PointerEvent<HTMLDivElement>) => void;
 };
 
-export default function ResizeHandle({ type, onResizeStart }: Props) {
+export default function ResizeHandle({ type, onResizeStart, onResize, onResizeEnd }: Props) {
   return (
     <div
       className={cn("absolute z-50", resizeHandles[type].className)}
       onPointerDown={(e) => {
         e.stopPropagation();
         onResizeStart(type, e);
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }}
+      onPointerMove={(e) => onResize(e)}
+      onPointerUp={(e) => {
+        onResizeEnd(e);
+        e.currentTarget.releasePointerCapture(e.pointerId);
       }}
     />
   );
