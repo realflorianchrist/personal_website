@@ -2,82 +2,82 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_5: THREE.Mesh
-    Object_7: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_12: THREE.Mesh
-    Object_14: THREE.Mesh
-    Object_16: THREE.Mesh
-    Object_18: THREE.Mesh
-    Object_20: THREE.Mesh
-    Object_22: THREE.Mesh
-    Object_24: THREE.Mesh
-    Object_26: THREE.Mesh
-    Object_28: THREE.Mesh
-    Object_30: THREE.Mesh
-    Object_32: THREE.Mesh
-    Object_34: THREE.Mesh
-    Object_36: THREE.Mesh
-    Object_38: THREE.Mesh
-    Object_40: THREE.Mesh
-    Object_42: THREE.Mesh
-    Object_44: THREE.Mesh
-    Object_46: THREE.Mesh
-    Object_47: THREE.Mesh
-    Object_49: THREE.Mesh
-    Object_51: THREE.Mesh
-    Object_53: THREE.Mesh
-    Object_55: THREE.Mesh
-    Object_57: THREE.Mesh
-    Object_59: THREE.Mesh
-    Object_61: THREE.Mesh
-    Object_63: THREE.Mesh
-    Object_66: THREE.Mesh
-    Object_68: THREE.Mesh
-    Object_70: THREE.Mesh
-    Object_72: THREE.Mesh
-    Object_74: THREE.Mesh
-    Object_76: THREE.Mesh
-    Object_78: THREE.Mesh
-    Object_80: THREE.Mesh
-    Object_82: THREE.Mesh
-    Object_84: THREE.Mesh
-    Object_86: THREE.Mesh
-    Object_88: THREE.Mesh
-    Object_90: THREE.Mesh
-    Object_92: THREE.Mesh
-    Object_94: THREE.Mesh
-    Object_96: THREE.Mesh
-    Object_98: THREE.Mesh
-  }
+    Object_5: THREE.Mesh;
+    Object_7: THREE.Mesh;
+    Object_8: THREE.Mesh;
+    Object_10: THREE.Mesh;
+    Object_12: THREE.Mesh;
+    Object_14: THREE.Mesh;
+    Object_16: THREE.Mesh;
+    Object_18: THREE.Mesh;
+    Object_20: THREE.Mesh;
+    Object_22: THREE.Mesh;
+    Object_24: THREE.Mesh;
+    Object_26: THREE.Mesh;
+    Object_28: THREE.Mesh;
+    Object_30: THREE.Mesh;
+    Object_32: THREE.Mesh;
+    Object_34: THREE.Mesh;
+    Object_36: THREE.Mesh;
+    Object_38: THREE.Mesh;
+    Object_40: THREE.Mesh;
+    Object_42: THREE.Mesh;
+    Object_44: THREE.Mesh;
+    Object_46: THREE.Mesh;
+    Object_47: THREE.Mesh;
+    Object_49: THREE.Mesh;
+    Object_51: THREE.Mesh;
+    Object_53: THREE.Mesh;
+    Object_55: THREE.Mesh;
+    Object_57: THREE.Mesh;
+    Object_59: THREE.Mesh;
+    Object_61: THREE.Mesh;
+    Object_63: THREE.Mesh;
+    Object_66: THREE.Mesh;
+    Object_68: THREE.Mesh;
+    Object_70: THREE.Mesh;
+    Object_72: THREE.Mesh;
+    Object_74: THREE.Mesh;
+    Object_76: THREE.Mesh;
+    Object_78: THREE.Mesh;
+    Object_80: THREE.Mesh;
+    Object_82: THREE.Mesh;
+    Object_84: THREE.Mesh;
+    Object_86: THREE.Mesh;
+    Object_88: THREE.Mesh;
+    Object_90: THREE.Mesh;
+    Object_92: THREE.Mesh;
+    Object_94: THREE.Mesh;
+    Object_96: THREE.Mesh;
+    Object_98: THREE.Mesh;
+  };
   materials: {
-    VRayMtl55: THREE.MeshStandardMaterial
-    ["Material.003"]: THREE.MeshStandardMaterial
-    ["1001"]: THREE.MeshStandardMaterial
-    front_body: THREE.MeshStandardMaterial
-    ["front_body.001"]: THREE.MeshStandardMaterial
-    ["front_body.002"]: THREE.MeshStandardMaterial
-    VRayMtl33: THREE.MeshStandardMaterial
-    ["Material.004"]: THREE.MeshStandardMaterial
-    material_0: THREE.MeshStandardMaterial
-    material: THREE.MeshStandardMaterial
-    ["Material.006"]: THREE.MeshStandardMaterial
-    ["Material.008"]: THREE.MeshStandardMaterial
-    ["Material.010"]: THREE.MeshStandardMaterial
-    Material: THREE.MeshStandardMaterial
-    ["Material.007"]: THREE.MeshStandardMaterial
-    VRayMtl37: THREE.MeshStandardMaterial
-    ["Material.005"]: THREE.MeshStandardMaterial
-    ["Material.002"]: THREE.MeshStandardMaterial
-    ["Material.009"]: THREE.MeshStandardMaterial
-    ["1001.002"]: THREE.MeshStandardMaterial
-  }
-}
+    VRayMtl55: THREE.MeshStandardMaterial;
+    ["Material.003"]: THREE.MeshStandardMaterial;
+    ["1001"]: THREE.MeshStandardMaterial;
+    front_body: THREE.MeshStandardMaterial;
+    ["front_body.001"]: THREE.MeshStandardMaterial;
+    ["front_body.002"]: THREE.MeshStandardMaterial;
+    VRayMtl33: THREE.MeshStandardMaterial;
+    ["Material.004"]: THREE.MeshStandardMaterial;
+    material_0: THREE.MeshStandardMaterial;
+    material: THREE.MeshStandardMaterial;
+    ["Material.006"]: THREE.MeshStandardMaterial;
+    ["Material.008"]: THREE.MeshStandardMaterial;
+    ["Material.010"]: THREE.MeshStandardMaterial;
+    Material: THREE.MeshStandardMaterial;
+    ["Material.007"]: THREE.MeshStandardMaterial;
+    VRayMtl37: THREE.MeshStandardMaterial;
+    ["Material.005"]: THREE.MeshStandardMaterial;
+    ["Material.002"]: THREE.MeshStandardMaterial;
+    ["Material.009"]: THREE.MeshStandardMaterial;
+    ["1001.002"]: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function PS5Controller(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.ps5Controller) as unknown as GLTFResult;

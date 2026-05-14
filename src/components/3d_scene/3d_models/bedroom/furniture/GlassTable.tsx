@@ -2,22 +2,22 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Glass_Glass_0: THREE.Mesh
-    Pillars_Pillars_0: THREE.Mesh
-    SecondGlass_Glass_0: THREE.Mesh
-    Leg_2_Legs_0: THREE.Mesh
-    Leg_1_Legs_0: THREE.Mesh
-  }
+    Glass_Glass_0: THREE.Mesh;
+    Pillars_Pillars_0: THREE.Mesh;
+    SecondGlass_Glass_0: THREE.Mesh;
+    Leg_2_Legs_0: THREE.Mesh;
+    Leg_1_Legs_0: THREE.Mesh;
+  };
   materials: {
-    Glass: THREE.MeshPhysicalMaterial
-    Pillars: THREE.MeshStandardMaterial
-    Legs: THREE.MeshStandardMaterial
-  }
-}
+    Glass: THREE.MeshPhysicalMaterial;
+    Pillars: THREE.MeshStandardMaterial;
+    Legs: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function GlassTable(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.glassTable) as unknown as GLTFResult;

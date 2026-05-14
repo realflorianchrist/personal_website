@@ -2,16 +2,16 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Football_LowPoly_FootballTex_0: THREE.Mesh
-  }
+    Football_LowPoly_FootballTex_0: THREE.Mesh;
+  };
   materials: {
-    FootballTex: THREE.MeshPhysicalMaterial
-  }
-}
+    FootballTex: THREE.MeshPhysicalMaterial;
+  };
+};
 
 export default function Football(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.football) as unknown as GLTFResult;

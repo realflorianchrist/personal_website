@@ -2,20 +2,20 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cylinder001_Material005_0: THREE.Mesh
-    Cylinder001_Material004_0: THREE.Mesh
-    Cylinder001_Material001_0: THREE.Mesh
-  }
+    Cylinder001_Material005_0: THREE.Mesh;
+    Cylinder001_Material004_0: THREE.Mesh;
+    Cylinder001_Material001_0: THREE.Mesh;
+  };
   materials: {
-    ["Material.005"]: THREE.MeshStandardMaterial
-    ["Material.004"]: THREE.MeshStandardMaterial
-    ["Material.001"]: THREE.MeshStandardMaterial
-  }
-}
+    ["Material.005"]: THREE.MeshStandardMaterial;
+    ["Material.004"]: THREE.MeshStandardMaterial;
+    ["Material.001"]: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Stool(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.stool) as unknown as GLTFResult;

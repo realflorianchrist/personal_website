@@ -2,16 +2,16 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Bed_LP_Default_0: THREE.Mesh
-  }
+    Bed_LP_Default_0: THREE.Mesh;
+  };
   materials: {
-    Default: THREE.MeshPhysicalMaterial
-  }
-}
+    Default: THREE.MeshPhysicalMaterial;
+  };
+};
 
 export default function Bed(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.bed) as unknown as GLTFResult;

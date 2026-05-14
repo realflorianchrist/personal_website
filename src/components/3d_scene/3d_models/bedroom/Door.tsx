@@ -2,22 +2,22 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Plane002_Glossy_0: THREE.Mesh
-    Plane002_Door_0: THREE.Mesh
-    Plane001_Glossy_0: THREE.Mesh
-    Plane001_Door_0: THREE.Mesh
-    Plane003_Door_0: THREE.Mesh
-    Circle002_Glossy_0: THREE.Mesh
-  }
+    Plane002_Glossy_0: THREE.Mesh;
+    Plane002_Door_0: THREE.Mesh;
+    Plane001_Glossy_0: THREE.Mesh;
+    Plane001_Door_0: THREE.Mesh;
+    Plane003_Door_0: THREE.Mesh;
+    Circle002_Glossy_0: THREE.Mesh;
+  };
   materials: {
-    Glossy: THREE.MeshStandardMaterial
-    Door: THREE.MeshStandardMaterial
-  }
-}
+    Glossy: THREE.MeshStandardMaterial;
+    Door: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Door(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.door) as unknown as GLTFResult;

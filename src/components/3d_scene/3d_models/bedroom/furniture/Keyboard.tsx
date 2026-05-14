@@ -2,57 +2,57 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Cube003_KeyboardMaterial_0: THREE.Mesh
-    Cube004_KeyboardMaterial_0: THREE.Mesh
-    Cube001_KeyboardMaterial_0: THREE.Mesh
-    Cube002_KeyboardMaterial_0: THREE.Mesh
-    Cube005_KeyboardMaterial_0: THREE.Mesh
-    Cube006_KeyboardMaterial_0: THREE.Mesh
-    Cube007_KeyboardMaterial_0: THREE.Mesh
-    Cube008_KeyboardMaterial_0: THREE.Mesh
-    Cube009_KeyboardMaterial_0: THREE.Mesh
-    Cube010_KeyboardMaterial_0: THREE.Mesh
-    Cube011_KeyboardMaterial_0: THREE.Mesh
-    Cube012_KeyboardMaterial_0: THREE.Mesh
-    Cube013_KeyboardMaterial_0: THREE.Mesh
-    Cube014_KeyboardMaterial_0: THREE.Mesh
-    Cube015_KeyboardMaterial_0: THREE.Mesh
-    Cube016_KeyboardMaterial_0: THREE.Mesh
-    Cube017_KeyboardMaterial_0: THREE.Mesh
-    Cube018_KeyboardMaterial_0: THREE.Mesh
-    Cube019_KeyboardMaterial_0: THREE.Mesh
-    Cube020_KeyboardMaterial_0: THREE.Mesh
-    Cube021_KeyboardMaterial_0: THREE.Mesh
-    Cube022_KeyboardMaterial_0: THREE.Mesh
-    Cube023_KeyboardMaterial_0: THREE.Mesh
-    Cube024_KeyboardMaterial_0: THREE.Mesh
-    body_main_KeyboardMaterial_0: THREE.Mesh
-    power_KeyboardMaterial_0: THREE.Mesh
-    select_KeyboardMaterial_0: THREE.Mesh
-    volume_KeyboardMaterial_0: THREE.Mesh
-    Cylinder_StandMaterial_0: THREE.Mesh
-    Cube029_StandMaterial_0: THREE.Mesh
-    Sphere_StandMaterial_0: THREE.Mesh
-    Circle002_StandMaterial_0: THREE.Mesh
-    Cylinder002_StandMaterial_0: THREE.Mesh
-    Cube028_StandMaterial_0: THREE.Mesh
-    Cylinder001_StandMaterial_0: THREE.Mesh
-    pedal_btm_StandMaterial_0: THREE.Mesh
-    pedal_top_StandMaterial_0: THREE.Mesh
-    wire_StandMaterial_0: THREE.Mesh
-    jack_StandMaterial_0: THREE.Mesh
-    light_light_0: THREE.Mesh
-  }
+    Cube003_KeyboardMaterial_0: THREE.Mesh;
+    Cube004_KeyboardMaterial_0: THREE.Mesh;
+    Cube001_KeyboardMaterial_0: THREE.Mesh;
+    Cube002_KeyboardMaterial_0: THREE.Mesh;
+    Cube005_KeyboardMaterial_0: THREE.Mesh;
+    Cube006_KeyboardMaterial_0: THREE.Mesh;
+    Cube007_KeyboardMaterial_0: THREE.Mesh;
+    Cube008_KeyboardMaterial_0: THREE.Mesh;
+    Cube009_KeyboardMaterial_0: THREE.Mesh;
+    Cube010_KeyboardMaterial_0: THREE.Mesh;
+    Cube011_KeyboardMaterial_0: THREE.Mesh;
+    Cube012_KeyboardMaterial_0: THREE.Mesh;
+    Cube013_KeyboardMaterial_0: THREE.Mesh;
+    Cube014_KeyboardMaterial_0: THREE.Mesh;
+    Cube015_KeyboardMaterial_0: THREE.Mesh;
+    Cube016_KeyboardMaterial_0: THREE.Mesh;
+    Cube017_KeyboardMaterial_0: THREE.Mesh;
+    Cube018_KeyboardMaterial_0: THREE.Mesh;
+    Cube019_KeyboardMaterial_0: THREE.Mesh;
+    Cube020_KeyboardMaterial_0: THREE.Mesh;
+    Cube021_KeyboardMaterial_0: THREE.Mesh;
+    Cube022_KeyboardMaterial_0: THREE.Mesh;
+    Cube023_KeyboardMaterial_0: THREE.Mesh;
+    Cube024_KeyboardMaterial_0: THREE.Mesh;
+    body_main_KeyboardMaterial_0: THREE.Mesh;
+    power_KeyboardMaterial_0: THREE.Mesh;
+    select_KeyboardMaterial_0: THREE.Mesh;
+    volume_KeyboardMaterial_0: THREE.Mesh;
+    Cylinder_StandMaterial_0: THREE.Mesh;
+    Cube029_StandMaterial_0: THREE.Mesh;
+    Sphere_StandMaterial_0: THREE.Mesh;
+    Circle002_StandMaterial_0: THREE.Mesh;
+    Cylinder002_StandMaterial_0: THREE.Mesh;
+    Cube028_StandMaterial_0: THREE.Mesh;
+    Cylinder001_StandMaterial_0: THREE.Mesh;
+    pedal_btm_StandMaterial_0: THREE.Mesh;
+    pedal_top_StandMaterial_0: THREE.Mesh;
+    wire_StandMaterial_0: THREE.Mesh;
+    jack_StandMaterial_0: THREE.Mesh;
+    light_light_0: THREE.Mesh;
+  };
   materials: {
-    KeyboardMaterial: THREE.MeshStandardMaterial
-    StandMaterial: THREE.MeshStandardMaterial
-    light: THREE.MeshStandardMaterial
-  }
-}
+    KeyboardMaterial: THREE.MeshStandardMaterial;
+    StandMaterial: THREE.MeshStandardMaterial;
+    light: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Keyboard(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.keyboard) as unknown as GLTFResult;

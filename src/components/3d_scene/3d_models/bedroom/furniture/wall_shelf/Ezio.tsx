@@ -2,16 +2,16 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_2: THREE.Mesh
-  }
+    Object_2: THREE.Mesh;
+  };
   materials: {
-    tex_u1_v1: THREE.MeshStandardMaterial
-  }
-}
+    tex_u1_v1: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Ezio(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.ezio) as unknown as GLTFResult;

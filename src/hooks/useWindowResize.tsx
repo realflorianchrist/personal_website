@@ -1,7 +1,8 @@
 import { ResizeHandleType, resizeHandles } from "@/components/mac_os/programs/ResizeHandle";
-import useProgramsStore from "@/stores/programsStore";
+import useProgramsStore, { MIN_WINDOW_SIZE, MAX_WINDOW_SIZE } from "@/stores/programsStore";
 import React from "react";
 import { ProgramId } from "@/types/program";
+import { clamp } from 'gsap/all';
 
 export const useWindowResize = (
   programId: ProgramId
@@ -37,14 +38,12 @@ export const useWindowResize = (
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const resize = (
-    e: React.PointerEvent<HTMLDivElement>
-  ) => {
-
+  const resize = (e: React.PointerEvent<HTMLDivElement>) => {
     const {
       resizeState,
+      usableScreenRect,
       setWindowDimensions,
-      setWindowPosition
+      setWindowPosition,
     } = useProgramsStore.getState();
 
     if (!resizeState || resizeState.programId !== programId) return;
@@ -56,37 +55,79 @@ export const useWindowResize = (
 
     let width = resizeState.startWidth;
     let height = resizeState.startHeight;
-
     let x = resizeState.startX;
     let y = resizeState.startY;
 
-    if (handle.resizeX !== 0) {
+    const maxWidth = usableScreenRect
+      ? Math.min(MAX_WINDOW_SIZE.width, usableScreenRect.width)
+      : MAX_WINDOW_SIZE.width;
 
-      width = resizeState.startWidth + dx * handle.resizeX;
+    const maxHeight = usableScreenRect
+      ? Math.min(MAX_WINDOW_SIZE.height, usableScreenRect.height)
+      : MAX_WINDOW_SIZE.height;
 
-      if (handle.resizeX < 0) {
-        x = resizeState.startX + dx;
-      }
+    if (handle.resizeX > 0) {
+      const desiredWidth = resizeState.startWidth + dx;
+      const maxAllowedWidth = Math.min(
+        MAX_WINDOW_SIZE.width,
+        maxWidth - resizeState.startX
+      );
+
+      width = clamp(
+        MIN_WINDOW_SIZE.width,
+        maxAllowedWidth,
+        desiredWidth
+      );
     }
 
-    if (handle.resizeY !== 0) {
+    if (handle.resizeX < 0) {
+      const desiredWidth = resizeState.startWidth - dx;
+      const maxAllowedWidth = Math.min(
+        MAX_WINDOW_SIZE.width,
+        resizeState.startWidth + resizeState.startX
+      );
 
-      height = resizeState.startHeight + dy * handle.resizeY;
+      width = clamp(
+        MIN_WINDOW_SIZE.width,
+        maxAllowedWidth,
+        desiredWidth
+      );
 
-      if (handle.resizeY < 0) {
-        y = resizeState.startY + dy;
-      }
+      x = resizeState.startX + (resizeState.startWidth - width);
     }
 
-    setWindowDimensions(programId, {
-      width,
-      height
-    });
+    if (handle.resizeY > 0) {
+      const desiredHeight = resizeState.startHeight + dy;
+      const maxAllowedHeight = Math.min(
+        MAX_WINDOW_SIZE.height,
+        maxHeight - resizeState.startY
+      );
 
-    setWindowPosition(programId, {
-      x,
-      y
-    });
+      height = clamp(
+        MIN_WINDOW_SIZE.height,
+        maxAllowedHeight,
+        desiredHeight
+      );
+    }
+
+    if (handle.resizeY < 0) {
+      const desiredHeight = resizeState.startHeight - dy;
+      const maxAllowedHeight = Math.min(
+        MAX_WINDOW_SIZE.height,
+        resizeState.startHeight + resizeState.startY
+      );
+
+      height = clamp(
+        MIN_WINDOW_SIZE.height,
+        maxAllowedHeight,
+        desiredHeight
+      );
+
+      y = resizeState.startY + (resizeState.startHeight - height);
+    }
+
+    setWindowDimensions(programId, { width, height });
+    setWindowPosition(programId, { x, y });
   };
 
   const stopResize = (

@@ -2,44 +2,44 @@ import * as THREE from "three";
 import React, { JSX, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    GkERnwlKXemCPLQ: THREE.Mesh
-    RLqNWQTvdxhYzwN: THREE.Mesh
-    IyklIWCEUuwKzOr: THREE.Mesh
-    hpSdHYOSkCaurbw: THREE.Mesh
-    yfhGvqUwPtBoviH: THREE.Mesh
-    FRHIeNGciselOUD: THREE.Mesh
-    evPqzCNQtlXjCVN: THREE.Mesh
-    tOuBUEkZhOblDvy: THREE.Mesh
-    vfkGgIpuayFHHsr: THREE.Mesh
-    USjagBfuEQpHyxx: THREE.Mesh
-    HJxexdgaCCQkOSU: THREE.Mesh
-    bIyqxwRZNkokZiN: THREE.Mesh
-    bIyqxwRZNkokZiN_1: THREE.Mesh
-    hGwEfDVTEHoAURp: THREE.Mesh
-    nUppYpnAsUEoqrW: THREE.Mesh
-    RVNPTVBkPRthSTH: THREE.Mesh
-  }
+    GkERnwlKXemCPLQ: THREE.Mesh;
+    RLqNWQTvdxhYzwN: THREE.Mesh;
+    IyklIWCEUuwKzOr: THREE.Mesh;
+    hpSdHYOSkCaurbw: THREE.Mesh;
+    yfhGvqUwPtBoviH: THREE.Mesh;
+    FRHIeNGciselOUD: THREE.Mesh;
+    evPqzCNQtlXjCVN: THREE.Mesh;
+    tOuBUEkZhOblDvy: THREE.Mesh;
+    vfkGgIpuayFHHsr: THREE.Mesh;
+    USjagBfuEQpHyxx: THREE.Mesh;
+    HJxexdgaCCQkOSU: THREE.Mesh;
+    bIyqxwRZNkokZiN: THREE.Mesh;
+    bIyqxwRZNkokZiN_1: THREE.Mesh;
+    hGwEfDVTEHoAURp: THREE.Mesh;
+    nUppYpnAsUEoqrW: THREE.Mesh;
+    RVNPTVBkPRthSTH: THREE.Mesh;
+  };
   materials: {
-    PCHVWnITFZwJroA: THREE.MeshStandardMaterial
-    KDNlYFMSPLuuFmB: THREE.MeshStandardMaterial
-    YZsKmgdmwlRdfBy: THREE.MeshStandardMaterial
-    WMVfKEaOnnOqrKt: THREE.MeshStandardMaterial
-    YHgwkvASVOaousL: THREE.MeshStandardMaterial
-    sJborloitmuOJQw: THREE.MeshStandardMaterial
-    CxxRfrqFwbeSPbx: THREE.MeshStandardMaterial
-    jvJBYyOCabObecq: THREE.MeshStandardMaterial
-    XeZeLWSRqDmtPEC: THREE.MeshStandardMaterial
-    MSkMQXmvZdOsszM: THREE.MeshStandardMaterial
-    nssRtVtXVzpjuEl: THREE.MeshStandardMaterial
-    rdnAZnoRcBBxxCG: THREE.MeshStandardMaterial
-    MhvKwGVMtQjnlCe: THREE.MeshStandardMaterial
-    hbSPEctpwjkeQeL: THREE.MeshStandardMaterial
-  }
-}
+    PCHVWnITFZwJroA: THREE.MeshStandardMaterial;
+    KDNlYFMSPLuuFmB: THREE.MeshStandardMaterial;
+    YZsKmgdmwlRdfBy: THREE.MeshStandardMaterial;
+    WMVfKEaOnnOqrKt: THREE.MeshStandardMaterial;
+    YHgwkvASVOaousL: THREE.MeshStandardMaterial;
+    sJborloitmuOJQw: THREE.MeshStandardMaterial;
+    CxxRfrqFwbeSPbx: THREE.MeshStandardMaterial;
+    jvJBYyOCabObecq: THREE.MeshStandardMaterial;
+    XeZeLWSRqDmtPEC: THREE.MeshStandardMaterial;
+    MSkMQXmvZdOsszM: THREE.MeshStandardMaterial;
+    nssRtVtXVzpjuEl: THREE.MeshStandardMaterial;
+    rdnAZnoRcBBxxCG: THREE.MeshStandardMaterial;
+    MhvKwGVMtQjnlCe: THREE.MeshStandardMaterial;
+    hbSPEctpwjkeQeL: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function ProDisplay(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.proDisplay) as unknown as GLTFResult;

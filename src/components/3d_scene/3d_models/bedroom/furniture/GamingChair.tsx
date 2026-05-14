@@ -2,34 +2,34 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Plane_Material_0: THREE.Mesh
-    Plane_Material001_0: THREE.Mesh
-    Plane001_Material_0: THREE.Mesh
-    Plane001_Material001_0: THREE.Mesh
-    Plane002_Material_0: THREE.Mesh
-    Circle_Material002_0: THREE.Mesh
-    Circle001_Material002_0: THREE.Mesh
-    Plane003_Material002_0: THREE.Mesh
-    Circle002_Material002_0: THREE.Mesh
-    Circle003_Material002_0: THREE.Mesh
-    Circle004_Material002_0: THREE.Mesh
-    Circle005_Material002_0: THREE.Mesh
-    Circle006_Material002_0: THREE.Mesh
-    Plane004_Material_0: THREE.Mesh
-    Plane005_Material002_0: THREE.Mesh
-    aseito_logo_aseito_logo_0: THREE.Mesh
-  }
+    Plane_Material_0: THREE.Mesh;
+    Plane_Material001_0: THREE.Mesh;
+    Plane001_Material_0: THREE.Mesh;
+    Plane001_Material001_0: THREE.Mesh;
+    Plane002_Material_0: THREE.Mesh;
+    Circle_Material002_0: THREE.Mesh;
+    Circle001_Material002_0: THREE.Mesh;
+    Plane003_Material002_0: THREE.Mesh;
+    Circle002_Material002_0: THREE.Mesh;
+    Circle003_Material002_0: THREE.Mesh;
+    Circle004_Material002_0: THREE.Mesh;
+    Circle005_Material002_0: THREE.Mesh;
+    Circle006_Material002_0: THREE.Mesh;
+    Plane004_Material_0: THREE.Mesh;
+    Plane005_Material002_0: THREE.Mesh;
+    aseito_logo_aseito_logo_0: THREE.Mesh;
+  };
   materials: {
-    Material: THREE.MeshStandardMaterial
-    ["Material.001"]: THREE.MeshStandardMaterial
-    ["Material.002"]: THREE.MeshStandardMaterial
-    aseito_logo: THREE.MeshStandardMaterial
-  }
-}
+    Material: THREE.MeshStandardMaterial;
+    ["Material.001"]: THREE.MeshStandardMaterial;
+    ["Material.002"]: THREE.MeshStandardMaterial;
+    aseito_logo: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function GamingChair(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.gamingChair) as unknown as GLTFResult;

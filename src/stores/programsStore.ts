@@ -1,6 +1,17 @@
 import { create } from "zustand";
 import { Program, ProgramId, Vec2, Dim2, Rect } from "@/types/program";
 import { ResizeHandleType } from "@/components/mac_os/programs/ResizeHandle";
+import { clamp } from 'gsap/all';
+
+export const MIN_WINDOW_SIZE = {
+  width: 800,
+  height: 500
+};
+
+export const MAX_WINDOW_SIZE = {
+  width: 1800,
+  height: 1500
+};
 
 type ResizeState = {
   programId: ProgramId;
@@ -46,7 +57,7 @@ const initialPrograms: Record<ProgramId, Program> = {
     id: 1,
     name: "Contact",
     windowDimensions: { width: 800, height: 500 },
-    windowPosition: { x: 200, y: 100 },
+    windowPosition: { x: 400, y: 100 },
     isResizable: true
   }
 };
@@ -95,14 +106,14 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
     const nextPosition = screen
       ? {
         x: clamp(
-          position.x,
           -program.windowDimensions.width + margin,
-          screen.width - margin
+          screen.width - margin,
+          position.x,
         ),
         y: clamp(
-          position.y,
           0,
-          screen.height - margin
+          screen.height - margin,
+          position.y,
         )
       }
       : position;
@@ -119,12 +130,26 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
   },
 
   setWindowDimensions: (id, dimensions) => {
+
+    const nextSize: Dim2 = {
+      width: clamp(
+        MIN_WINDOW_SIZE.width,
+        MAX_WINDOW_SIZE.width,
+        dimensions.width
+      ),
+      height: clamp(
+        MIN_WINDOW_SIZE.height,
+        MAX_WINDOW_SIZE.height,
+        dimensions.height
+      )
+    };
+
     set({
       programs: {
         ...get().programs,
         [id]: {
           ...get().programs[id],
-          windowDimensions: dimensions
+          windowDimensions: nextSize
         }
       }
     });
@@ -132,9 +157,5 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
 
   setResizeState: (state) => set({ resizeState: state })
 }));
-
-const clamp = (value: number, min: number, max: number) => {
-  return Math.min(Math.max(value, min), max);
-};
 
 export default useProgramsStore;

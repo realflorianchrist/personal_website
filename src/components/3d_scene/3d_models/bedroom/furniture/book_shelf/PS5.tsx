@@ -2,28 +2,28 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Black_Black_0: THREE.Mesh
-    Black_Blue_0: THREE.Mesh
-    White_White_0: THREE.Mesh
-    White_Black_0: THREE.Mesh
-    Base_Black_Base_0: THREE.Mesh
-    Ports_Metal_0: THREE.Mesh
-    Box001_Blacj_Fins_0: THREE.Mesh
-    Box001_Blacj_Fins_0_1: THREE.Mesh
-  }
+    Black_Black_0: THREE.Mesh;
+    Black_Blue_0: THREE.Mesh;
+    White_White_0: THREE.Mesh;
+    White_Black_0: THREE.Mesh;
+    Base_Black_Base_0: THREE.Mesh;
+    Ports_Metal_0: THREE.Mesh;
+    Box001_Blacj_Fins_0: THREE.Mesh;
+    Box001_Blacj_Fins_0_1: THREE.Mesh;
+  };
   materials: {
-    Black: THREE.MeshStandardMaterial
-    Blue: THREE.MeshPhysicalMaterial
-    White: THREE.MeshStandardMaterial
-    Black_Base: THREE.MeshPhysicalMaterial
-    Metal: THREE.MeshStandardMaterial
-    Blacj_Fins: THREE.MeshStandardMaterial
-  }
-}
+    Black: THREE.MeshStandardMaterial;
+    Blue: THREE.MeshPhysicalMaterial;
+    White: THREE.MeshStandardMaterial;
+    Black_Base: THREE.MeshPhysicalMaterial;
+    Metal: THREE.MeshStandardMaterial;
+    Blacj_Fins: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function PS5(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.ps5) as unknown as GLTFResult;

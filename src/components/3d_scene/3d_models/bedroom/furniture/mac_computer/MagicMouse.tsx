@@ -2,25 +2,25 @@ import * as THREE from "three";
 import React, { JSX, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Node_0_Mat_0: THREE.Mesh
-    Node_1_Mat1_0: THREE.Mesh
-    Node_2_Mat2_0: THREE.Mesh
-    Node_3_Mat3_0: THREE.Mesh
-    Node_4_Mat4_0: THREE.Mesh
-    Node_5_Mat3_0: THREE.Mesh
-  }
+    Node_0_Mat_0: THREE.Mesh;
+    Node_1_Mat1_0: THREE.Mesh;
+    Node_2_Mat2_0: THREE.Mesh;
+    Node_3_Mat3_0: THREE.Mesh;
+    Node_4_Mat4_0: THREE.Mesh;
+    Node_5_Mat3_0: THREE.Mesh;
+  };
   materials: {
-    material: THREE.MeshStandardMaterial
-    ["Mat.1"]: THREE.MeshStandardMaterial
-    ["Mat.2"]: THREE.MeshStandardMaterial
-    ["Mat.3"]: THREE.MeshStandardMaterial
-    ["Mat.4"]: THREE.MeshStandardMaterial
-  }
-}
+    material: THREE.MeshStandardMaterial;
+    ["Mat.1"]: THREE.MeshStandardMaterial;
+    ["Mat.2"]: THREE.MeshStandardMaterial;
+    ["Mat.3"]: THREE.MeshStandardMaterial;
+    ["Mat.4"]: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function MagicMouse(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>(null);

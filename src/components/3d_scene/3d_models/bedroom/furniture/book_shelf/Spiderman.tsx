@@ -2,37 +2,37 @@ import * as THREE from "three";
 import React, { JSX, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_5: THREE.Mesh
-    Object_7: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_12: THREE.Mesh
-    Object_14: THREE.Mesh
-    Object_15: THREE.Mesh
-    Object_17: THREE.Mesh
-    Object_18: THREE.Mesh
-    Object_20: THREE.Mesh
-    Object_22: THREE.Mesh
-    Object_23: THREE.Mesh
-    Object_25: THREE.Mesh
-    Object_27: THREE.Mesh
-    Object_29: THREE.Mesh
-    Object_30: THREE.Mesh
-  }
+    Object_5: THREE.Mesh;
+    Object_7: THREE.Mesh;
+    Object_8: THREE.Mesh;
+    Object_10: THREE.Mesh;
+    Object_12: THREE.Mesh;
+    Object_14: THREE.Mesh;
+    Object_15: THREE.Mesh;
+    Object_17: THREE.Mesh;
+    Object_18: THREE.Mesh;
+    Object_20: THREE.Mesh;
+    Object_22: THREE.Mesh;
+    Object_23: THREE.Mesh;
+    Object_25: THREE.Mesh;
+    Object_27: THREE.Mesh;
+    Object_29: THREE.Mesh;
+    Object_30: THREE.Mesh;
+  };
   materials: {
-    accesorios: THREE.MeshStandardMaterial
-    piernas: THREE.MeshStandardMaterial
-    traje: THREE.MeshStandardMaterial
-    ["Material.005"]: THREE.MeshStandardMaterial
-    carton: THREE.MeshStandardMaterial
-    Text_Caja: THREE.MeshStandardMaterial
-    acetato: THREE.MeshStandardMaterial
-  }
-}
+    accesorios: THREE.MeshStandardMaterial;
+    piernas: THREE.MeshStandardMaterial;
+    traje: THREE.MeshStandardMaterial;
+    ["Material.005"]: THREE.MeshStandardMaterial;
+    carton: THREE.MeshStandardMaterial;
+    Text_Caja: THREE.MeshStandardMaterial;
+    acetato: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
   const group = useRef<THREE.Group>(null);

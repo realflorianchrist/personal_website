@@ -2,43 +2,43 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_8: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_13: THREE.Mesh
-    Object_15: THREE.Mesh
-    Object_18: THREE.Mesh
-    Object_21: THREE.Mesh
-    Object_23: THREE.Mesh
-    Object_25: THREE.Mesh
-    Object_28: THREE.Mesh
-    Object_31: THREE.Mesh
-    Object_33: THREE.Mesh
-    Object_36: THREE.Mesh
-    Object_39: THREE.Mesh
-    Object_42: THREE.Mesh
-    Object_45: THREE.Mesh
-  }
+    Object_8: THREE.Mesh;
+    Object_11: THREE.Mesh;
+    Object_13: THREE.Mesh;
+    Object_15: THREE.Mesh;
+    Object_18: THREE.Mesh;
+    Object_21: THREE.Mesh;
+    Object_23: THREE.Mesh;
+    Object_25: THREE.Mesh;
+    Object_28: THREE.Mesh;
+    Object_31: THREE.Mesh;
+    Object_33: THREE.Mesh;
+    Object_36: THREE.Mesh;
+    Object_39: THREE.Mesh;
+    Object_42: THREE.Mesh;
+    Object_45: THREE.Mesh;
+  };
   materials: {
-    Black_skin: THREE.MeshStandardMaterial
-    Bianco_occhi: THREE.MeshStandardMaterial
-    Rosso_occhio: THREE.MeshStandardMaterial
-    Nero_occhi: THREE.MeshStandardMaterial
-    Material: THREE.MeshStandardMaterial
-    Suit: THREE.MeshStandardMaterial
-    Red_suit: THREE.MeshStandardMaterial
-    Black_suit: THREE.MeshStandardMaterial
-    Blue_shirt: THREE.MeshStandardMaterial
-    Smalto: THREE.MeshStandardMaterial
-    Skin: THREE.MeshStandardMaterial
-    Gambe: THREE.MeshStandardMaterial
-    Blu_scarpe: THREE.MeshStandardMaterial
-    Hair: THREE.MeshStandardMaterial
-  }
-}
+    Black_skin: THREE.MeshStandardMaterial;
+    Bianco_occhi: THREE.MeshStandardMaterial;
+    Rosso_occhio: THREE.MeshStandardMaterial;
+    Nero_occhi: THREE.MeshStandardMaterial;
+    Material: THREE.MeshStandardMaterial;
+    Suit: THREE.MeshStandardMaterial;
+    Red_suit: THREE.MeshStandardMaterial;
+    Black_suit: THREE.MeshStandardMaterial;
+    Blue_shirt: THREE.MeshStandardMaterial;
+    Smalto: THREE.MeshStandardMaterial;
+    Skin: THREE.MeshStandardMaterial;
+    Gambe: THREE.MeshStandardMaterial;
+    Blu_scarpe: THREE.MeshStandardMaterial;
+    Hair: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Obito(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.obito) as unknown as GLTFResult;

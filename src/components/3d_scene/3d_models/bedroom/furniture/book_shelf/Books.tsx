@@ -2,51 +2,51 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Buku1_0: THREE.Mesh
-    Buku1_1: THREE.Mesh
-    Buku2_0: THREE.Mesh
-    Buku2_1: THREE.Mesh
-    Buku3_0: THREE.Mesh
-    Buku3_1: THREE.Mesh
-    Buku4_0: THREE.Mesh
-    Buku4_1: THREE.Mesh
-    Buku5_0: THREE.Mesh
-    Buku5_1: THREE.Mesh
-    Buku6_0: THREE.Mesh
-    Buku6_1: THREE.Mesh
-    Buku7_0: THREE.Mesh
-    Buku7_1: THREE.Mesh
-    Buku8_0: THREE.Mesh
-    Buku8_1: THREE.Mesh
-    Buku9_0: THREE.Mesh
-    Buku9_1: THREE.Mesh
-    Buku10_0: THREE.Mesh
-    Buku10_1: THREE.Mesh
-    Buku11_0: THREE.Mesh
-    Buku11_1: THREE.Mesh
-    Buku12_0: THREE.Mesh
-    Buku12_1: THREE.Mesh
-  }
+    Buku1_0: THREE.Mesh;
+    Buku1_1: THREE.Mesh;
+    Buku2_0: THREE.Mesh;
+    Buku2_1: THREE.Mesh;
+    Buku3_0: THREE.Mesh;
+    Buku3_1: THREE.Mesh;
+    Buku4_0: THREE.Mesh;
+    Buku4_1: THREE.Mesh;
+    Buku5_0: THREE.Mesh;
+    Buku5_1: THREE.Mesh;
+    Buku6_0: THREE.Mesh;
+    Buku6_1: THREE.Mesh;
+    Buku7_0: THREE.Mesh;
+    Buku7_1: THREE.Mesh;
+    Buku8_0: THREE.Mesh;
+    Buku8_1: THREE.Mesh;
+    Buku9_0: THREE.Mesh;
+    Buku9_1: THREE.Mesh;
+    Buku10_0: THREE.Mesh;
+    Buku10_1: THREE.Mesh;
+    Buku11_0: THREE.Mesh;
+    Buku11_1: THREE.Mesh;
+    Buku12_0: THREE.Mesh;
+    Buku12_1: THREE.Mesh;
+  };
   materials: {
-    BookPaper: THREE.MeshStandardMaterial
-    BookCover1: THREE.MeshStandardMaterial
-    BookCover2: THREE.MeshStandardMaterial
-    BookCover3: THREE.MeshStandardMaterial
-    BookCover4: THREE.MeshStandardMaterial
-    BookCover5: THREE.MeshStandardMaterial
-    BookCover6: THREE.MeshStandardMaterial
-    BookCover7: THREE.MeshStandardMaterial
-    BookCover8: THREE.MeshStandardMaterial
-    BookCover9: THREE.MeshStandardMaterial
-    BookCover10: THREE.MeshStandardMaterial
-    BookCover11: THREE.MeshStandardMaterial
-    BookCover12: THREE.MeshStandardMaterial
-  }
-}
+    BookPaper: THREE.MeshStandardMaterial;
+    BookCover1: THREE.MeshStandardMaterial;
+    BookCover2: THREE.MeshStandardMaterial;
+    BookCover3: THREE.MeshStandardMaterial;
+    BookCover4: THREE.MeshStandardMaterial;
+    BookCover5: THREE.MeshStandardMaterial;
+    BookCover6: THREE.MeshStandardMaterial;
+    BookCover7: THREE.MeshStandardMaterial;
+    BookCover8: THREE.MeshStandardMaterial;
+    BookCover9: THREE.MeshStandardMaterial;
+    BookCover10: THREE.MeshStandardMaterial;
+    BookCover11: THREE.MeshStandardMaterial;
+    BookCover12: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Books(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.books) as unknown as GLTFResult;

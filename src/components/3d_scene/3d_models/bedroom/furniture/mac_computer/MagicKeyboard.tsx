@@ -2,30 +2,30 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_4: THREE.Mesh
-    Object_5: THREE.Mesh
-    Object_6: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_12: THREE.Mesh
-    Object_13: THREE.Mesh
-  }
+    Object_4: THREE.Mesh;
+    Object_5: THREE.Mesh;
+    Object_6: THREE.Mesh;
+    Object_8: THREE.Mesh;
+    Object_10: THREE.Mesh;
+    Object_11: THREE.Mesh;
+    Object_12: THREE.Mesh;
+    Object_13: THREE.Mesh;
+  };
   materials: {
-    Keys: THREE.MeshStandardMaterial
-    Caps_Lock: THREE.MeshStandardMaterial
-    Caps_Lock_Glass: THREE.MeshStandardMaterial
-    ["Material.001"]: THREE.MeshStandardMaterial
-    Material: THREE.MeshStandardMaterial
-    Body: THREE.MeshStandardMaterial
-    Port: THREE.MeshStandardMaterial
-    Toggle_Button: THREE.MeshStandardMaterial
-  }
-}
+    Keys: THREE.MeshStandardMaterial;
+    Caps_Lock: THREE.MeshStandardMaterial;
+    Caps_Lock_Glass: THREE.MeshStandardMaterial;
+    ["Material.001"]: THREE.MeshStandardMaterial;
+    Material: THREE.MeshStandardMaterial;
+    Body: THREE.MeshStandardMaterial;
+    Port: THREE.MeshStandardMaterial;
+    Toggle_Button: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function MagicKeyboard(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.magicKeyboard) as unknown as GLTFResult;

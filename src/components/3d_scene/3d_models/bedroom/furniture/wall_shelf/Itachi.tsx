@@ -2,67 +2,67 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Object_4: THREE.Mesh
-    Object_5: THREE.Mesh
-    Object_6: THREE.Mesh
-    Object_8: THREE.Mesh
-    Object_10: THREE.Mesh
-    Object_11: THREE.Mesh
-    Object_12: THREE.Mesh
-    Object_14: THREE.Mesh
-    Object_15: THREE.Mesh
-    Object_17: THREE.Mesh
-    Object_18: THREE.Mesh
-    Object_20: THREE.Mesh
-    mesh_6: THREE.Mesh
-    mesh_7: THREE.Mesh
-    mesh_8: THREE.Mesh
-    Object_28: THREE.Mesh
-    Object_29: THREE.Mesh
-    Object_31: THREE.Mesh
-    Object_33: THREE.Mesh
-    Object_35: THREE.Mesh
-    Object_36: THREE.Mesh
-    Object_38: THREE.Mesh
-    mesh_14: THREE.Mesh
-    mesh_14_1: THREE.Mesh
-    mesh_14_2: THREE.Mesh
-    mesh_14_3: THREE.Mesh
-    mesh_14_4: THREE.Mesh
-    mesh_14_5: THREE.Mesh
-  }
+    Object_4: THREE.Mesh;
+    Object_5: THREE.Mesh;
+    Object_6: THREE.Mesh;
+    Object_8: THREE.Mesh;
+    Object_10: THREE.Mesh;
+    Object_11: THREE.Mesh;
+    Object_12: THREE.Mesh;
+    Object_14: THREE.Mesh;
+    Object_15: THREE.Mesh;
+    Object_17: THREE.Mesh;
+    Object_18: THREE.Mesh;
+    Object_20: THREE.Mesh;
+    mesh_6: THREE.Mesh;
+    mesh_7: THREE.Mesh;
+    mesh_8: THREE.Mesh;
+    Object_28: THREE.Mesh;
+    Object_29: THREE.Mesh;
+    Object_31: THREE.Mesh;
+    Object_33: THREE.Mesh;
+    Object_35: THREE.Mesh;
+    Object_36: THREE.Mesh;
+    Object_38: THREE.Mesh;
+    mesh_14: THREE.Mesh;
+    mesh_14_1: THREE.Mesh;
+    mesh_14_2: THREE.Mesh;
+    mesh_14_3: THREE.Mesh;
+    mesh_14_4: THREE.Mesh;
+    mesh_14_5: THREE.Mesh;
+  };
   materials: {
-    Suit: THREE.MeshStandardMaterial
-    Red_suit: THREE.MeshStandardMaterial
-    Black_suit: THREE.MeshStandardMaterial
-    Blue_shirt: THREE.MeshStandardMaterial
-    Blu_vestito: THREE.MeshStandardMaterial
-    Rete_vestito: THREE.MeshStandardMaterial
-    Nero: THREE.MeshStandardMaterial
-    Black_Necklace: THREE.MeshStandardMaterial
-    Metallo_collana: THREE.MeshStandardMaterial
-    Metallo_coprifronte: THREE.MeshStandardMaterial
-    Metallo_scuro_coprifronte: THREE.MeshStandardMaterial
-    Blu_coprifronte: THREE.MeshStandardMaterial
-    mesh_6: THREE.MeshStandardMaterial
-    Smalto: THREE.MeshStandardMaterial
-    Skin: THREE.MeshStandardMaterial
-    Gambe: THREE.MeshStandardMaterial
-    Blu_scarpe: THREE.MeshStandardMaterial
-    Nero_capelli: THREE.MeshStandardMaterial
-    Rosso_coda_capelli: THREE.MeshStandardMaterial
-    Ears: THREE.MeshStandardMaterial
-    Nero_pastello: THREE.MeshStandardMaterial
-    Bianco_occhi: THREE.MeshStandardMaterial
-    Rosso_occhio: THREE.MeshStandardMaterial
-    Nero_occhi: THREE.MeshStandardMaterial
-    Blood: THREE.MeshStandardMaterial
-  }
-}
+    Suit: THREE.MeshStandardMaterial;
+    Red_suit: THREE.MeshStandardMaterial;
+    Black_suit: THREE.MeshStandardMaterial;
+    Blue_shirt: THREE.MeshStandardMaterial;
+    Blu_vestito: THREE.MeshStandardMaterial;
+    Rete_vestito: THREE.MeshStandardMaterial;
+    Nero: THREE.MeshStandardMaterial;
+    Black_Necklace: THREE.MeshStandardMaterial;
+    Metallo_collana: THREE.MeshStandardMaterial;
+    Metallo_coprifronte: THREE.MeshStandardMaterial;
+    Metallo_scuro_coprifronte: THREE.MeshStandardMaterial;
+    Blu_coprifronte: THREE.MeshStandardMaterial;
+    mesh_6: THREE.MeshStandardMaterial;
+    Smalto: THREE.MeshStandardMaterial;
+    Skin: THREE.MeshStandardMaterial;
+    Gambe: THREE.MeshStandardMaterial;
+    Blu_scarpe: THREE.MeshStandardMaterial;
+    Nero_capelli: THREE.MeshStandardMaterial;
+    Rosso_coda_capelli: THREE.MeshStandardMaterial;
+    Ears: THREE.MeshStandardMaterial;
+    Nero_pastello: THREE.MeshStandardMaterial;
+    Bianco_occhi: THREE.MeshStandardMaterial;
+    Rosso_occhio: THREE.MeshStandardMaterial;
+    Nero_occhi: THREE.MeshStandardMaterial;
+    Blood: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Itachi(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(modelUrls.itachi) as unknown as GLTFResult;

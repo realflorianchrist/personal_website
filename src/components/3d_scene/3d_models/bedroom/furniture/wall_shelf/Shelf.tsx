@@ -2,18 +2,18 @@ import * as THREE from "three";
 import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/model-urls";
+import modelUrls from "@/constants/modelUrls";
 
 type GLTFResult = GLTF & {
   nodes: {
-    ["Floating_Shelf_35x10__Material_#2146953915_0"]: THREE.Mesh
-    ["Text078_Material_#2146954027_0"]: THREE.Mesh
-  }
+    ["Floating_Shelf_35x10__Material_#2146953915_0"]: THREE.Mesh;
+    ["Text078_Material_#2146954027_0"]: THREE.Mesh;
+  };
   materials: {
-    Material_2146953915: THREE.MeshStandardMaterial
-    Material_2146954027: THREE.MeshStandardMaterial
-  }
-}
+    Material_2146953915: THREE.MeshStandardMaterial;
+    Material_2146954027: THREE.MeshStandardMaterial;
+  };
+};
 
 export default function Shelf(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF(modelUrls.shelf) as unknown as GLTFResult;
