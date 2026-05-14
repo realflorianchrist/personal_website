@@ -3,6 +3,7 @@ import { create } from "zustand/react";
 import de from "../i18n/de";
 
 const defaultLanguage = "de";
+const languageKey = "language:v1";
 
 type LanguageState = {
   i18n: I18nType;
@@ -21,7 +22,7 @@ const getI18n = async (language: string | null): Promise<I18nType> => {
 };
 
 const getStoredLanguage = () => {
-  let storedLanguage = localStorage.getItem("language");
+  let storedLanguage = localStorage.getItem(languageKey);
   if (storedLanguage) storedLanguage = JSON.parse(storedLanguage);
   return storedLanguage;
 };
@@ -47,7 +48,7 @@ const useLanguageStore = create<LanguageState>((set, get) => ({
 
   changeLanguage: async (language: string) => {
     set({ i18n: await getI18n(language) });
-    localStorage.setItem("language", JSON.stringify(language));
+    localStorage.setItem(languageKey, JSON.stringify(language));
     document.documentElement.lang = language;
     set({ selectedLanguage: language });
   }

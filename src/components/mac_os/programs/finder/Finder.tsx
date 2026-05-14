@@ -1,7 +1,4 @@
 "use client";
-import React from "react";
-import useProgramsStore from "@/stores/programsStore";
-import Program from "@/components/mac_os/programs/Program";
 import FinderIcon from "@/components/mac_os/programs/icons/FinderIcon";
 import {
   MacOSWindow, MacOSWindowContent,
@@ -9,6 +6,11 @@ import {
   MacOSWindowContentHeader,
   MacOSWindowSidebarContainer, MacOSWindowSidebarContent, MacOSWindowSidebarHeader
 } from "@/components/mac_os/programs/MacOSWindow";
+import Program from "@/components/mac_os/programs/Program";
+import useProgramsStore from "@/stores/programsStore";
+import Header from './Header';
+import Sidebar from './Sidebar';
+import { FinderContent } from './FinderContent';
 
 export default function Finder() {
 
@@ -29,15 +31,15 @@ export default function Finder() {
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />
             <MacOSWindowSidebarContent>
-              list
+              <Sidebar />
             </MacOSWindowSidebarContent>
           </MacOSWindowSidebarContainer>
           <MacOSWindowContentContainer>
             <MacOSWindowContentHeader>
-              Header
+              <Header />
             </MacOSWindowContentHeader>
             <MacOSWindowContent>
-              content
+              <FinderContent />
             </MacOSWindowContent>
           </MacOSWindowContentContainer>
         </MacOSWindow>

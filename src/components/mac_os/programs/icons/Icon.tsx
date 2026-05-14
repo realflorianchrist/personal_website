@@ -6,7 +6,7 @@ export type IconProps = {
   programName: string;
   className?: string;
   active?: boolean;
-  onClick?: MouseEventHandler<HTMLDivElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export default function Icon(
@@ -22,18 +22,18 @@ export default function Icon(
   }>) {
 
   return (
-    <div onClick={onClick} className="relative group flex flex-col items-center">
+    <button onClick={onClick} className="relative group flex flex-col items-center">
       <div className="absolute -top-14 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100">
         <ToolTip text={programName} />
       </div>
 
-      <div className={cn("w-10 h-10 rounded-lg overflow-hidden bg-white", className)}>
+      <div className={cn("size-10 rounded-lg overflow-hidden bg-white", className)}>
         {children}
       </div>
 
       {active && (
-        <div className="absolute -bottom-2.5 w-1 h-1 bg-gray-400 rounded-full" />
+        <div className="absolute -bottom-2.5 size-1 bg-gray-400 rounded-full" />
       )}
-    </div>
+    </button>
   );
 }

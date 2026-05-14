@@ -27,6 +27,8 @@ const useHandleDrag = (
     handleDrag: (e: React.PointerEvent<HTMLDivElement>) => {
       if (!usableScreenRect) return;
 
+      e.currentTarget.setPointerCapture(e.pointerId);
+
       setDragOffset({
         x: e.clientX - usableScreenRect.x - program.windowPosition.x,
         y: e.clientY - usableScreenRect.y - program.windowPosition.y
@@ -78,6 +80,7 @@ function MacOSWindowSidebarHeader(
     children,
     className,
     onPointerDown,
+    onPointerUp,
     ...props
   }: React.ComponentProps<"div"> & {
     children?: ReactNode;
@@ -92,7 +95,15 @@ function MacOSWindowSidebarHeader(
       className={cn("h-10 flex p-2", className)}
       onPointerDown={(e) => {
         onPointerDown?.(e);
+
         handleDrag(e);
+      }}
+      onPointerUp={(e) => {
+        onPointerUp?.(e);
+
+        if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+          e.currentTarget.releasePointerCapture(e.pointerId);
+        }
       }}
       {...props}
     >
@@ -112,7 +123,7 @@ function MacOSWindowSidebarContent(
   }) {
   return (
     <div
-      className={cn("flex-1 w-56 px-3 text-sm", className)}
+      className={cn("flex-1 w-56 px-2 text-sm overflow-auto", className)}
       {...props}
     >
       {children}
@@ -143,6 +154,7 @@ function MacOSWindowContentHeader(
     children,
     className,
     onPointerDown,
+    onPointerUp,
     ...props
   }: React.ComponentProps<"div"> & {
     children?: ReactNode;
@@ -157,7 +169,17 @@ function MacOSWindowContentHeader(
       className={cn("h-10 flex items-center px-3", className)}
       onPointerDown={(e) => {
         onPointerDown?.(e);
+
+        e.currentTarget.setPointerCapture(e.pointerId);
+
         handleDrag(e);
+      }}
+      onPointerUp={(e) => {
+        onPointerUp?.(e);
+
+        if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+          e.currentTarget.releasePointerCapture(e.pointerId);
+        }
       }}
       {...props}
     >
@@ -176,7 +198,7 @@ function MacOSWindowContent(
   }) {
   return (
     <div
-      className={cn("flex flex-1 p-3 text-sm", className)}
+      className={cn("flex flex-1 p-3 text-sm overflow-auto", className)}
       {...props}
     >
       {children}

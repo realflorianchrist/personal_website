@@ -20,10 +20,11 @@ export default function Display({ dimensions = [1, 1], ...props }: Props) {
         center
         distanceFactor={1}
         scale={1 / scale}
-        className={'overflow-hidden bg-transparent'}
+        className={"overflow-hidden bg-transparent"}
       >
         <iframe
           src="/macos"
+          title={"MacOS"}
           style={{
             width: `${w * pixelsPerUnit * scale}px`,
             height: `${h * pixelsPerUnit * scale}px`
