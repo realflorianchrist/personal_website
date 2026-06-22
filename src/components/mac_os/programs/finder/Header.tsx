@@ -6,10 +6,10 @@ export default function Header() {
     const i18n = useI18n('AboutMe.Header');
 
     return (
-        <div className='flex items-center gap-2 text-lg'>
+        <>
             <span>{i18n.Name}</span>
             <BsDot />
             <span>{i18n.Role}</span>
-        </div>
+        </>
     );
 }

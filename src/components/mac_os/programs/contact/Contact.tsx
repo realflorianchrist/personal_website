@@ -1,7 +1,4 @@
 "use client";
-import React from "react";
-import useProgramsStore from "@/stores/programsStore";
-import Program from "@/components/mac_os/programs/Program";
 import {
   MacOSWindow,
   MacOSWindowContent,
@@ -11,13 +8,20 @@ import {
   MacOSWindowSidebarContent,
   MacOSWindowSidebarHeader
 } from "@/components/mac_os/programs/MacOSWindow";
+import Program from "@/components/mac_os/programs/Program";
 import ContactsIcon from "@/components/mac_os/programs/icons/ContactsIcon";
+import { useI18n } from '@/hooks/useI18n';
+import useProgramsStore from "@/stores/programsStore";
+import Sidebar from './Sidebar';
+import ContactContent from './ContactContent';
 
-export default function Contacts() {
+export default function Contact() {
 
   const program = useProgramsStore(s => s.programs[1]);
 
   const { openProgram, openProgramIds } = useProgramsStore();
+
+  const i18n = useI18n('Contact.Header');
 
   return (
     <>
@@ -32,15 +36,15 @@ export default function Contacts() {
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />
             <MacOSWindowSidebarContent>
-              list
+              <Sidebar />
             </MacOSWindowSidebarContent>
           </MacOSWindowSidebarContainer>
           <MacOSWindowContentContainer>
             <MacOSWindowContentHeader>
-              Header
+              {i18n}
             </MacOSWindowContentHeader>
             <MacOSWindowContent>
-              content
+              <ContactContent />
             </MacOSWindowContent>
           </MacOSWindowContentContainer>
         </MacOSWindow>

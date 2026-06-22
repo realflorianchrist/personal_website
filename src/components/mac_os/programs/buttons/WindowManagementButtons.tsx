@@ -10,11 +10,11 @@ import { ProgramId } from "@/types/program";
 type Props = React.ComponentProps<"div"> & {
   children?: ReactNode;
   programId: ProgramId;
-}
+};
 
 export default function WindowManagementButtons({ programId, className, ...props }: Props) {
 
-  const { closeProgram } = useProgramsStore();
+  const { closeProgram, maximizeProgram } = useProgramsStore();
 
   return (
     <div
@@ -30,6 +30,7 @@ export default function WindowManagementButtons({ programId, className, ...props
       />
       <MaximizeButton
         onPointerDown={e => e.stopPropagation()}
+        onClick={() => maximizeProgram(programId)}
       />
     </div>
   );

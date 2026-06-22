@@ -1,5 +1,3 @@
-import { useWindowResize } from '@/hooks/useWindowResize';
-import { ProgramId } from '@/types/program';
 import cn from "@/utils/cn";
 import React from "react";
 
@@ -16,7 +14,13 @@ export const resizeHandleTypes = [
 
 export type ResizeHandleType = typeof resizeHandleTypes[number];
 
-export const resizeHandles = {
+type ResizeHandle = {
+  className: string;
+  resizeX: number;
+  resizeY: number;
+};
+
+export const resizeHandles: Record<ResizeHandleType, ResizeHandle> = {
   l: {
     className: "left-0 top-0 h-full w-2 cursor-ew-resize",
     resizeX: -1,
@@ -64,7 +68,7 @@ export const resizeHandles = {
     resizeX: -1,
     resizeY: 1
   }
-} as const;
+};
 
 type Props = {
   type: ResizeHandleType;
@@ -76,7 +80,7 @@ type Props = {
   onResizeEnd: (e: React.PointerEvent<HTMLDivElement>) => void;
 };
 
-export default function ResizeHandle({ type, onResizeStart, onResize, onResizeEnd }: Props) {
+export default function ResizeHandle({ type, onResizeStart, onResize, onResizeEnd }: Readonly<Props>) {
   return (
     <div
       className={cn("absolute z-50", resizeHandles[type].className)}

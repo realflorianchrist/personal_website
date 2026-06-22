@@ -7,7 +7,7 @@ import useProgramsStore from "@/stores/programsStore";
 
 type Props = React.ComponentProps<"div"> & {
   children?: ReactNode;
-}
+};
 
 export default function MenuBar({ children, className, ...props }: Props) {
   const [date, setDate] = useState(new Date());
@@ -27,7 +27,7 @@ export default function MenuBar({ children, className, ...props }: Props) {
 
   return (
     <div className={cn("flex w-full text-sm items-center px-4 py-2 select-none", className)}
-         {...props}
+      {...props}
     >
       <div className={"flex gap-4"}>
         <FaApple size={20} />

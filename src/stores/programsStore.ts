@@ -42,6 +42,7 @@ type ProgramsState = {
   setUsableScreenRect: (rect: Rect) => void;
   setWindowPosition: (id: ProgramId, position: Vec2) => void;
   setWindowDimensions: (id: ProgramId, dimensions: Dim2) => void;
+  maximizeProgram: (id: ProgramId) => void;
   setResizeState: (state: ResizeState | null) => void;
 };
 
@@ -155,7 +156,17 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
     });
   },
 
-  setResizeState: (state) => set({ resizeState: state })
+  setResizeState: (state) => set({ resizeState: state }),
+
+  maximizeProgram: (programId: ProgramId) => {
+
+    const usableScreenRect = get().usableScreenRect;
+
+    if (!usableScreenRect) return;
+
+    get().setWindowDimensions(programId, { width: usableScreenRect.width, height: usableScreenRect.height });
+    get().setWindowPosition(programId, { x: 0, y: 0 });
+  },
 }));
 
 export default useProgramsStore;

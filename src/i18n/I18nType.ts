@@ -91,6 +91,15 @@ export type AboutMeI18n = {
   TechStack: ListSection<TechCategory>;
 };
 
+export type ContactI18n = {
+  Header: string;
+  CV: {
+    title: string;
+    url: string;
+  };
+};
+
 export type I18nType = {
   AboutMe: AboutMeI18n;
+  Contact: ContactI18n;
 };

@@ -166,7 +166,7 @@ function MacOSWindowContentHeader(
 
   return (
     <div
-      className={cn("h-10 flex items-center px-3", className)}
+      className={cn("h-10 flex items-center px-3 gap-2 text-lg", className)}
       onPointerDown={(e) => {
         onPointerDown?.(e);
 

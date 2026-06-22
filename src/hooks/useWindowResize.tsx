@@ -46,7 +46,7 @@ export const useWindowResize = (
       setWindowPosition,
     } = useProgramsStore.getState();
 
-    if (!resizeState || resizeState.programId !== programId) return;
+    if (resizeState?.programId !== programId) return;
 
     const handle = resizeHandles[resizeState.type];
 
@@ -142,6 +142,6 @@ export const useWindowResize = (
   return {
     startResize,
     resize,
-    stopResize
+    stopResize,
   };
 };

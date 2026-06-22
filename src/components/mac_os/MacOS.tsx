@@ -3,7 +3,7 @@ import MenuBar from "@/components/mac_os/MenuBar";
 import SafariIcon from "@/components/mac_os/programs/icons/SafariIcon";
 import Finder from "@/components/mac_os/programs/finder/Finder";
 import UsableScreenRect from "@/components/mac_os/UsableScreenRect";
-import Contacts from "@/components/mac_os/programs/contact/Contacts";
+import Contact from "@/components/mac_os/programs/contact/Contact";
 
 export default function MacOS() {
   return (
@@ -12,7 +12,7 @@ export default function MacOS() {
       <UsableScreenRect>
         <Dock className={"absolute bottom-1 left-1/2 -translate-x-1/2"}>
           <Finder />
-          <Contacts />
+          <Contact />
           <SafariIcon programName={"Safari"} />
         </Dock>
       </UsableScreenRect>

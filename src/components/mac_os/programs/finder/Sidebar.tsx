@@ -2,7 +2,6 @@ import { useI18n } from '@/hooks/useI18n';
 import { AboutMeSectionId } from '@/i18n/I18nType';
 import useFinderStore from '@/stores/finderStore';
 import cn from "@/utils/cn";
-import { useEffect } from 'react';
 import { IconType } from 'react-icons';
 import {
     HiAcademicCap,
@@ -45,10 +44,6 @@ export default function Sidebar() {
             icon: HiCpuChip,
         },
     ];
-
-    useEffect(() => {
-        console.log(activeSection);
-    }, [activeSection]);
 
     return (
         <div className="text-sm">
