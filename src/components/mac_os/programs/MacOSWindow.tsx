@@ -1,9 +1,8 @@
 import React, { ReactNode } from "react";
-import useProgramsStore from "@/stores/programsStore";
 import cn from "@/utils/cn";
 import WindowManagementButtons from "@/components/mac_os/programs/buttons/WindowManagementButtons";
-import { ProgramId } from "@/types/program";
 import { useProgramContext } from "@/components/mac_os/programs/Program";
+import { useHandleDrag } from '@/hooks/useHandleDrag';
 
 export {
   MacOSWindow,
@@ -15,27 +14,6 @@ export {
   MacOSWindowContent
 };
 
-const useHandleDrag = (
-  programId: ProgramId
-) => {
-
-  const { setDragOffset, usableScreenRect } = useProgramsStore();
-
-  const program = useProgramsStore(s => s.programs[programId]);
-
-  return {
-    handleDrag: (e: React.PointerEvent<HTMLDivElement>) => {
-      if (!usableScreenRect) return;
-
-      e.currentTarget.setPointerCapture(e.pointerId);
-
-      setDragOffset({
-        x: e.clientX - usableScreenRect.x - program.windowPosition.x,
-        y: e.clientY - usableScreenRect.y - program.windowPosition.y
-      });
-    }
-  };
-};
 
 function MacOSWindow(
   {

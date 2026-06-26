@@ -60,6 +60,13 @@ const initialPrograms: Record<ProgramId, Program> = {
     windowDimensions: { width: 800, height: 500 },
     windowPosition: { x: 400, y: 100 },
     isResizable: true
+  },
+  2: {
+    id: 2,
+    name: "Safari",
+    windowDimensions: { width: 1200, height: 700 },
+    windowPosition: { x: 100, y: 25 },
+    isResizable: true
   }
 };
 
