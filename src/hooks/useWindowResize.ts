@@ -1,5 +1,6 @@
 import { ResizeHandleType, resizeHandles } from "@/components/mac_os/programs/ResizeHandle";
-import useProgramsStore, { MIN_WINDOW_SIZE, MAX_WINDOW_SIZE } from "@/stores/programsStore";
+import useProgramsStore, { } from "@/stores/programsStore";
+import { MIN_WINDOW_SIZE, MAX_WINDOW_SIZE } from '@/constants/windowSize';
 import React from "react";
 import { ProgramId } from "@/types/program";
 import { clamp } from 'gsap/all';

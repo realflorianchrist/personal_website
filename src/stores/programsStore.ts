@@ -2,16 +2,7 @@ import { create } from "zustand";
 import { Program, ProgramId, Vec2, Dim2, Rect } from "@/types/program";
 import { ResizeHandleType } from "@/components/mac_os/programs/ResizeHandle";
 import { clamp } from 'gsap/all';
-
-export const MIN_WINDOW_SIZE = {
-  width: 800,
-  height: 500
-};
-
-export const MAX_WINDOW_SIZE = {
-  width: 1800,
-  height: 1500
-};
+import { MIN_WINDOW_SIZE, MAX_WINDOW_SIZE } from '@/constants/windowSize';
 
 type ResizeState = {
   programId: ProgramId;

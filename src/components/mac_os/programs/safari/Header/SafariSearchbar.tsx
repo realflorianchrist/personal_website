@@ -12,7 +12,7 @@ export default function SafariSearchbar({
 
     return (
         <div
-            className={cn('flex items-center rounded-full w-[40%] border-0.5 border-border text-sm p-2 whitespace-nowrap',
+            className={cn('flex items-center rounded-full w-[40%] bg-muted border-0.5 border-border text-sm p-2 whitespace-nowrap',
                 'focus-within:outline-2 focus-within:outline-accent',
                 className
             )}
