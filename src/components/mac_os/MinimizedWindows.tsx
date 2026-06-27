@@ -7,18 +7,24 @@ export default function MinimizedWindows() {
 
     const { restoreProgram } = useProgramsStore();
 
+    const minimizedPrograms = Object
+        .values(programs)
+        .filter(p => !!p && p.isMinimized);
+
     return (
         <>
-            {Object.values(programs)
-                .filter(program => program?.isMinimized)
-                .map(program => (
-                    <div
-                        key={program.id}
-                        id={programPortalTargets.dockPreview(program.id)}
-                        className="h-20 w-36 overflow-hidden rounded-md"
-                        onClick={() => restoreProgram(program.id)}
-                    />
-                ))}
+            {minimizedPrograms.length > 0 && (
+                <div className="h-full border-0.5 border-border" />
+            )}
+
+            {minimizedPrograms.map(program => (
+                <div
+                    key={program.id}
+                    id={programPortalTargets.dockPreview(program.id)}
+                    className="h-full aspect-video overflow-hidden rounded-md"
+                    onClick={() => restoreProgram(program.id)}
+                />
+            ))}
         </>
     );
 }

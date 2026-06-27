@@ -8,11 +8,11 @@ type Props = React.ComponentProps<"div"> & {
 
 export default function Dock({ children, className, ...props }: Props) {
   return (
-    <div className={cn("flex items-center w-fit h-fit p-3 rounded-2xl bg-gray-500/20 border-0.5 border-border z-100 backdrop-blur-sm",
+    <div className={cn("flex items-center h-16 p-3 rounded-2xl bg-gray-500/20 border-0.5 border-border z-100 backdrop-blur-sm",
       className)}
       {...props}
     >
-      <div className={"flex items-center gap-4"}>
+      <div className={"flex items-center gap-4 h-full"}>
         {children}
         <MinimizedWindows />
       </div>

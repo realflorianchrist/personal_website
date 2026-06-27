@@ -6,8 +6,8 @@ export type IconProps = {
   programName: string;
   className?: string;
   active?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>
-}
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+};
 
 export default function Icon(
   {
@@ -18,8 +18,8 @@ export default function Icon(
     onClick
   }: Readonly<
     IconProps & {
-    children: ReactNode;
-  }>) {
+      children: ReactNode;
+    }>) {
 
   return (
     <button onClick={onClick} className="relative group flex flex-col items-center">
