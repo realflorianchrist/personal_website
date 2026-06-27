@@ -26,12 +26,12 @@ export default function Contact() {
   return (
     <>
       <ContactsIcon
-        programName={program.name}
-        onClick={() => openProgram(program.id)}
-        active={openProgramIds.includes(program.id)}
+        programName={program?.name}
+        onClick={() => openProgram(program?.id)}
+        active={openProgramIds.includes(program?.id)}
       />
 
-      <Program programId={program.id}>
+      <Program programId={program?.id}>
         <MacOSWindow>
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />

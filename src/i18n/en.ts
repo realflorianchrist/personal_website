@@ -1,4 +1,4 @@
-import { AboutMeI18n, ContactI18n, I18nType } from "@/i18n/I18nType";
+import { AboutMeI18n, ContactI18n, I18nType, ProgramsI18n } from "@/i18n/I18nType";
 
 const AboutMe: AboutMeI18n = {
   Header: {
@@ -210,9 +210,16 @@ const Contact: ContactI18n = {
   },
 };
 
+const Programs: ProgramsI18n = {
+  AboutMe: "About me",
+  Contact: "Contact",
+  Projects: "Projects",
+};
+
 const en: I18nType = {
   AboutMe,
-  Contact
+  Contact,
+  Programs
 };
 
 export default en;

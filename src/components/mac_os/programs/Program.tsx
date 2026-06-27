@@ -50,23 +50,23 @@ export default function Program({ children, programId }: Props) {
 
   return (
     portalTarget &&
-    openProgramIds.includes(program.id) &&
+    openProgramIds.includes(program?.id) &&
     createPortal(
       <ProgramContext.Provider value={{ programId }}>
         <div
-          className={`absolute select-none ${focusedProgramId === program.id ? "z-50" : "z-10"}`}
+          className={`absolute select-none ${focusedProgramId === program?.id ? "z-50" : "z-10"}`}
           style={{
-            width: program.windowDimensions.width,
-            height: program.windowDimensions.height,
-            top: program.windowPosition.y,
-            left: program.windowPosition.x
+            width: program?.windowDimensions.width,
+            height: program?.windowDimensions.height,
+            top: program?.windowPosition.y,
+            left: program?.windowPosition.x
           }}
           onPointerDown={(e) => {
             focusProgram(programId);
           }}
           onPointerMove={(e) => {
             if (dragOffset && usableScreenRect) {
-              setWindowPosition(program.id, {
+              setWindowPosition(program?.id, {
                 x: e.clientX - usableScreenRect.x - dragOffset.x,
                 y: e.clientY - usableScreenRect.y - dragOffset.y
               });

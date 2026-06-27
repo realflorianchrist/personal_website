@@ -14,12 +14,12 @@ export default function Safari() {
     return (
         <>
             <SafariIcon
-                programName={program.name}
-                onClick={() => openProgram(program.id)}
-                active={openProgramIds.includes(program.id)}
+                programName={program?.name}
+                onClick={() => openProgram(program?.id)}
+                active={openProgramIds.includes(program?.id)}
             />
 
-            <Program programId={program.id}>
+            <Program programId={program?.id}>
                 <MacOSWindow className='flex-col p-0'>
                     <SafariHeader />
                     <iframe src='https://infboardv2.ch/' title='safari-content' className='h-full' />

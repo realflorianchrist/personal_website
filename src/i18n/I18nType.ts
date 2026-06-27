@@ -99,7 +99,14 @@ export type ContactI18n = {
   };
 };
 
+export type ProgramsI18n = {
+  AboutMe: string;
+  Contact: string;
+  Projects: string;
+};
+
 export type I18nType = {
   AboutMe: AboutMeI18n;
   Contact: ContactI18n;
+  Programs: ProgramsI18n;
 };

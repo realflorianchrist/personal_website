@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import cn from "@/utils/cn";
 import { formatDate } from "@/utils/dateFormatter";
 import useProgramsStore from "@/stores/programsStore";
+import LanguageSwitch from './LanguageSwitch';
 
 type Props = React.ComponentProps<"div"> & {
   children?: ReactNode;
@@ -33,6 +34,8 @@ export default function MenuBar({ children, className, ...props }: Props) {
         <FaApple size={20} />
         <span className={'font-bold'}>{focusedProgram?.name}</span>
       </div>
+
+      <LanguageSwitch />
 
       <div className={"ml-auto flex"}>
         <span>{d?.weekday} {d?.datePart}</span>

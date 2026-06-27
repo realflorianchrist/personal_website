@@ -35,6 +35,10 @@ type ProgramsState = {
   usableScreenRect: Rect | null;
   resizeState: ResizeState | null;
 
+  setPrograms: (
+    programs: Record<ProgramId, Program>
+      | ((prev: Record<ProgramId, Program>) => Record<ProgramId, Program>)
+  ) => void;
   openProgram: (id: ProgramId) => void;
   closeProgram: (id: ProgramId) => void;
   focusProgram: (id: ProgramId) => void;
@@ -46,37 +50,21 @@ type ProgramsState = {
   setResizeState: (state: ResizeState | null) => void;
 };
 
-const initialPrograms: Record<ProgramId, Program> = {
-  0: {
-    id: 0,
-    name: "About me",
-    windowDimensions: { width: 900, height: 600 },
-    windowPosition: { x: 150, y: 50 },
-    isResizable: true
-  },
-  1: {
-    id: 1,
-    name: "Contact",
-    windowDimensions: { width: 800, height: 500 },
-    windowPosition: { x: 400, y: 100 },
-    isResizable: true
-  },
-  2: {
-    id: 2,
-    name: "Safari",
-    windowDimensions: { width: 1200, height: 700 },
-    windowPosition: { x: 100, y: 25 },
-    isResizable: true
-  }
-};
-
 const useProgramsStore = create<ProgramsState>((set, get) => ({
-  programs: initialPrograms,
-  openProgramIds: [],
+  programs: {},
+  openProgramIds: [0],
   focusedProgramId: null,
   dragOffset: null,
   usableScreenRect: null,
   resizeState: null,
+
+  setPrograms: (updater) =>
+    set(state => ({
+      programs:
+        typeof updater === "function"
+          ? updater(state.programs)
+          : updater,
+    })),
 
   openProgram: (id) => {
     const { openProgramIds } = get();
