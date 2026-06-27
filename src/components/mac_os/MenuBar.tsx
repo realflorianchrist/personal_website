@@ -1,9 +1,9 @@
 "use client";
-import { FaApple } from "react-icons/fa";
-import React, { ReactNode, useEffect, useState } from "react";
-import cn from "@/utils/cn";
-import { formatDate } from "@/utils/dateFormatter";
-import useProgramsStore from "@/stores/programsStore";
+import React, { ReactNode } from 'react';
+import { FaApple } from 'react-icons/fa';
+import { useDate } from '@/hooks/useDate';
+import useProgramsStore from '@/stores/programsStore';
+import cn from '@/utils/cn';
 import LanguageSwitch from './LanguageSwitch';
 
 type Props = React.ComponentProps<"div"> & {
@@ -11,20 +11,13 @@ type Props = React.ComponentProps<"div"> & {
 };
 
 export default function MenuBar({ children, className, ...props }: Props) {
-  const [date, setDate] = useState(new Date());
 
   const { focusedProgramId } = useProgramsStore();
 
+  const d = useDate();
+
   const focusedProgram = useProgramsStore(s =>
     Object.values(s.programs).find(p => p.id === focusedProgramId));
-
-
-  useEffect(() => {
-    const interval = setInterval(() => setDate(new Date()), 1000 * 20);
-    return () => clearInterval(interval);
-  }, []);
-
-  const d = formatDate(date);
 
   return (
     <div className={cn("flex w-full text-sm items-center px-4 py-2 select-none", className)}
