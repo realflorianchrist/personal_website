@@ -208,9 +208,9 @@ const Contact: ContactI18n = {
 };
 
 const Programs: ProgramsI18n = {
-  AboutMe: "Über mich",
-  Contact: "Kontakt",
-  Projects: "Projekte",
+  finder: "Über mich",
+  contact: "Kontakt",
+  safari: "Projekte",
 };
 
 const de: I18nType = {

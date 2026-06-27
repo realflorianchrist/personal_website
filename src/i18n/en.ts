@@ -211,9 +211,9 @@ const Contact: ContactI18n = {
 };
 
 const Programs: ProgramsI18n = {
-  AboutMe: "About me",
-  Contact: "Contact",
-  Projects: "Projects",
+  finder: "About me",
+  contact: "Contact",
+  safari: "Projects",
 };
 
 const en: I18nType = {

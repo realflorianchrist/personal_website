@@ -19,7 +19,7 @@ type ResizeState = {
 };
 
 type ProgramsState = {
-  programs: Record<ProgramId, Program>;
+  programs: Partial<Record<ProgramId, Program>>;
   openProgramIds: ProgramId[];
   focusedProgramId: ProgramId | null;
   dragOffset: Vec2 | null;
@@ -27,8 +27,9 @@ type ProgramsState = {
   resizeState: ResizeState | null;
 
   setPrograms: (
-    programs: Record<ProgramId, Program>
-      | ((prev: Record<ProgramId, Program>) => Record<ProgramId, Program>)
+    programs:
+      | Partial<Record<ProgramId, Program>>
+      | ((prev: Partial<Record<ProgramId, Program>>) => Partial<Record<ProgramId, Program>>)
   ) => void;
   openProgram: (id: ProgramId) => void;
   closeProgram: (id: ProgramId) => void;
@@ -37,13 +38,15 @@ type ProgramsState = {
   setUsableScreenRect: (rect: Rect) => void;
   setWindowPosition: (id: ProgramId, position: Vec2) => void;
   setWindowDimensions: (id: ProgramId, dimensions: Dim2) => void;
-  maximizeProgram: (id: ProgramId) => void;
   setResizeState: (state: ResizeState | null) => void;
+  maximizeProgram: (id: ProgramId) => void;
+  minimizeProgram: (id: ProgramId) => void;
+  restoreProgram: (id: ProgramId) => void;
 };
 
 const useProgramsStore = create<ProgramsState>((set, get) => ({
   programs: {},
-  openProgramIds: [0],
+  openProgramIds: ['finder'],
   focusedProgramId: null,
   dragOffset: null,
   usableScreenRect: null,
@@ -86,6 +89,8 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
 
   setWindowPosition: (id, position) => {
     const program = get().programs[id];
+    if (!program) return;
+
     const screen = get().usableScreenRect;
 
     const margin = 80;
@@ -143,6 +148,39 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
   },
 
   setResizeState: (state) => set({ resizeState: state }),
+
+  minimizeProgram: (id) =>
+    set(state => {
+      const program = state.programs[id];
+      if (!program) return state;
+
+      return {
+        programs: {
+          ...state.programs,
+          [id]: {
+            ...program,
+            isMinimized: true,
+          },
+        },
+      };
+    }),
+
+  restoreProgram: (id) =>
+    set(state => {
+      const program = state.programs[id];
+      if (!program) return state;
+
+      return {
+        programs: {
+          ...state.programs,
+          [id]: {
+            ...program,
+            isMinimized: false,
+          },
+        },
+        focusedProgramId: id,
+      };
+    }),
 
   maximizeProgram: (programId: ProgramId) => {
 

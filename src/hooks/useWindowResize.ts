@@ -22,6 +22,8 @@ export const useWindowResize = (
 
     const program = programs[programId];
 
+    if (!program) return;
+
     setResizeState({
       programId,
       type,

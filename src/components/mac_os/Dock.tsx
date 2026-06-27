@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import cn from "@/utils/cn";
+import MinimizedWindows from './MinimizedWindows';
 
 type Props = React.ComponentProps<"div"> & {
   children?: ReactNode;
@@ -13,6 +14,7 @@ export default function Dock({ children, className, ...props }: Props) {
     >
       <div className={"flex items-center gap-4"}>
         {children}
+        <MinimizedWindows />
       </div>
     </div>
   );

@@ -2,7 +2,6 @@
 import { useI18n } from '@/hooks/useI18n';
 import useLanguageStore from '@/stores/languageStore';
 import useProgramsStore from '@/stores/programsStore';
-import { Program, ProgramId } from '@/types/program';
 import { useEffect } from 'react';
 
 export default function ProgramsInit() {
@@ -11,39 +10,34 @@ export default function ProgramsInit() {
     const i18n = useI18n('Programs');
     const { selectedLanguage } = useLanguageStore();
 
-    const initialPrograms: Record<ProgramId, Program> = {
-        0: {
-            id: 0,
-            name: i18n.AboutMe,
-            windowDimensions: { width: 900, height: 600 },
-            windowPosition: { x: 150, y: 50 },
-            isResizable: true
-        },
-        1: {
-            id: 1,
-            name: i18n.Contact,
-            windowDimensions: { width: 800, height: 500 },
-            windowPosition: { x: 400, y: 100 },
-            isResizable: true
-        },
-        2: {
-            id: 2,
-            name: i18n.Projects,
-            windowDimensions: { width: 1200, height: 700 },
-            windowPosition: { x: 100, y: 25 },
-            isResizable: true
-        }
-    };
-
-    useEffect(() => setPrograms(initialPrograms), []);
-
     useEffect(() => {
-        setPrograms(programs => ({
-            0: { ...programs[0], name: i18n.AboutMe },
-            1: { ...programs[1], name: i18n.Contact },
-            2: { ...programs[2], name: i18n.Projects },
+        setPrograms(prev => ({
+            finder: {
+                id: "finder",
+                name: i18n.finder,
+                windowDimensions: prev.finder?.windowDimensions ?? { width: 900, height: 600 },
+                windowPosition: prev.finder?.windowPosition ?? { x: 150, y: 50 },
+                isResizable: true,
+                isMinimized: prev.finder?.isMinimized ?? false,
+            },
+            contact: {
+                id: "contact",
+                name: i18n.contact,
+                windowDimensions: prev.contact?.windowDimensions ?? { width: 800, height: 500 },
+                windowPosition: prev.contact?.windowPosition ?? { x: 400, y: 100 },
+                isResizable: true,
+                isMinimized: prev.contact?.isMinimized ?? false,
+            },
+            safari: {
+                id: "safari",
+                name: i18n.safari,
+                windowDimensions: prev.safari?.windowDimensions ?? { width: 1200, height: 700 },
+                windowPosition: prev.safari?.windowPosition ?? { x: 100, y: 25 },
+                isResizable: true,
+                isMinimized: prev.safari?.isMinimized ?? false,
+            },
         }));
-    }, [selectedLanguage]);
+    }, [selectedLanguage, setPrograms]);
 
     return null;
-}
+};

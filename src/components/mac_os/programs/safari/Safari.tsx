@@ -7,9 +7,11 @@ import SafariHeader from './Header/SafariHeader';
 
 export default function Safari() {
 
-    const program = useProgramsStore(s => s.programs[2]);
+    const program = useProgramsStore(s => s.programs.safari);
 
     const { openProgram, openProgramIds } = useProgramsStore();
+
+    if (!program) return null;
 
     return (
         <>
@@ -25,7 +27,6 @@ export default function Safari() {
                     <iframe src='https://infboardv2.ch/' title='safari-content' className='h-full' />
                 </MacOSWindow>
             </Program>
-
         </>
     );
 }

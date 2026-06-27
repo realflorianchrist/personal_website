@@ -1,8 +1,9 @@
 "use client";
 import { ReactNode, useEffect, useRef } from "react";
 import useProgramsStore from "@/stores/programsStore";
+import { programPortalTargets } from '@/constants/programPortalTargets';
 
-export default function UsableScreenRect({ children }: { children: ReactNode }) {
+export default function UsableScreenRect({ children }: { children: ReactNode; }) {
   const screenRef = useRef<HTMLDivElement | null>(null);
   const { setUsableScreenRect } = useProgramsStore();
 
@@ -34,7 +35,7 @@ export default function UsableScreenRect({ children }: { children: ReactNode }) 
   }, [setUsableScreenRect]);
 
   return (
-    <div ref={screenRef} id={"usable-screen"} className={"relative flex-grow-1 overflow-hidden"}>
+    <div ref={screenRef} id={programPortalTargets.usableScreen} className={"relative flex-grow-1 overflow-hidden"}>
       {children}
     </div>
   );

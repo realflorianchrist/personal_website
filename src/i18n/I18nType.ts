@@ -1,3 +1,5 @@
+import { ProgramId } from '@/types/program';
+
 export type AboutMeSectionId =
   | "about"
   | "skills"
@@ -99,11 +101,7 @@ export type ContactI18n = {
   };
 };
 
-export type ProgramsI18n = {
-  AboutMe: string;
-  Contact: string;
-  Projects: string;
-};
+export type ProgramsI18n = Record<ProgramId, string>;
 
 export type I18nType = {
   AboutMe: AboutMeI18n;

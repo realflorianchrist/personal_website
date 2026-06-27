@@ -1,22 +1,20 @@
 "use client";
 import FinderIcon from "@/components/mac_os/programs/icons/FinderIcon";
-import {
-  MacOSWindow, MacOSWindowContent,
-  MacOSWindowContentContainer,
-  MacOSWindowContentHeader,
-  MacOSWindowSidebarContainer, MacOSWindowSidebarContent, MacOSWindowSidebarHeader
-} from "@/components/mac_os/programs/MacOSWindow";
-import Program from "@/components/mac_os/programs/Program";
 import useProgramsStore from "@/stores/programsStore";
+import Program from '../Program';
+import { MacOSWindow, MacOSWindowContent, MacOSWindowContentContainer, MacOSWindowContentHeader, MacOSWindowSidebarContainer, MacOSWindowSidebarContent, MacOSWindowSidebarHeader } from '../MacOSWindow';
+import { FinderContent } from './FinderContent';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import { FinderContent } from './FinderContent';
+
 
 export default function Finder() {
 
-  const program = useProgramsStore(s => s.programs[0]);
+  const program = useProgramsStore(s => s.programs.finder);
 
   const { openProgram, openProgramIds } = useProgramsStore();
+
+  if (!program) return null;
 
   return (
     <>

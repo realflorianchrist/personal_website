@@ -11,7 +11,7 @@ export const useHandleDrag = (
 
     return {
         handleDrag: (e: React.PointerEvent<HTMLDivElement>) => {
-            if (!usableScreenRect) return;
+            if (!usableScreenRect || !program) return;
 
             e.currentTarget.setPointerCapture(e.pointerId);
 

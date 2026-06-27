@@ -15,7 +15,7 @@ export type Rect = {
   height: number;
 };
 
-export type ProgramId = number;
+export type ProgramId = 'finder' | 'contact' | 'safari';
 
 export type Program = {
   id: ProgramId;

@@ -5,6 +5,8 @@ import { ProgramId } from "@/types/program";
 import { createContext, ReactNode, use, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useWindowResize } from "../../../hooks/useWindowResize";
+import { programPortalTargets } from '@/constants/programPortalTargets';
+import cn from '@/utils/cn';
 
 type ProgramContextType = {
   programId: ProgramId;
@@ -44,9 +46,49 @@ export default function Program({ children, programId }: Props) {
 
   const { startResize, resize, stopResize } = useWindowResize(programId);
 
+  const targetId = program?.isMinimized
+    ? programPortalTargets.dockPreview(program?.id)
+    : programPortalTargets.usableScreen;
+
   useEffect(() => {
-    setPortalTarget(document.getElementById("usable-screen"));
-  }, []);
+    setPortalTarget(document.getElementById(targetId));
+  }, [targetId]);
+
+  const isMinimized = program?.isMinimized;
+
+  const windowClassName = cn(
+    isMinimized
+      ? "relative h-full w-full overflow-hidden rounded-md pointer-events-none"
+      : "absolute select-none",
+    !isMinimized && focusedProgramId === program?.id && "z-50",
+    !isMinimized && focusedProgramId !== program?.id && "z-10"
+  );
+
+  const PREVIEW_WIDTH = 140;
+  const PREVIEW_HEIGHT = 80;
+
+  const scale = isMinimized
+    ? Math.min(
+      PREVIEW_WIDTH / program.windowDimensions.width,
+      PREVIEW_HEIGHT / program.windowDimensions.height
+    )
+    : 1;
+
+  const windowStyle: React.CSSProperties = isMinimized
+    ? {
+      width: program?.windowDimensions.width,
+      height: program?.windowDimensions.height,
+      transform: `scale(${scale})`,
+      transformOrigin: "top left",
+    }
+    : {
+      width: program?.windowDimensions.width,
+      height: program?.windowDimensions.height,
+      top: program?.windowPosition.y,
+      left: program?.windowPosition.x,
+    };
+
+  if (!program) return null;
 
   return (
     portalTarget &&
@@ -54,13 +96,8 @@ export default function Program({ children, programId }: Props) {
     createPortal(
       <ProgramContext.Provider value={{ programId }}>
         <div
-          className={`absolute select-none ${focusedProgramId === program?.id ? "z-50" : "z-10"}`}
-          style={{
-            width: program?.windowDimensions.width,
-            height: program?.windowDimensions.height,
-            top: program?.windowPosition.y,
-            left: program?.windowPosition.x
-          }}
+          className={windowClassName}
+          style={windowStyle}
           onPointerDown={(e) => {
             focusProgram(programId);
           }}

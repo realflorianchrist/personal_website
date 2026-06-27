@@ -28,6 +28,5 @@ export default function SafariSearchbar({
                 onChange={e => setValue(e.target.value)}
             />
         </div>
-
     );
 }

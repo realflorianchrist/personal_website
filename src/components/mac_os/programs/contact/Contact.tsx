@@ -17,11 +17,13 @@ import ContactContent from './ContactContent';
 
 export default function Contact() {
 
-  const program = useProgramsStore(s => s.programs[1]);
+  const program = useProgramsStore(s => s.programs.contact);
 
   const { openProgram, openProgramIds } = useProgramsStore();
 
   const i18n = useI18n('Contact.Header');
+
+  if (!program) return null;
 
   return (
     <>
