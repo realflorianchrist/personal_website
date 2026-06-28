@@ -18,7 +18,6 @@ export default function ProgramsInit() {
                 windowDimensions: prev.finder?.windowDimensions ?? { width: 900, height: 600 },
                 windowPosition: prev.finder?.windowPosition ?? { x: 150, y: 50 },
                 isResizable: true,
-                isMinimized: prev.finder?.isMinimized ?? false,
             },
             contact: {
                 id: "contact",
@@ -26,7 +25,6 @@ export default function ProgramsInit() {
                 windowDimensions: prev.contact?.windowDimensions ?? { width: 800, height: 500 },
                 windowPosition: prev.contact?.windowPosition ?? { x: 400, y: 100 },
                 isResizable: true,
-                isMinimized: prev.contact?.isMinimized ?? false,
             },
             safari: {
                 id: "safari",
@@ -34,7 +32,6 @@ export default function ProgramsInit() {
                 windowDimensions: prev.safari?.windowDimensions ?? { width: 1200, height: 700 },
                 windowPosition: prev.safari?.windowPosition ?? { x: 100, y: 25 },
                 isResizable: true,
-                isMinimized: prev.safari?.isMinimized ?? false,
             },
         }));
     }, [selectedLanguage, setPrograms]);
