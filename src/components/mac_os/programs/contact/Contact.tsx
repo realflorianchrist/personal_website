@@ -20,23 +20,17 @@ export default function Contact() {
 
   const program = useProgramsStore(s => s.programs.contact);
 
-  const { openProgram, openProgramIds } = useProgramsStore();
-
   const i18n = useI18n('Contact.Header');
 
   if (!program) return null;
 
   return (
     <>
-      <DockIcon
-        programName={program?.name}
-        onClick={() => openProgram(program?.id)}
-        active={openProgramIds.includes(program?.id)}
-      >
+      <DockIcon program={program}>
         <ContactsIcon />
       </DockIcon>
 
-      <Program programId={program?.id}>
+      <Program programId={program.id}>
         <MacOSWindow>
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />

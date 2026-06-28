@@ -13,21 +13,15 @@ export default function Finder() {
 
   const program = useProgramsStore(s => s.programs.finder);
 
-  const { openProgram, openProgramIds } = useProgramsStore();
-
   if (!program) return null;
 
   return (
     <>
-      <DockIcon
-        programName={program?.name}
-        onClick={() => openProgram(program?.id)}
-        active={openProgramIds.includes(program?.id)}
-      >
+      <DockIcon program={program}>
         <FinderIcon />
       </DockIcon>
 
-      <Program programId={program?.id}>
+      <Program programId={program.id}>
         <MacOSWindow>
           <MacOSWindowSidebarContainer>
             <MacOSWindowSidebarHeader />
