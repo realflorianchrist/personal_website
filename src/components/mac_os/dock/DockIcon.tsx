@@ -1,35 +1,29 @@
-import { MouseEventHandler, ReactNode } from "react";
-import cn from "@/utils/cn";
+import { ReactNode } from "react";
 import ToolTip from "@/components/mac_os/ToolTip";
+import { Program } from '@/types/program';
+import useProgramsStore from '@/stores/programsStore';
 
 export type DockIconProps = {
-  programName: string;
-  className?: string;
-  active?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  program: Program;
+  children: ReactNode;
 };
 
-export default function DockIcon(
-  {
-    programName,
-    children,
-    className,
-    active,
-    onClick
-  }: Readonly<
-    DockIconProps & {
-      children: ReactNode;
-    }>) {
+export default function DockIcon({ program, children }: Readonly<DockIconProps>) {
+
+  const { openProgram, openProgramIds } = useProgramsStore();
 
   return (
-    <button onClick={onClick} className="relative group flex flex-col items-center">
+    <button
+      onClick={() => openProgram(program.id)}
+      className="relative group flex flex-col items-center"
+    >
       <div className="absolute -top-14 opacity-0 pointer-events-none transition-opacity group-hover:opacity-100">
-        <ToolTip text={programName} />
+        <ToolTip text={program.name} />
       </div>
 
       {children}
 
-      {active && (
+      {openProgramIds.includes(program.id) && (
         <div className="absolute -bottom-2.5 size-1 bg-gray-400 rounded-full" />
       )}
     </button>

@@ -10,21 +10,15 @@ export default function Safari() {
 
     const program = useProgramsStore(s => s.programs.safari);
 
-    const { openProgram, openProgramIds } = useProgramsStore();
-
     if (!program) return null;
 
     return (
         <>
-            <DockIcon
-                programName={program?.name}
-                onClick={() => openProgram(program?.id)}
-                active={openProgramIds.includes(program?.id)}
-            >
+            <DockIcon program={program}>
                 <SafariIcon />
             </DockIcon>
 
-            <Program programId={program?.id}>
+            <Program programId={program.id}>
                 <MacOSWindow className='flex-col p-0'>
                     <SafariHeader />
                     <iframe src='https://infboardv2.ch/' title='safari-content' className='h-full' />
