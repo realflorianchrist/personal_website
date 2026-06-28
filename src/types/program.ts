@@ -22,6 +22,4 @@ export type Program = {
   name: string;
   windowDimensions: Dim2;
   windowPosition: Vec2;
-  isResizable?: boolean;
-  isMinimized?: boolean;
 };

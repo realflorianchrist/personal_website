@@ -4,6 +4,7 @@ import SafariIcon from '../icons/SafariIcon';
 import Program from '../Program';
 import { MacOSWindow } from '../MacOSWindow';
 import SafariHeader from './Header/SafariHeader';
+import DockIcon from '../../dock/DockIcon';
 
 export default function Safari() {
 
@@ -15,11 +16,13 @@ export default function Safari() {
 
     return (
         <>
-            <SafariIcon
+            <DockIcon
                 programName={program?.name}
                 onClick={() => openProgram(program?.id)}
                 active={openProgramIds.includes(program?.id)}
-            />
+            >
+                <SafariIcon />
+            </DockIcon>
 
             <Program programId={program?.id}>
                 <MacOSWindow className='flex-col p-0'>

@@ -1,6 +1,6 @@
-import Icon, { IconProps } from "@/components/mac_os/programs/icons/Icon";
+import Icon from './Icon';
 
-export default function FinderIcon(props: IconProps) {
+export default function FinderIcon({ ...props }: React.ComponentProps<"div">) {
   return (
     <Icon {...props}>
       <svg
@@ -24,9 +24,9 @@ export default function FinderIcon(props: IconProps) {
           </linearGradient>
         </defs>
         <path fill="url(#b)"
-              d="M435.2 0H274.4c-21.2 49.2-59.2 129.6-60.8 283.4a9.9 9.9 0 0010 10.1h58.7a9.9 9.9 0 019.9 10.2A933.3 933.3 0 00311.3 512h123.9a76.8 76.8 0 0076.8-76.8V76.8A76.8 76.8 0 00435.2 0z" />
+          d="M435.2 0H274.4c-21.2 49.2-59.2 129.6-60.8 283.4a9.9 9.9 0 0010 10.1h58.7a9.9 9.9 0 019.9 10.2A933.3 933.3 0 00311.3 512h123.9a76.8 76.8 0 0076.8-76.8V76.8A76.8 76.8 0 00435.2 0z" />
         <path fill="none" stroke="#000" strokeLinecap="round" strokeWidth="20"
-              d="M371 149v34m-229-34v34m263.4 147.2a215.2 215.2 0 01-298.8 0" />
+          d="M371 149v34m-229-34v34m263.4 147.2a215.2 215.2 0 01-298.8 0" />
       </svg>
     </Icon>
   );

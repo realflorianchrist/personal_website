@@ -6,6 +6,7 @@ import { MacOSWindow, MacOSWindowContent, MacOSWindowContentContainer, MacOSWind
 import { FinderContent } from './FinderContent';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import DockIcon from '../../dock/DockIcon';
 
 
 export default function Finder() {
@@ -18,11 +19,13 @@ export default function Finder() {
 
   return (
     <>
-      <FinderIcon
+      <DockIcon
         programName={program?.name}
         onClick={() => openProgram(program?.id)}
         active={openProgramIds.includes(program?.id)}
-      />
+      >
+        <FinderIcon />
+      </DockIcon>
 
       <Program programId={program?.id}>
         <MacOSWindow>

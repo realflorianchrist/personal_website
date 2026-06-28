@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { useWindowResize } from "../../../hooks/useWindowResize";
 import { programPortalTargets } from '@/constants/programPortalTargets';
 import cn from '@/utils/cn';
+import { useCalcMinimizeWindowScale } from '@/hooks/useCalcMinimizeWindowScale';
 
 type ProgramContextType = {
   programId: ProgramId;
@@ -35,6 +36,7 @@ export default function Program({ children, programId }: Props) {
   const program = useProgramsStore(s => s.programs[programId]);
 
   const {
+    minimizedProgramIds,
     dragOffset,
     setDragOffset,
     setWindowPosition,
@@ -46,15 +48,18 @@ export default function Program({ children, programId }: Props) {
 
   const { startResize, resize, stopResize } = useWindowResize(programId);
 
-  const targetId = program?.isMinimized
-    ? programPortalTargets.dockPreview(program?.id)
+  const minimizeWindowScale = useCalcMinimizeWindowScale(programId);
+  const isMinimized = minimizedProgramIds.includes(programId);
+
+  const targetId = isMinimized
+    ? programPortalTargets.dockPreview(programId)
     : programPortalTargets.usableScreen;
 
   useEffect(() => {
     setPortalTarget(document.getElementById(targetId));
   }, [targetId]);
 
-  const isMinimized = program?.isMinimized;
+  if (!program) return null;
 
   const windowClassName = cn(
     isMinimized
@@ -64,31 +69,19 @@ export default function Program({ children, programId }: Props) {
     !isMinimized && focusedProgramId !== program?.id && "z-10"
   );
 
-  const PREVIEW_WIDTH = 140;
-  const PREVIEW_HEIGHT = 80;
-
-  const scale = isMinimized
-    ? Math.min(
-      PREVIEW_WIDTH / program.windowDimensions.width,
-      PREVIEW_HEIGHT / program.windowDimensions.height
-    )
-    : 1;
-
   const windowStyle: React.CSSProperties = isMinimized
     ? {
       width: program?.windowDimensions.width,
       height: program?.windowDimensions.height,
-      transform: `scale(${scale})`,
+      transform: `scale(${minimizeWindowScale})`,
       transformOrigin: "top left",
-    }
-    : {
+    } : {
       width: program?.windowDimensions.width,
       height: program?.windowDimensions.height,
       top: program?.windowPosition.y,
       left: program?.windowPosition.x,
     };
 
-  if (!program) return null;
 
   return (
     portalTarget &&
@@ -96,6 +89,7 @@ export default function Program({ children, programId }: Props) {
     createPortal(
       <ProgramContext.Provider value={{ programId }}>
         <div
+          id={programId}
           className={windowClassName}
           style={windowStyle}
           onPointerDown={(e) => {

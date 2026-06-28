@@ -14,6 +14,7 @@ import { useI18n } from '@/hooks/useI18n';
 import useProgramsStore from "@/stores/programsStore";
 import Sidebar from './Sidebar';
 import ContactContent from './ContactContent';
+import DockIcon from '../../dock/DockIcon';
 
 export default function Contact() {
 
@@ -27,11 +28,13 @@ export default function Contact() {
 
   return (
     <>
-      <ContactsIcon
+      <DockIcon
         programName={program?.name}
         onClick={() => openProgram(program?.id)}
         active={openProgramIds.includes(program?.id)}
-      />
+      >
+        <ContactsIcon />
+      </DockIcon>
 
       <Program programId={program?.id}>
         <MacOSWindow>

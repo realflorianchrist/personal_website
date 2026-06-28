@@ -1,6 +1,6 @@
-import Icon, { IconProps } from "@/components/mac_os/programs/icons/Icon";
+import Icon from './Icon';
 
-export default function ContactsIcon(props: IconProps) {
+export default function ContactsIcon({ ...props }: React.ComponentProps<"div">) {
   return (
     <Icon {...props}>
       <svg

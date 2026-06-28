@@ -1,9 +1,9 @@
-import Dock from "@/components/mac_os/Dock";
 import MenuBar from "@/components/mac_os/MenuBar";
 import Finder from "@/components/mac_os/programs/finder/Finder";
 import UsableScreenRect from "@/components/mac_os/UsableScreenRect";
 import Contact from "@/components/mac_os/programs/contact/Contact";
 import Safari from './programs/safari/Safari';
+import Dock from './dock/Dock';
 
 export default function MacOS() {
   return (

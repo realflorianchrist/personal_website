@@ -1,7 +1,7 @@
-import Icon, { IconProps } from "@/components/mac_os/programs/icons/Icon";
 import cn from "@/utils/cn";
+import Icon from './Icon';
 
-export default function SafariIcon({ className, ...props }: IconProps) {
+export default function SafariIcon({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <Icon className={cn("p-0.5", className)} {...props}>
       <svg
@@ -17,7 +17,7 @@ export default function SafariIcon({ className, ...props }: IconProps) {
             <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.266007133 0" in="shadowBlurOuter1"
-                           result="shadowMatrixOuter1" />
+              result="shadowMatrixOuter1" />
             <feMerge>
               <feMergeNode in="shadowMatrixOuter1" />
               <feMergeNode in="SourceGraphic" />
@@ -36,7 +36,7 @@ export default function SafariIcon({ className, ...props }: IconProps) {
             <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1" />
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
             <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13 0" in="shadowBlurOuter1"
-                           result="shadowMatrixOuter1" />
+              result="shadowMatrixOuter1" />
             <feMerge>
               <feMergeNode in="shadowMatrixOuter1" />
               <feMergeNode in="SourceGraphic" />

@@ -1,15 +1,14 @@
 'use client';
-import { programPortalTargets } from '@/constants/programPortalTargets';
 import useProgramsStore from '@/stores/programsStore';
+import MinimizedWindow from './MinimizedWindow';
 
 export default function MinimizedWindows() {
-    const programs = useProgramsStore(s => s.programs);
 
-    const { restoreProgram } = useProgramsStore();
+    const { programs, minimizedProgramIds } = useProgramsStore();
 
     const minimizedPrograms = Object
         .values(programs)
-        .filter(p => !!p && p.isMinimized);
+        .filter(p => minimizedProgramIds.includes(p.id));
 
     return (
         <>
@@ -18,11 +17,9 @@ export default function MinimizedWindows() {
             )}
 
             {minimizedPrograms.map(program => (
-                <div
+                <MinimizedWindow
                     key={program.id}
-                    id={programPortalTargets.dockPreview(program.id)}
-                    className="h-full aspect-video overflow-hidden rounded-md"
-                    onClick={() => restoreProgram(program.id)}
+                    program={program}
                 />
             ))}
         </>
