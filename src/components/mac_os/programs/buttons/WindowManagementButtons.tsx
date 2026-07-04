@@ -14,7 +14,7 @@ type Props = React.ComponentProps<"div"> & {
 
 export default function WindowManagementButtons({ programId, className, ...props }: Props) {
 
-  const { closeProgram, maximizeProgram, minimizeProgram } = useProgramsStore();
+  const { closeProgram, maximizeProgram, startMinimizeProgram } = useProgramsStore();
 
   return (
     <div
@@ -27,7 +27,7 @@ export default function WindowManagementButtons({ programId, className, ...props
       />
       <MinimizeButton
         onPointerDown={e => e.stopPropagation()}
-        onClick={() => minimizeProgram(programId)}
+        onClick={() => startMinimizeProgram(programId)}
       />
       <MaximizeButton
         onPointerDown={e => e.stopPropagation()}
