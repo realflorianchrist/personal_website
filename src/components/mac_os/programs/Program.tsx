@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { useWindowResize } from "../../../hooks/useWindowResize";
 import { programPortalTargets } from '@/constants/programPortalTargets';
 import cn from '@/utils/cn';
-import { useCalcMinimizeWindowScale } from '@/hooks/useCalcMinimizeWindowScale';
+import { useMinimizeWindow } from '@/hooks/useMinimizeWindow';
 
 type ProgramContextType = {
   programId: ProgramId;
@@ -36,11 +36,12 @@ export default function Program({ children, programId }: Props) {
   const program = useProgramsStore(s => s.programs[programId]);
 
   const {
-    minimizedProgramIds,
+    minimizingProgramsIds,
+    minimizedProgramsIds,
     dragOffset,
     setDragOffset,
     setWindowPosition,
-    openProgramIds,
+    openProgramsIds,
     focusedProgramId,
     focusProgram,
     usableScreenRect
@@ -48,10 +49,13 @@ export default function Program({ children, programId }: Props) {
 
   const { startResize, resize, stopResize } = useWindowResize(programId);
 
-  const minimizeWindowScale = useCalcMinimizeWindowScale(programId);
-  const isMinimized = minimizedProgramIds.includes(programId);
+  const { calcScale, calcTargetPos } = useMinimizeWindow(programId);
 
-  const targetId = isMinimized
+  const isMinimizing = minimizingProgramsIds.includes(programId);
+  const isMinimized = minimizedProgramsIds.includes(programId);
+
+  //TODO: replace
+  const targetId = isMinimizing
     ? programPortalTargets.dockPreview(programId)
     : programPortalTargets.usableScreen;
 
@@ -62,18 +66,22 @@ export default function Program({ children, programId }: Props) {
   if (!program) return null;
 
   const windowClassName = cn(
-    isMinimized
+    //TODO: replace
+    isMinimizing
       ? "relative h-full w-full overflow-hidden rounded-md pointer-events-none"
       : "absolute select-none",
     !isMinimized && focusedProgramId === program?.id && "z-50",
     !isMinimized && focusedProgramId !== program?.id && "z-10"
   );
 
-  const windowStyle: React.CSSProperties = isMinimized
+  const isAnimatingToDock = isMinimizing && calcTargetPos();
+
+  // TODO: replace
+  const windowStyle: React.CSSProperties = isMinimizing
     ? {
       width: program?.windowDimensions.width,
       height: program?.windowDimensions.height,
-      transform: `scale(${minimizeWindowScale})`,
+      transform: `scale(${calcScale()})`,
       transformOrigin: "top left",
     } : {
       width: program?.windowDimensions.width,
@@ -85,7 +93,7 @@ export default function Program({ children, programId }: Props) {
 
   return (
     portalTarget &&
-    openProgramIds.includes(program?.id) &&
+    openProgramsIds.includes(program?.id) &&
     createPortal(
       <ProgramContext.Provider value={{ programId }}>
         <div

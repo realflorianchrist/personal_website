@@ -20,8 +20,9 @@ type ResizeState = {
 
 type ProgramsState = {
   programs: Partial<Record<ProgramId, Program>>;
-  openProgramIds: ProgramId[];
-  minimizedProgramIds: ProgramId[];
+  openProgramsIds: ProgramId[];
+  minimizingProgramsIds: ProgramId[];
+  minimizedProgramsIds: ProgramId[];
   focusedProgramId: ProgramId | null;
   dragOffset: Vec2 | null;
   usableScreenRect: Rect | null;
@@ -41,14 +42,16 @@ type ProgramsState = {
   setWindowDimensions: (id: ProgramId, dimensions: Dim2) => void;
   setResizeState: (state: ResizeState | null) => void;
   maximizeProgram: (id: ProgramId) => void;
-  minimizeProgram: (id: ProgramId) => void;
+  startMinimizeProgram: (id: ProgramId) => void;
+  finishMinimizeProgram: (id: ProgramId) => void;
   restoreProgram: (id: ProgramId) => void;
 };
 
 const useProgramsStore = create<ProgramsState>((set, get) => ({
   programs: {},
-  openProgramIds: ['finder'],
-  minimizedProgramIds: [],
+  openProgramsIds: ['finder'],
+  minimizingProgramsIds: [],
+  minimizedProgramsIds: [],
   focusedProgramId: null,
   dragOffset: null,
   usableScreenRect: null,
@@ -63,10 +66,10 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
     })),
 
   openProgram: (id) => {
-    const { openProgramIds } = get();
+    const { openProgramsIds: openProgramIds } = get();
 
     set({
-      openProgramIds: openProgramIds.includes(id)
+      openProgramsIds: openProgramIds.includes(id)
         ? openProgramIds
         : [...openProgramIds, id],
       focusedProgramId: id
@@ -75,7 +78,7 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
 
   closeProgram: (id) => {
     set({
-      openProgramIds: get().openProgramIds.filter((programId) => programId !== id),
+      openProgramsIds: get().openProgramsIds.filter((programId) => programId !== id),
       focusedProgramId:
         get().focusedProgramId === id ? null : get().focusedProgramId
     });
@@ -151,20 +154,29 @@ const useProgramsStore = create<ProgramsState>((set, get) => ({
 
   setResizeState: (state) => set({ resizeState: state }),
 
-  minimizeProgram: (id) =>
+  startMinimizeProgram: (id) =>
     set(state => ({
-      minimizedProgramIds: state.minimizedProgramIds.includes(id)
-        ? state.minimizedProgramIds
-        : [...state.minimizedProgramIds, id],
+      minimizingProgramsIds: state.minimizingProgramsIds.includes(id)
+        ? state.minimizingProgramsIds
+        : [...state.minimizingProgramsIds, id],
+    })),
+
+  finishMinimizeProgram: (id) =>
+    set(state => ({
+      minimizingProgramsIds: state.minimizingProgramsIds.filter(p => p !== id),
+      minimizedProgramsIds: state.minimizedProgramsIds.includes(id)
+        ? state.minimizedProgramsIds
+        : [...state.minimizedProgramsIds, id],
       focusedProgramId: state.focusedProgramId === id ? null : state.focusedProgramId,
     })),
 
   restoreProgram: (id) =>
     set(state => ({
-      minimizedProgramIds: state.minimizedProgramIds.filter(p => p !== id),
-      openProgramIds: state.openProgramIds.includes(id)
-        ? state.openProgramIds
-        : [...state.openProgramIds, id],
+      minimizingProgramsIds: state.minimizingProgramsIds.filter(p => p !== id),
+      minimizedProgramsIds: state.minimizedProgramsIds.filter(p => p !== id),
+      openProgramsIds: state.openProgramsIds.includes(id)
+        ? state.openProgramsIds
+        : [...state.openProgramsIds, id],
       focusedProgramId: id,
     })),
 

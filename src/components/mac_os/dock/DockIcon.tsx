@@ -10,7 +10,7 @@ export type DockIconProps = {
 
 export default function DockIcon({ program, children }: Readonly<DockIconProps>) {
 
-  const { openProgram, openProgramIds } = useProgramsStore();
+  const { openProgram, openProgramsIds } = useProgramsStore();
 
   return (
     <button
@@ -23,7 +23,7 @@ export default function DockIcon({ program, children }: Readonly<DockIconProps>)
 
       {children}
 
-      {openProgramIds.includes(program.id) && (
+      {openProgramsIds.includes(program.id) && (
         <div className="absolute -bottom-2.5 size-1 bg-gray-400 rounded-full" />
       )}
     </button>

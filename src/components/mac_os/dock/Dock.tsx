@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import cn from "@/utils/cn";
-import MinimizedWindows from '../MinimizedWindows';
+import MinimizedWindows from './MinimizedWindows';
 
 type Props = React.ComponentProps<"div"> & {
   children?: ReactNode;
