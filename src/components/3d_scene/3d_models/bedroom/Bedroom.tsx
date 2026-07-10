@@ -67,6 +67,8 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
         onClick={() => {
           if (!controls) return;
 
+          pauseControls();
+
           const targetPosition = new Vector3(1, 1.105, -1.72);
           const lookAtTarget = new Vector3(1, 1.105, -1.8);
 
@@ -84,7 +86,7 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
             z: lookAtTarget.z,
             duration: 2,
             ease: "power2.inOut",
-            onComplete: () => pauseControls()
+            // onComplete: () => pauseControls()
           });
 
         }}

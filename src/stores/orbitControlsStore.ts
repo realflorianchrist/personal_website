@@ -7,6 +7,7 @@ type OrbitControlsState = {
     rotate: boolean;
     zoom: boolean;
     pan: boolean;
+    minDistance: number;
   };
   setControls: (controls: OrbitControls | null) => void;
   pauseControls: () => void;
@@ -24,13 +25,15 @@ const useOrbitControlsStore = create<OrbitControlsState>((set, get) => ({
       prev: {
         rotate: c.enableRotate,
         zoom: c.enableZoom,
-        pan: c.enablePan
+        pan: c.enablePan,
+        minDistance: c.minDistance,
       }
     });
 
     c.enableRotate = false;
     c.enableZoom = false;
     c.enablePan = false;
+    c.minDistance = 0;
   },
   resumeControls: () => {
     const c = get().controls;
@@ -40,6 +43,7 @@ const useOrbitControlsStore = create<OrbitControlsState>((set, get) => ({
     c.enableRotate = prev.rotate;
     c.enableZoom = prev.zoom;
     c.enablePan = prev.pan;
+    c.minDistance = prev.minDistance;
   }
 }));
 
