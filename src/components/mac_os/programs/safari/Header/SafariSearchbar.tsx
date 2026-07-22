@@ -5,7 +5,7 @@ import { IoMdSearch } from 'react-icons/io';
 export default function SafariSearchbar({
     className,
     ...props
-}: React.ComponentProps<"div">
+}: React.ComponentPropsWithoutRef<"div">
 ) {
 
     const [value, setValue] = useState('');

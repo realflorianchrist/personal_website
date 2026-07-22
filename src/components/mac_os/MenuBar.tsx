@@ -6,7 +6,7 @@ import useProgramsStore from '@/stores/programsStore';
 import cn from '@/utils/cn';
 import LanguageSwitch from './LanguageSwitch';
 
-type Props = React.ComponentProps<"div"> & {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
   children?: ReactNode;
 };
 

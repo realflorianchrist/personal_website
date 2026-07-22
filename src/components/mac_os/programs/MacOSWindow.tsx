@@ -20,7 +20,7 @@ function MacOSWindow(
     children,
     className,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
   return (
@@ -39,7 +39,7 @@ function MacOSWindowSidebarContainer(
     children,
     className,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
   return (
@@ -60,7 +60,7 @@ function MacOSWindowSidebarHeader(
     onPointerDown,
     onPointerUp,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
 
@@ -96,7 +96,7 @@ function MacOSWindowSidebarContent(
     children,
     className,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
   return (
@@ -114,7 +114,7 @@ function MacOSWindowContentContainer(
     children,
     className,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
   return (
@@ -134,7 +134,7 @@ function MacOSWindowContentHeader(
     onPointerDown,
     onPointerUp,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
 
@@ -171,7 +171,7 @@ function MacOSWindowContent(
     children,
     className,
     ...props
-  }: React.ComponentProps<"div"> & {
+  }: React.ComponentPropsWithoutRef<"div"> & {
     children?: ReactNode;
   }) {
   return (

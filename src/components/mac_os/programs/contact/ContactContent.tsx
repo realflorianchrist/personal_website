@@ -2,7 +2,7 @@ import { useI18n } from '@/hooks/useI18n';
 import cn from '@/utils/cn';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiDocumentText, HiEnvelope } from 'react-icons/hi2';
-import { IconType } from 'react-icons/lib';
+import { IconType } from 'react-icons';
 
 const Icon = (props: { type: IconType; }) => {
     const I = props.type;
