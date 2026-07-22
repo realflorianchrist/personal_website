@@ -7,7 +7,7 @@ import MaximizeButton from "@/components/mac_os/programs/buttons/MaximizeButton"
 import useProgramsStore from "@/stores/programsStore";
 import { ProgramId } from "@/types/program";
 
-type Props = React.ComponentProps<"div"> & {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
   children?: ReactNode;
   programId: ProgramId;
 };

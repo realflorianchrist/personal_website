@@ -11,7 +11,7 @@ export default function SafariHeader({
     onPointerDown,
     onPointerUp,
     ...props
-}: React.ComponentProps<"div"> & {
+}: React.ComponentPropsWithoutRef<"div"> & {
     children?: React.ReactNode;
 }) {
 

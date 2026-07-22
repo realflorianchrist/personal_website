@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import cn from "@/utils/cn";
 import MinimizedWindows from './MinimizedWindows';
 
-type Props = React.ComponentProps<"div"> & {
+type Props = React.ComponentPropsWithoutRef<"div"> & {
   children?: ReactNode;
 };
 

@@ -4,7 +4,7 @@ import * as React from 'react';
 export default function Icon({
     className,
     ...props
-}: React.ComponentProps<"div">
+}: React.ComponentPropsWithoutRef<"div">
 ) {
     return (
         <div

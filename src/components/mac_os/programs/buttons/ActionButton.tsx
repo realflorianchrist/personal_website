@@ -1,11 +1,11 @@
 import React from "react";
 import cn from "@/utils/cn";
-import { IconBaseProps, IconType } from "react-icons";
+import type { IconBaseProps, IconType } from "react-icons";
 
-type Props = React.ComponentProps<"button"> & {
+type Props = React.ComponentPropsWithoutRef<"button"> & {
   icon: IconType;
   iconProps?: IconBaseProps;
-}
+};
 
 export default function ActionButton({ className, icon: Icon, iconProps, ...props }: Props) {
 
