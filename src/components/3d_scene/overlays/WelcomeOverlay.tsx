@@ -1,12 +1,12 @@
 "use client";
-
-import { useState } from "react";
+import useOverlayStore from '@/stores/overlayStore';
 import { FaPlay } from 'react-icons/fa';
 
 export default function WelcomeOverlay() {
-    const [visible, setVisible] = useState(true);
 
-    if (!visible) return null;
+    const { isWelcomeOverlayVisible, setIsWelcomeOverlayVisible } = useOverlayStore();
+
+    if (!isWelcomeOverlayVisible) return null;
 
     return (
         <div className="absolute left-4 top-4 z-100 w-90 rounded-2xl border-0.5 border-border bg-gray-500/20 p-4 backdrop-blur-sm">
@@ -24,8 +24,8 @@ export default function WelcomeOverlay() {
             </p>
 
             <button
-                onClick={() => setVisible(false)}
-                className="flex mt-4 ml-auto items-center gap-4 rounded-lg border-0.5 border-border px-3 py-1.5 text-sm transition-colors hover:bg-white/10"
+                onClick={() => setIsWelcomeOverlayVisible(false)}
+                className="flex mt-4 ml-auto items-center gap-4 rounded-lg border-0.5 border-border px-3 py-1.5 text-sm transition-colors hover:bg-white/10 cursor-pointer"
             >
                 Los gehts
                 <FaPlay />

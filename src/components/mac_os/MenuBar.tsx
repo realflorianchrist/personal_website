@@ -28,7 +28,7 @@ export default function MenuBar({ children, className, ...props }: Props) {
         <span className={'font-bold'}>{focusedProgram?.name}</span>
       </div>
 
-      <LanguageSwitch />
+      {/* <LanguageSwitch /> */}
 
       <div className={"ml-auto flex"}>
         <span>{d?.weekday} {d?.datePart}</span>

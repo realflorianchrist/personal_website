@@ -17,11 +17,13 @@ import { useThree } from "@react-three/fiber";
 import { Vector3 } from "three";
 import gsap from "gsap";
 import useOrbitControlsStore from "@/stores/orbitControlsStore";
+import useOverlayStore from '@/stores/overlayStore';
 
 export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
 
   const { camera } = useThree();
   const { controls, pauseControls } = useOrbitControlsStore();
+  const { setIsWelcomeOverlayVisible } = useOverlayStore();
 
   return (
     <group {...props} dispose={null}>
@@ -68,6 +70,7 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
           if (!controls) return;
 
           pauseControls();
+          setIsWelcomeOverlayVisible(false);
 
           const targetPosition = new Vector3(1, 1.105, -1.72);
           const lookAtTarget = new Vector3(1, 1.105, -1.8);
