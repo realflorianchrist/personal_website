@@ -1,10 +1,9 @@
 import { Html } from "@react-three/drei";
 import { JSX } from "react";
-import MacOS from "@/components/mac_os/MacOS";
 
 type Props = JSX.IntrinsicElements["mesh"] & {
   dimensions?: [width?: number, height?: number];
-}
+};
 
 export default function Display({ dimensions = [1, 1], ...props }: Props) {
   const [w = 1, h = 1] = dimensions;

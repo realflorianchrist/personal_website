@@ -11,7 +11,7 @@ export default function Glass({
     return (
         <div
             className={cn(
-                'bg-white/10 backdrop-blur-md',
+                'bg-white/5 backdrop-blur-md border-0.5 border-border',
                 '[backdrop-filter:blur(3px)_url(#glass-distortion)]',
                 '[box-shadow:inset_0_1px_0_gray]',
                 className

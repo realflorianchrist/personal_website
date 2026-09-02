@@ -1,4 +1,4 @@
-import React, { JSX } from "react";
+import React, { JSX, useRef } from "react";
 import Floor from "@/components/3d_scene/3d_models/bedroom/Floor";
 import Wall from "@/components/3d_scene/3d_models/bedroom/Wall";
 import Wardrobe from "@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe";
@@ -14,7 +14,7 @@ import GamingChair from "@/components/3d_scene/3d_models/bedroom/furniture/Gamin
 import Door from "@/components/3d_scene/3d_models/bedroom/Door";
 import WallShelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf";
 import { useThree } from "@react-three/fiber";
-import { Vector3 } from "three";
+import { Group, Vector3 } from "three";
 import gsap from "gsap";
 import useOrbitControlsStore from "@/stores/orbitControlsStore";
 import useOverlayStore from '@/stores/overlayStore';
@@ -24,6 +24,8 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
   const { camera } = useThree();
   const { controls, pauseControls } = useOrbitControlsStore();
   const { setIsWelcomeOverlayVisible } = useOverlayStore();
+
+  const displayRef = useRef<Group>(null);
 
   return (
     <group {...props} dispose={null}>
@@ -66,32 +68,36 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
       />
 
       <MacComputer
+        ref={displayRef}
         onClick={() => {
-          if (!controls) return;
+          if (!controls || !displayRef.current) return;
 
           pauseControls();
           setIsWelcomeOverlayVisible(false);
 
-          const targetPosition = new Vector3(1, 1.105, -1.72);
-          const lookAtTarget = new Vector3(1, 1.105, -1.8);
+          const lookAtTarget = new Vector3();
+
+          displayRef.current.getWorldPosition(lookAtTarget);
+
+          const targetPosition = lookAtTarget
+            .clone()
+            .add(new Vector3(0, 0, 0.27));
 
           gsap.to(camera.position, {
             x: targetPosition.x,
             y: targetPosition.y,
             z: targetPosition.z,
             duration: 2.5,
-            ease: "power2.inOut"
+            ease: "power2.inOut",
           });
 
           gsap.to(controls.target, {
             x: lookAtTarget.x,
             y: lookAtTarget.y,
             z: lookAtTarget.z,
-            duration: 2,
+            duration: 2.5,
             ease: "power2.inOut",
-            // onComplete: () => pauseControls()
           });
-
         }}
         position={[1, 0.72, -1.8]}
       />
