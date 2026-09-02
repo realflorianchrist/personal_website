@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreInitializer from '@/components/store_initializer/StoreInitializer';
+import SvgFilters from '@/components/svg_filters/SvgFilters';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout(
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreInitializer />
+        <SvgFilters />
         <main>
           {children}
         </main>

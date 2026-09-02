@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import cn from "@/utils/cn";
 import MinimizedWindows from './MinimizedWindows';
+import Glass from '@/components/svg_filters/Glass';
 
 type Props = React.ComponentPropsWithoutRef<"div"> & {
   children?: ReactNode;
@@ -8,9 +9,9 @@ type Props = React.ComponentPropsWithoutRef<"div"> & {
 
 export default function Dock({ children, className, ...props }: Props) {
   return (
-    <div
+    <Glass
       id='macos-dock'
-      className={cn("flex items-center h-16 p-3 rounded-2xl bg-gray-500/20 border-0.5 border-border z-100 backdrop-blur-sm",
+      className={cn("flex items-center h-16 p-3 rounded-2xl z-100",
         className)}
       {...props}
     >
@@ -18,6 +19,6 @@ export default function Dock({ children, className, ...props }: Props) {
         {children}
         <MinimizedWindows />
       </div>
-    </div>
+    </Glass>
   );
 }

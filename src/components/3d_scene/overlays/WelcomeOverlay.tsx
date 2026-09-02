@@ -1,4 +1,5 @@
 "use client";
+import Glass from '@/components/svg_filters/Glass';
 import useOverlayStore from '@/stores/overlayStore';
 import { FaPlay } from 'react-icons/fa';
 
@@ -9,7 +10,7 @@ export default function WelcomeOverlay() {
     if (!isWelcomeOverlayVisible) return null;
 
     return (
-        <div className="absolute left-4 top-4 z-100 w-90 rounded-2xl border-0.5 border-border bg-gray-500/20 p-4 backdrop-blur-sm">
+        <Glass className="absolute left-4 top-4 z-100 w-90 rounded-2xl p-4">
             <h2 className="mb-2 text-lg font-semibold">
                 👋 Hi, ich bin Florian.
             </h2>
@@ -30,6 +31,6 @@ export default function WelcomeOverlay() {
                 Los gehts
                 <FaPlay />
             </button>
-        </div>
+        </Glass>
     );
 }
