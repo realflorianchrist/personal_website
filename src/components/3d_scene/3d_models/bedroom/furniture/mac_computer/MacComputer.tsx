@@ -4,8 +4,9 @@ import ProDisplay from "@/components/3d_scene/3d_models/bedroom/furniture/mac_co
 import MacPro from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacPro";
 import MagicMouse from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MagicMouse";
 import Display from "@/components/3d_scene/Display";
+import { ThreeElements } from '@react-three/fiber';
 
-export default function MacComputer({ ref, ...props }: JSX.IntrinsicElements["group"]) {
+export default function MacComputer({ ref, ...props }: ThreeElements["group"]) {
   return (
     <group {...props} dispose={null}>
       <MagicKeyboard />
