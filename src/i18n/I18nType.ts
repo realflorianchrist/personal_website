@@ -1,23 +1,25 @@
 import { ProgramId } from '@/types/program';
 
 export type AboutMeSectionId =
-  | "about"
-  | "skills"
-  | "experience"
-  | "education"
-  | "tech-stack";
+  | 'about'
+  | 'skills'
+  | 'experience'
+  | 'education'
+  | 'tech-stack';
 
 export type AboutMeExperienceItemId =
-  | "softwaredeveloper"
-  | "draftsman"
-  | "bachelor"
-  | "apprenticeship";
+  | 'softwaredeveloperHSLU'
+  | 'softwaredeveloper'
+  | 'draftsman'
+  | 'bachelor'
+  | 'apprenticeship';
 
 export type TechCategoryId =
-  | "frontend"
-  | "backend"
-  | "3d"
-  | "infrastructure";
+  | 'frontend'
+  | 'backend'
+  | '3d'
+  | 'data'
+  | 'infrastructure';
 
 type SectionBase = {
   Id: AboutMeSectionId;
@@ -82,8 +84,8 @@ export type AboutMeI18n = {
   Skills: SectionBase & {
     Frontend: NamedListSection;
     Backend: NamedListSection;
-    DevOps: NamedListSection;
     Other: NamedListSection;
+    DevOps: NamedListSection;
   };
 
   Experience: ListSection<ExperienceItem>;
