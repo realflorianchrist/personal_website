@@ -1,4 +1,4 @@
-import React, { JSX, useRef } from "react";
+import { useRef } from "react";
 import Floor from "@/components/3d_scene/3d_models/bedroom/Floor";
 import Wall from "@/components/3d_scene/3d_models/bedroom/Wall";
 import Wardrobe from "@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe";
@@ -13,33 +13,31 @@ import GlassTable from "@/components/3d_scene/3d_models/bedroom/furniture/GlassT
 import GamingChair from "@/components/3d_scene/3d_models/bedroom/furniture/GamingChair";
 import Door from "@/components/3d_scene/3d_models/bedroom/Door";
 import WallShelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf";
-import { useThree } from "@react-three/fiber";
+import { ThreeElements, useThree } from "@react-three/fiber";
 import { Group, Vector3 } from "three";
 import gsap from "gsap";
-import useOrbitControlsStore from "@/stores/orbitControlsStore";
-import useOverlayStore from '@/stores/overlayStore';
+import useOverlayStore from "@/stores/overlayStore";
+import {
+  getOrbitControls,
+  pauseOrbitControls,
+} from "@/services/orbitControlsService";
 
-export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
-
+export default function Bedroom(props: Readonly<ThreeElements["group"]>) {
   const { camera } = useThree();
-  const { controls, pauseControls } = useOrbitControlsStore();
-  const { setIsWelcomeOverlayVisible } = useOverlayStore();
 
-  const displayRef = useRef<Group>(null);
+  const setIsWelcomeOverlayVisible = useOverlayStore(
+    (state) => state.setIsWelcomeOverlayVisible,
+  );
+
+  const displayRef = useRef<Group | null>(null);
 
   return (
     <group {...props} dispose={null}>
       <Floor width={5.5} depth={4.5} />
 
-      <Wall
-        dim={[5.5, 2.5, 0.2]}
-        position={[0, 1.25, -2.35]}
-      />
+      <Wall dim={[5.5, 2.5, 0.2]} position={[0, 1.25, -2.35]} />
 
-      <Door
-        scale={[-1, 1, 1]}
-        position={[2.23, 0, -2.32]}
-      />
+      <Door scale={[-1, 1, 1]} position={[2.23, 0, -2.32]} />
 
       <Wall
         dim={[4.7, 2.5, 0.2]}
@@ -47,14 +45,9 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
         position={[2.85, 1.25, -0.1]}
       />
 
-      <Wardrobe
-        scale={[1.6, 0.95, 1.2]}
-        position={[-1.3, 0, -1.82]}
-      />
+      <Wardrobe scale={[1.6, 0.95, 1.2]} position={[-1.3, 0, -1.82]} />
 
-      <WallShelf
-        position={[0.85, 1.8, -2.14]}
-      />
+      <WallShelf position={[0.85, 1.8, -2.14]} />
 
       <Desk
         rotation={[0, -Math.PI / 2, 0]}
@@ -62,17 +55,17 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
         position={[2.75, 0, -1.95]}
       />
 
-      <GamingChair
-        rotation={[0, -Math.PI / 3, 0]}
-        position={[1.5, 0, -1.3]}
-      />
+      <GamingChair rotation={[0, -Math.PI / 3, 0]} position={[1.5, 0, -1.3]} />
 
       <MacComputer
         ref={displayRef}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
+          const controls = getOrbitControls();
+
           if (!controls || !displayRef.current) return;
 
-          pauseControls();
+          pauseOrbitControls();
           setIsWelcomeOverlayVisible(false);
 
           const lookAtTarget = new Vector3();
@@ -83,21 +76,31 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
             .clone()
             .add(new Vector3(0, 0, 0.27));
 
-          gsap.to(camera.position, {
-            x: targetPosition.x,
-            y: targetPosition.y,
-            z: targetPosition.z,
-            duration: 2.5,
-            ease: "power2.inOut",
-          });
+          const timeline = gsap.timeline();
 
-          gsap.to(controls.target, {
-            x: lookAtTarget.x,
-            y: lookAtTarget.y,
-            z: lookAtTarget.z,
-            duration: 2.5,
-            ease: "power2.inOut",
-          });
+          timeline.to(
+            camera.position,
+            {
+              x: targetPosition.x,
+              y: targetPosition.y,
+              z: targetPosition.z,
+              duration: 2.5,
+              ease: "power2.inOut",
+            },
+            0,
+          );
+
+          timeline.to(
+            controls.target,
+            {
+              x: lookAtTarget.x,
+              y: lookAtTarget.y,
+              z: lookAtTarget.z,
+              duration: 2.5,
+              ease: "power2.inOut",
+            },
+            0,
+          );
         }}
         position={[1, 0.72, -1.8]}
       />
@@ -108,29 +111,19 @@ export default function Bedroom(props: JSX.IntrinsicElements["group"]) {
         position={[0, 0, 1.18]}
       />
 
-      <Keyboard
-        rotation={[0, Math.PI, 0]}
-        position={[-1.9, 0, 2]}
-      />
+      <Keyboard rotation={[0, Math.PI, 0]} position={[-1.9, 0, 2]} />
 
-      <Stool
-        position={[-1.9, 0, 1.5]}
-      />
+      <Stool position={[-1.9, 0, 1.5]} />
 
-      <BookShelf
-        position={[2.55, 0, 0.7]}
-      />
+      <BookShelf position={[2.55, 0, 0.7]} />
 
       <TV
         scale={0.012}
-        rotation={[0, Math.PI * 3 / 4, 0]}
+        rotation={[0, (Math.PI * 3) / 4, 0]}
         position={[2.7, 0.7, 1.45]}
       />
 
-      <GlassTable
-        scale={0.3}
-        position={[1.7, 0, 1.5]}
-      />
+      <GlassTable scale={0.3} position={[1.7, 0, 1.5]} />
     </group>
   );
 }

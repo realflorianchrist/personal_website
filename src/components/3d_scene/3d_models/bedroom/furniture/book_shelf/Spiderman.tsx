@@ -1,8 +1,9 @@
 import * as THREE from "three";
-import React, { JSX, useRef } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -34,9 +35,11 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
+export default function Spiderman(props: ThreeElements["group"]) {
   const group = useRef<THREE.Group>(null);
-  const { nodes, materials } = useGLTF(modelUrls.spiderman) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    modelUrls.spiderman,
+  ) as unknown as GLTFResult;
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene" scale={0.02}>
@@ -48,7 +51,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="Base_base_0"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_5"
                     castShadow
@@ -61,7 +65,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="BRAZOS_y_torso001_1"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_7"
                     castShadow
@@ -81,7 +86,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="Cabeza_cabeza_2"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_10"
                     castShadow
@@ -94,7 +100,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="camara_3"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_12"
                     castShadow
@@ -107,7 +114,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="EXT_BRAZOS_Iron-Spider_con_lineas_versiontreas001_4"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_14"
                     castShadow
@@ -127,7 +135,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="FunkoPopBox_(1)_5"
                   position={[-0.382, 1.686, -0.151]}
                   rotation={[Math.PI / 2, 0, 0.006]}
-                  scale={1.176}>
+                  scale={1.176}
+                >
                   <mesh
                     name="Object_17"
                     castShadow
@@ -147,7 +156,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="Ladrillos_Cube001_6"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_20"
                     castShadow
@@ -160,7 +170,8 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                   name="mano_Cuerpo_BERLIN_Funko_sin_lineas_v3002_7"
                   position={[0.004, 1.63, 0.07]}
                   rotation={[Math.PI / 2, 0, 0]}
-                  scale={0.763}>
+                  scale={0.763}
+                >
                   <mesh
                     name="Object_22"
                     castShadow
@@ -194,7 +205,11 @@ export default function Spiderman(props: JSX.IntrinsicElements["group"]) {
                     material={materials.acetato}
                   />
                 </group>
-                <group name="Plane010_10" rotation={[Math.PI / 2, 0, 0]} scale={0.64}>
+                <group
+                  name="Plane010_10"
+                  rotation={[Math.PI / 2, 0, 0]}
+                  scale={0.64}
+                >
                   <mesh
                     name="Object_29"
                     castShadow

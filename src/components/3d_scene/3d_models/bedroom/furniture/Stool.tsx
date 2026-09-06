@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -17,11 +17,17 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Stool(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.stool) as unknown as GLTFResult;
+export default function Stool(props: Readonly<ThreeElements["group"]>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.stool,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <group scale={0.12} position={[0, 0.32, 0]} rotation={[0.129, 1.002, -0.109]}>
+      <group
+        scale={0.12}
+        position={[0, 0.32, 0]}
+        rotation={[0.129, 1.002, -0.109]}
+      >
         <mesh
           castShadow
           receiveShadow

@@ -1,9 +1,10 @@
-import { JSX, useEffect } from "react";
+import { useEffect } from "react";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
+import { ThreeElements } from "@react-three/fiber";
 
-type ModelProps = JSX.IntrinsicElements["mesh"] & {
-  dim?: [width?: number, height?: number, depth?: number]
+type ModelProps = ThreeElements["mesh"] & {
+  dim?: [width?: number, height?: number, depth?: number];
 };
 
 export default function Wall({ dim, ...props }: ModelProps) {
@@ -17,9 +18,7 @@ export default function Wall({ dim, ...props }: ModelProps) {
   }, []);
 
   return (
-    <mesh
-      {...props}
-    >
+    <mesh {...props}>
       <boxGeometry args={dim} />
       <meshStandardMaterial map={texture} />
     </mesh>

@@ -1,9 +1,5 @@
-import * as React from 'react';
+import Glass from '@/components/svg_filters/Glass';
 
 export default function MacOverlay() {
-    return (
-        <div>
-
-        </div>
-    );
+  return <Glass>Erfahre mehr über mich und meine Projekte.</Glass>;
 }

@@ -1,7 +1,7 @@
-import { Html } from "@react-three/drei";
-import { JSX } from "react";
+import { Html } from '@react-three/drei';
+import { ThreeElements } from '@react-three/fiber';
 
-type Props = JSX.IntrinsicElements["mesh"] & {
+type Props = ThreeElements['mesh'] & {
   dimensions?: [width?: number, height?: number];
 };
 
@@ -19,14 +19,14 @@ export default function Display({ dimensions = [1, 1], ...props }: Props) {
         center
         distanceFactor={1}
         scale={1 / scale}
-        className={"overflow-hidden bg-transparent"}
+        className={'overflow-hidden bg-transparent'}
       >
         <iframe
-          src="/macos"
-          title={"MacOS"}
+          src='/macos'
+          title={'MacOS'}
           style={{
             width: `${w * pixelsPerUnit * scale}px`,
-            height: `${h * pixelsPerUnit * scale}px`
+            height: `${h * pixelsPerUnit * scale}px`,
           }}
         />
       </Html>

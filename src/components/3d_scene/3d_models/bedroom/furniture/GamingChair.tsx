@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -31,12 +31,18 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function GamingChair(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.gamingChair) as unknown as GLTFResult;
+export default function GamingChair(props: Readonly<ThreeElements["group"]>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.gamingChair,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={0.0025} position={[0, -0.085, 0]}>
-        <group position={[0.447, 347.716, -16.46]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+        <group
+          position={[0.447, 347.716, -16.46]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={100}
+        >
           <mesh
             castShadow
             receiveShadow
@@ -50,7 +56,11 @@ export default function GamingChair(props: JSX.IntrinsicElements["group"]) {
             material={materials["Material.001"]}
           />
         </group>
-        <group position={[0.447, 207.526, 71.017]} rotation={[-Math.PI / 2, 0, 0]} scale={83.559}>
+        <group
+          position={[0.447, 207.526, 71.017]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={83.559}
+        >
           <mesh
             castShadow
             receiveShadow

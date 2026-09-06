@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,7 +18,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Desk(props: JSX.IntrinsicElements["group"]) {
+export default function Desk(props: Readonly<ThreeElements["group"]>) {
   const { nodes, materials } = useGLTF(modelUrls.desk) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -32,17 +32,9 @@ export default function Desk(props: JSX.IntrinsicElements["group"]) {
         {/*  rotation={[-Math.PI / 2, 0, 0]}*/}
         {/*  scale={[94.663, 194.069, 5.807]}*/}
         {/*/>*/}
-        <mesh
-          castShadow
-          receiveShadow
-          position={[3, 2.5, -475.984]}
-        >
+        <mesh castShadow receiveShadow position={[3, 2.5, -475.984]}>
           <boxGeometry args={[180, 5, 420]} />
-          <meshStandardMaterial
-            color="black"
-            transparent
-            opacity={0.6}
-          />
+          <meshStandardMaterial color="black" transparent opacity={0.6} />
         </mesh>
         <mesh
           castShadow
@@ -52,11 +44,7 @@ export default function Desk(props: JSX.IntrinsicElements["group"]) {
           position={[2.907, -71.93, -271.306]}
           scale={[88.732, 72.824, 100]}
         >
-          <meshStandardMaterial
-            color="#aaaaaa"
-            metalness={1}
-            roughness={0}
-          />
+          <meshStandardMaterial color="#aaaaaa" metalness={1} roughness={0} />
         </mesh>
         {/*<mesh*/}
         {/*  castShadow*/}
