@@ -1,28 +1,29 @@
-import { useRef } from "react";
-import Floor from "@/components/3d_scene/3d_models/bedroom/Floor";
-import Wall from "@/components/3d_scene/3d_models/bedroom/Wall";
-import Wardrobe from "@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe";
-import Desk from "@/components/3d_scene/3d_models/bedroom/furniture/Desk";
-import MacComputer from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacComputer";
-import Bed from "@/components/3d_scene/3d_models/bedroom/furniture/Bed";
-import Keyboard from "@/components/3d_scene/3d_models/bedroom/furniture/Keyboard";
-import Stool from "@/components/3d_scene/3d_models/bedroom/furniture/Stool";
-import BookShelf from "@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/BookShelf";
-import TV from "@/components/3d_scene/3d_models/bedroom/furniture/TV";
-import GlassTable from "@/components/3d_scene/3d_models/bedroom/furniture/GlassTable";
-import GamingChair from "@/components/3d_scene/3d_models/bedroom/furniture/GamingChair";
-import Door from "@/components/3d_scene/3d_models/bedroom/Door";
-import WallShelf from "@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf";
-import { ThreeElements, useThree } from "@react-three/fiber";
-import { Group, Vector3 } from "three";
-import gsap from "gsap";
-import useOverlayStore from "@/stores/overlayStore";
+import Door from '@/components/3d_scene/3d_models/bedroom/Door';
+import Floor from '@/components/3d_scene/3d_models/bedroom/Floor';
+import Wall from '@/components/3d_scene/3d_models/bedroom/Wall';
+import Bed from '@/components/3d_scene/3d_models/bedroom/furniture/Bed';
+import Desk from '@/components/3d_scene/3d_models/bedroom/furniture/Desk';
+import GamingChair from '@/components/3d_scene/3d_models/bedroom/furniture/GamingChair';
+import GlassTable from '@/components/3d_scene/3d_models/bedroom/furniture/GlassTable';
+import Keyboard from '@/components/3d_scene/3d_models/bedroom/furniture/Keyboard';
+import Stool from '@/components/3d_scene/3d_models/bedroom/furniture/Stool';
+import TV from '@/components/3d_scene/3d_models/bedroom/furniture/TV';
+import Wardrobe from '@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe';
+import BookShelf from '@/components/3d_scene/3d_models/bedroom/furniture/book_shelf/BookShelf';
+import MacComputer from '@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacComputer';
+import WallShelf from '@/components/3d_scene/3d_models/bedroom/furniture/wall_shelf/WallShelf';
 import {
   getOrbitControls,
   pauseOrbitControls,
-} from "@/services/orbitControlsService";
+} from '@/services/orbitControlsService';
+import useOverlayStore from '@/stores/overlayStore';
+import { ThreeElements, useThree } from '@react-three/fiber';
+import gsap from 'gsap';
+import { useRef } from 'react';
+import { Group, Vector3 } from 'three';
+import MacOverlay from '../../overlays/MacOverlay';
 
-export default function Bedroom(props: Readonly<ThreeElements["group"]>) {
+export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   const { camera } = useThree();
 
   const setIsWelcomeOverlayVisible = useOverlayStore(
@@ -30,6 +31,47 @@ export default function Bedroom(props: Readonly<ThreeElements["group"]>) {
   );
 
   const displayRef = useRef<Group | null>(null);
+
+  const zoomToMacOS = () => {
+    const controls = getOrbitControls();
+
+    if (!controls || !displayRef.current) return;
+
+    pauseOrbitControls();
+    setIsWelcomeOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+
+    displayRef.current.getWorldPosition(lookAtTarget);
+
+    const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0, 0.27));
+
+    const timeline = gsap.timeline();
+
+    timeline.to(
+      camera.position,
+      {
+        x: targetPosition.x,
+        y: targetPosition.y,
+        z: targetPosition.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+
+    timeline.to(
+      controls.target,
+      {
+        x: lookAtTarget.x,
+        y: lookAtTarget.y,
+        z: lookAtTarget.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+  };
 
   return (
     <group {...props} dispose={null}>
@@ -57,53 +99,16 @@ export default function Bedroom(props: Readonly<ThreeElements["group"]>) {
 
       <GamingChair rotation={[0, -Math.PI / 3, 0]} position={[1.5, 0, -1.3]} />
 
-      <MacComputer
-        ref={displayRef}
-        onClick={(e) => {
-          e.stopPropagation();
-          const controls = getOrbitControls();
-
-          if (!controls || !displayRef.current) return;
-
-          pauseOrbitControls();
-          setIsWelcomeOverlayVisible(false);
-
-          const lookAtTarget = new Vector3();
-
-          displayRef.current.getWorldPosition(lookAtTarget);
-
-          const targetPosition = lookAtTarget
-            .clone()
-            .add(new Vector3(0, 0, 0.27));
-
-          const timeline = gsap.timeline();
-
-          timeline.to(
-            camera.position,
-            {
-              x: targetPosition.x,
-              y: targetPosition.y,
-              z: targetPosition.z,
-              duration: 2.5,
-              ease: "power2.inOut",
-            },
-            0,
-          );
-
-          timeline.to(
-            controls.target,
-            {
-              x: lookAtTarget.x,
-              y: lookAtTarget.y,
-              z: lookAtTarget.z,
-              duration: 2.5,
-              ease: "power2.inOut",
-            },
-            0,
-          );
-        }}
-        position={[1, 0.72, -1.8]}
-      />
+      <group position={[1, 0.72, -1.8]}>
+        <MacComputer ref={displayRef} />
+        <MacOverlay
+          position={[-0.2, 0.3, 0.5]}
+          onOverlayClick={(e) => {
+            e.stopPropagation();
+            zoomToMacOS();
+          }}
+        />
+      </group>
 
       <Bed
         scale={[0.85, 1.25, 1.1]}

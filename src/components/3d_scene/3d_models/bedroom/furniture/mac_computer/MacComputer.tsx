@@ -1,14 +1,14 @@
-import MagicKeyboard from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MagicKeyboard";
-import ProDisplay from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/ProDisplay";
-import MacPro from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacPro";
-import MagicMouse from "@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MagicMouse";
-import Display from "@/components/3d_scene/Display";
-import { ThreeElements } from "@react-three/fiber";
+import MacPro from '@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MacPro';
+import MagicKeyboard from '@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MagicKeyboard';
+import MagicMouse from '@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/MagicMouse';
+import ProDisplay from '@/components/3d_scene/3d_models/bedroom/furniture/mac_computer/ProDisplay';
+import Display from '@/components/3d_scene/overlays/Display';
+import { ThreeElements } from '@react-three/fiber';
 
 export default function MacComputer({
   ref,
   ...props
-}: Readonly<ThreeElements["group"]>) {
+}: Readonly<ThreeElements['group']>) {
   return (
     <group {...props} dispose={null}>
       <MagicKeyboard />
