@@ -1,38 +1,45 @@
-"use client";
-import React, { ReactNode } from 'react';
-import { FaApple } from 'react-icons/fa';
+'use client';
 import { useDate } from '@/hooks/useDate';
 import useProgramsStore from '@/stores/programsStore';
 import cn from '@/utils/cn';
+import React, { ReactNode } from 'react';
+import { FaApple } from 'react-icons/fa';
 import LanguageSwitch from './LanguageSwitch';
 
-type Props = React.ComponentPropsWithoutRef<"div"> & {
+type Props = React.ComponentPropsWithoutRef<'div'> & {
   children?: ReactNode;
 };
 
 export default function MenuBar({ children, className, ...props }: Props) {
-
   const { focusedProgramId } = useProgramsStore();
 
   const d = useDate();
 
-  const focusedProgram = useProgramsStore(s =>
-    Object.values(s.programs).find(p => p.id === focusedProgramId));
+  const focusedProgram = useProgramsStore((s) =>
+    Object.values(s.programs).find((p) => p.id === focusedProgramId),
+  );
 
   return (
-    <div className={cn("flex w-full text-sm items-center px-4 py-2 select-none", className)}
+    <div
+      className={cn(
+        'flex w-full text-sm items-center px-4 py-2 select-none',
+        className,
+      )}
       {...props}
     >
-      <div className={"flex gap-4"}>
+      <div className={'flex gap-4'}>
         <FaApple size={20} />
-        <span className={'font-bold'}>{focusedProgram?.name}</span>
+        {focusedProgram && (
+          <span className={'font-bold'}>{focusedProgram?.name}</span>
+        )}
+        <LanguageSwitch />
       </div>
 
-      {/* <LanguageSwitch /> */}
-
-      <div className={"ml-auto flex"}>
-        <span>{d?.weekday} {d?.datePart}</span>
-        <span className={"ml-2"}>{d?.time}</span>
+      <div className={'ml-auto flex'}>
+        <span>
+          {d?.weekday} {d?.datePart}
+        </span>
+        <span className={'ml-2'}>{d?.time}</span>
       </div>
     </div>
   );

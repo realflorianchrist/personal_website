@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -40,8 +40,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Obito(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.obito) as unknown as GLTFResult;
+export default function Obito(props: Readonly<ThreeElements["group"]>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.obito,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={0.075} position={[0, 0.16, 0]}>
@@ -113,7 +115,8 @@ export default function Obito(props: JSX.IntrinsicElements["group"]) {
         <group
           position={[0.496, -2.459, 0.414]}
           rotation={[-Math.PI, 0, 0]}
-          scale={[-0.085, 0.085, 0.085]}>
+          scale={[-0.085, 0.085, 0.085]}
+        >
           <mesh
             castShadow
             receiveShadow

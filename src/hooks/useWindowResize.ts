@@ -1,24 +1,21 @@
-import { ResizeHandleType, resizeHandles } from "@/components/mac_os/programs/ResizeHandle";
-import useProgramsStore, { } from "@/stores/programsStore";
-import { MIN_WINDOW_SIZE, MAX_WINDOW_SIZE } from '@/constants/windowSize';
-import React from "react";
-import { ProgramId } from "@/types/program";
+import {
+  ResizeHandleType,
+  resizeHandles,
+} from '@/components/mac_os/programs/ResizeHandle';
+import { MAX_WINDOW_SIZE, MIN_WINDOW_SIZE } from '@/constants/windowSize';
+import useProgramsStore from '@/stores/programsStore';
+import { ProgramId } from '@/types/program';
 import { clamp } from 'gsap/all';
+import React from 'react';
 
-export const useWindowResize = (
-  programId: ProgramId
-) => {
-
+export const useWindowResize = (programId: ProgramId) => {
   const startResize = (
     type: ResizeHandleType,
-    e: React.PointerEvent<HTMLDivElement>
+    e: React.PointerEvent<HTMLDivElement>,
   ) => {
     e.stopPropagation();
 
-    const {
-      programs,
-      setResizeState
-    } = useProgramsStore.getState();
+    const { programs, setResizeState } = useProgramsStore.getState();
 
     const program = programs[programId];
 
@@ -35,7 +32,7 @@ export const useWindowResize = (
       startHeight: program.windowDimensions.height,
 
       startX: program.windowPosition.x,
-      startY: program.windowPosition.y
+      startY: program.windowPosition.y,
     });
 
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -73,28 +70,20 @@ export const useWindowResize = (
       const desiredWidth = resizeState.startWidth + dx;
       const maxAllowedWidth = Math.min(
         MAX_WINDOW_SIZE.width,
-        maxWidth - resizeState.startX
+        maxWidth - resizeState.startX,
       );
 
-      width = clamp(
-        MIN_WINDOW_SIZE.width,
-        maxAllowedWidth,
-        desiredWidth
-      );
+      width = clamp(MIN_WINDOW_SIZE.width, maxAllowedWidth, desiredWidth);
     }
 
     if (handle.resizeX < 0) {
       const desiredWidth = resizeState.startWidth - dx;
       const maxAllowedWidth = Math.min(
         MAX_WINDOW_SIZE.width,
-        resizeState.startWidth + resizeState.startX
+        resizeState.startWidth + resizeState.startX,
       );
 
-      width = clamp(
-        MIN_WINDOW_SIZE.width,
-        maxAllowedWidth,
-        desiredWidth
-      );
+      width = clamp(MIN_WINDOW_SIZE.width, maxAllowedWidth, desiredWidth);
 
       x = resizeState.startX + (resizeState.startWidth - width);
     }
@@ -103,28 +92,20 @@ export const useWindowResize = (
       const desiredHeight = resizeState.startHeight + dy;
       const maxAllowedHeight = Math.min(
         MAX_WINDOW_SIZE.height,
-        maxHeight - resizeState.startY
+        maxHeight - resizeState.startY,
       );
 
-      height = clamp(
-        MIN_WINDOW_SIZE.height,
-        maxAllowedHeight,
-        desiredHeight
-      );
+      height = clamp(MIN_WINDOW_SIZE.height, maxAllowedHeight, desiredHeight);
     }
 
     if (handle.resizeY < 0) {
       const desiredHeight = resizeState.startHeight - dy;
       const maxAllowedHeight = Math.min(
         MAX_WINDOW_SIZE.height,
-        resizeState.startHeight + resizeState.startY
+        resizeState.startHeight + resizeState.startY,
       );
 
-      height = clamp(
-        MIN_WINDOW_SIZE.height,
-        maxAllowedHeight,
-        desiredHeight
-      );
+      height = clamp(MIN_WINDOW_SIZE.height, maxAllowedHeight, desiredHeight);
 
       y = resizeState.startY + (resizeState.startHeight - height);
     }
@@ -133,10 +114,7 @@ export const useWindowResize = (
     setWindowPosition(programId, { x, y });
   };
 
-  const stopResize = (
-    e: React.PointerEvent<HTMLDivElement>
-  ) => {
-
+  const stopResize = (e: React.PointerEvent<HTMLDivElement>) => {
     useProgramsStore.getState().setResizeState(null);
 
     e.currentTarget.releasePointerCapture(e.pointerId);

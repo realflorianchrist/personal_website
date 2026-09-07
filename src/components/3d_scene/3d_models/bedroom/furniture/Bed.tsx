@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -13,7 +13,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Bed(props: JSX.IntrinsicElements["group"]) {
+export default function Bed(props: Readonly<ThreeElements["group"]>) {
   const { nodes, materials } = useGLTF(modelUrls.bed) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>

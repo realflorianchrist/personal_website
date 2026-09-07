@@ -1,8 +1,8 @@
-import * as THREE from "three";
-import React, { JSX } from "react";
-import { useGLTF } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
-import modelUrls from "@/constants/modelUrls";
+import modelUrls from '@/constants/modelUrls';
+import { useGLTF } from '@react-three/drei';
+import { ThreeElements } from '@react-three/fiber';
+import * as THREE from 'three';
+import { GLTF } from 'three-stdlib';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
     Keys: THREE.MeshStandardMaterial;
     Caps_Lock: THREE.MeshStandardMaterial;
     Caps_Lock_Glass: THREE.MeshStandardMaterial;
-    ["Material.001"]: THREE.MeshStandardMaterial;
+    ['Material.001']: THREE.MeshStandardMaterial;
     Material: THREE.MeshStandardMaterial;
     Body: THREE.MeshStandardMaterial;
     Port: THREE.MeshStandardMaterial;
@@ -27,8 +27,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function MagicKeyboard(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.magicKeyboard) as unknown as GLTFResult;
+export default function MagicKeyboard(props: Readonly<ThreeElements['group']>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.magicKeyboard,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={0.1}>
@@ -55,7 +57,8 @@ export default function MagicKeyboard(props: JSX.IntrinsicElements["group"]) {
         <group
           position={[-2.05, 0.007, -0.681]}
           rotation={[-Math.PI, 0, 0]}
-          scale={[-0.291, 0.015, 0.005]}>
+          scale={[-0.291, 0.015, 0.005]}
+        >
           <mesh
             castShadow
             receiveShadow
@@ -85,7 +88,7 @@ export default function MagicKeyboard(props: JSX.IntrinsicElements["group"]) {
           castShadow
           receiveShadow
           geometry={nodes.Object_8.geometry}
-          material={materials["Material.001"]}
+          material={materials['Material.001']}
           position={[0.08, -0.012, 0.031]}
           scale={[0.767, 1, 0.679]}
         />

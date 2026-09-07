@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -64,11 +64,17 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Itachi(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.itachi) as unknown as GLTFResult;
+export default function Itachi(props: Readonly<ThreeElements["group"]>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.itachi,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
-      <group position={[0, 0.16, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.075}>
+      <group
+        position={[0, 0.16, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.075}
+      >
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[0.007, 0.246, 0.005]}>
             <mesh
@@ -90,7 +96,11 @@ export default function Itachi(props: JSX.IntrinsicElements["group"]) {
               material={materials.Black_suit}
             />
           </group>
-          <group position={[-0.002, 1.373, 0.224]} rotation={[0.446, 0, 0]} scale={0.043}>
+          <group
+            position={[-0.002, 1.373, 0.224]}
+            rotation={[0.446, 0, 0]}
+            scale={0.043}
+          >
             <mesh
               castShadow
               receiveShadow
@@ -113,7 +123,8 @@ export default function Itachi(props: JSX.IntrinsicElements["group"]) {
           <group
             position={[-0.003, 1.503, -0.004]}
             rotation={[0.364, 0, -Math.PI]}
-            scale={[-0.27, 0.042, 0.27]}>
+            scale={[-0.27, 0.042, 0.27]}
+          >
             <mesh
               castShadow
               receiveShadow
@@ -127,7 +138,10 @@ export default function Itachi(props: JSX.IntrinsicElements["group"]) {
               material={materials.Metallo_collana}
             />
           </group>
-          <group position={[-0.024, 1.892, 0.339]} scale={[0.158, 0.059, 0.059]}>
+          <group
+            position={[-0.024, 1.892, 0.339]}
+            scale={[0.158, 0.059, 0.059]}
+          >
             <mesh
               castShadow
               receiveShadow
@@ -144,7 +158,8 @@ export default function Itachi(props: JSX.IntrinsicElements["group"]) {
           <group
             position={[0.496, -2.459, 0.414]}
             rotation={[-Math.PI, 0, 0]}
-            scale={[-0.085, 0.085, 0.085]}>
+            scale={[-0.085, 0.085, 0.085]}
+          >
             <mesh
               castShadow
               receiveShadow

@@ -1,25 +1,29 @@
-"use client";
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import Scene from "@/components/3d_scene/Scene";
-import { OrbitControls } from "@react-three/drei";
-import CanvasLoader from "@/components/3d_scene/CanvasLoader/CanvasLoader";
-import useOrbitControlsStore from "@/stores/orbitControlsStore";
+'use client';
+import CanvasLoader from '@/components/3d_scene/CanvasLoader/CanvasLoader';
+import Scene from '@/components/3d_scene/Scene';
+import { setOrbitControls } from '@/services/orbitControlsService';
+import { OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Suspense, useCallback } from 'react';
+import type { OrbitControls as Controls } from 'three-stdlib';
 import WelcomeOverlay from './overlays/WelcomeOverlay';
 
 export default function SceneCanvas() {
-
-  const { setControls } = useOrbitControlsStore();
+  const handleControlsRef = useCallback((controls: Controls | null) => {
+    setOrbitControls(controls);
+  }, []);
 
   return (
-    <div className={"w-screen h-screen"}>
+    <div className={'w-screen h-screen'}>
       <WelcomeOverlay />
-      <Canvas camera={{
-        position: [-3, 3, 3]
-      }}>
+      <Canvas
+        camera={{
+          position: [-3, 3, 3],
+        }}
+      >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
-            ref={(ref) => setControls(ref)}
+            ref={handleControlsRef}
             minDistance={2}
             maxDistance={6}
             minPolarAngle={Math.PI / 4}

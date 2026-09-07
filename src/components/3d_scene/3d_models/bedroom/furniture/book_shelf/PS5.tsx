@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -25,7 +25,7 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function PS5(props: JSX.IntrinsicElements["group"]) {
+export default function PS5(props: Readonly<ThreeElements["group"]>) {
   const { nodes, materials } = useGLTF(modelUrls.ps5) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -46,7 +46,10 @@ export default function PS5(props: JSX.IntrinsicElements["group"]) {
             />
           </group>
         </group>
-        <group position={[-17.039, 4.926, 20.302]} rotation={[0, -Math.PI / 2, 0]}>
+        <group
+          position={[-17.039, 4.926, 20.302]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
           <mesh
             castShadow
             receiveShadow

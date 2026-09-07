@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import React, { JSX, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import modelUrls from "@/constants/modelUrls";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -41,8 +41,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function ProDisplay(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF(modelUrls.proDisplay) as unknown as GLTFResult;
+export default function ProDisplay(props: Readonly<ThreeElements["group"]>) {
+  const { nodes, materials } = useGLTF(
+    modelUrls.proDisplay,
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <group scale={0.01} position={[0, 0.385, 0]}>
