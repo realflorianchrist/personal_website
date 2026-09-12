@@ -5,12 +5,12 @@ export default function GlassFilter() {
         <filter id='glass-distortion'>
           <feTurbulence
             type='fractalNoise'
-            baseFrequency='0.01'
+            baseFrequency='0.005'
             numOctaves='2'
             result='noise'
           />
 
-          <feDisplacementMap in='SourceGraphic' in2='noise' scale='20' />
+          <feDisplacementMap in='SourceGraphic' in2='noise' scale='15' />
         </filter>
       </defs>
     </svg>
