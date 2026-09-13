@@ -1,10 +1,9 @@
-import * as React from 'react';
-
+import WorkCanvas from './WorkCanvas';
 
 export default function SafariContent() {
-    return (
-        <div className='h-full w-full bg-red-300'>
-            in development
-        </div>
-    );
+  return (
+    <div className='h-full w-full'>
+      <WorkCanvas />
+    </div>
+  );
 }

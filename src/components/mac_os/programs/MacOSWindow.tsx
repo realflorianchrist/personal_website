@@ -25,7 +25,7 @@ function MacOSWindow({
   return (
     <Glass
       className={cn(
-        'flex w-full h-full bg-popover/97 border-0.5 border-border rounded-3xl overflow-hidden p-2 shadow-xl shadow-black/60',
+        'flex w-full h-full bg-popover/97 border-0.5 border-border rounded-3xl overflow-hidden p-2 pr-0.5 shadow-xl shadow-black/60',
         className,
       )}
       {...props}
@@ -171,7 +171,10 @@ function MacOSWindowContent({
 }) {
   return (
     <div
-      className={cn('flex flex-1 p-3 text-sm overflow-auto', className)}
+      className={cn(
+        'flex flex-1 p-3 text-sm overflow-auto mac-scroll',
+        className,
+      )}
       {...props}
     >
       {children}

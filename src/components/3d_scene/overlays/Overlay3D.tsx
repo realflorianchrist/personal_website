@@ -9,6 +9,8 @@ export type Overlay3DProps = ThreeElements['group'] & {
   htmlScale?: number;
   htmlProps?: DreiHtmlProps;
   onOverlayClick?: React.MouseEventHandler<HTMLDivElement>;
+  onPointerOverOverlay?: React.MouseEventHandler<HTMLDivElement>;
+  onPointerOutOverlay?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export default function Overlay3D({
@@ -17,6 +19,8 @@ export default function Overlay3D({
   htmlProps,
   children,
   onOverlayClick,
+  onPointerOverOverlay,
+  onPointerOutOverlay,
   ...props
 }: Overlay3DProps) {
   const [w = 1, h = 1] = dimensions;
@@ -41,6 +45,8 @@ export default function Overlay3D({
             height: `${(h * pixelsPerUnit) / htmlScale}px`,
           }}
           onClick={onOverlayClick}
+          onPointerOver={onPointerOverOverlay}
+          onPointerOut={onPointerOutOverlay}
         >
           {children}
         </div>

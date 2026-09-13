@@ -15,7 +15,7 @@ export default function ProgramsInit() {
         id: 'finder',
         name: i18n.finder,
         windowDimensions: prev.finder?.windowDimensions ?? {
-          width: 960,
+          width: 950,
           height: 600,
         },
         windowPosition: prev.finder?.windowPosition ?? { x: 150, y: 50 },

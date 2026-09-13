@@ -6,6 +6,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useCallback } from 'react';
 import type { OrbitControls as Controls } from 'three-stdlib';
+import BackButton from './overlays/BackButton';
 import WelcomeOverlay from './overlays/WelcomeOverlay';
 
 export default function SceneCanvas() {
@@ -16,10 +17,12 @@ export default function SceneCanvas() {
   return (
     <div className={'w-screen h-screen'}>
       <WelcomeOverlay />
+      <BackButton />
       <Canvas
         camera={{
-          position: [-3, 3, 3],
+          position: [0, 3, 0],
         }}
+        shadows
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
@@ -27,7 +30,14 @@ export default function SceneCanvas() {
             minDistance={2}
             maxDistance={6}
             minPolarAngle={Math.PI / 4}
-            maxPolarAngle={Math.PI / (2 * 1.01)}
+            maxPolarAngle={Math.PI / 2.4}
+            minAzimuthAngle={-Math.PI / 3}
+            maxAzimuthAngle={Math.PI / 6}
+            enableDamping
+            dampingFactor={0.05}
+            rotateSpeed={0.5}
+            zoomSpeed={0.6}
+            panSpeed={0.5}
           />
           <Scene />
         </Suspense>
