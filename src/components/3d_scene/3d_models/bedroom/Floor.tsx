@@ -1,18 +1,18 @@
-import * as THREE from "three";
-import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
-import { ThreeElements } from "@react-three/fiber";
+import { useGLTF } from '@react-three/drei';
+import { ThreeElements } from '@react-three/fiber';
+import { useEffect } from 'react';
+import * as THREE from 'three';
 
-type ModelProps = ThreeElements["mesh"] & {
+type ModelProps = ThreeElements['mesh'] & {
   width?: number;
   depth?: number;
 };
 
 export default function Floor({ width = 1, depth = 1, ...props }: ModelProps) {
   const { materials } = useGLTF(
-    "/textures/laminate_floor_03_4k.gltf/laminate_floor_03_4k.gltf",
+    '/textures/laminate_floor_03_4k.gltf/laminate_floor_03_4k.gltf',
   );
-  const rubberMat = materials["laminate_floor_03"];
+  const rubberMat = materials['laminate_floor_03'];
 
   useEffect(() => {
     const mat = rubberMat as THREE.MeshStandardMaterial;
@@ -35,7 +35,7 @@ export default function Floor({ width = 1, depth = 1, ...props }: ModelProps) {
   }, [rubberMat]);
 
   return (
-    <mesh {...props} rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh receiveShadow {...props} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[width, depth]} />
       <meshStandardMaterial {...rubberMat} />
     </mesh>

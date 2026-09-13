@@ -17,10 +17,12 @@ import {
   pauseOrbitControls,
 } from '@/services/orbitControlsService';
 import useOverlayStore from '@/stores/overlayStore';
+import useSpotLightsStore from '@/stores/spotLightsStore';
 import { ThreeElements, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useRef } from 'react';
-import { Group, Vector3 } from 'three';
+import { useLayoutEffect, useRef } from 'react';
+import { Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
+import SpotLight from '../../SpotLight';
 import MacOverlay from '../../overlays/MacOverlay';
 
 export default function Bedroom(props: Readonly<ThreeElements['group']>) {
@@ -30,7 +32,22 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     (state) => state.setIsWelcomeOverlayVisible,
   );
 
+  const setActiveSpotLight = useSpotLightsStore(
+    (state) => state.setActiveSpotLight,
+  );
+  const activeSpotLight = useSpotLightsStore((state) => state.activeSpotLight);
+
+  const ceilingSpotLightRef = useRef<ThreeSpotLight | null>(null!);
+
   const displayRef = useRef<Group | null>(null);
+  const macGroupRef = useRef<Group | null>(null);
+  const macLightRef = useRef<ThreeSpotLight | null>(null);
+
+  useLayoutEffect(() => {
+    if (macLightRef.current && macGroupRef.current) {
+      macLightRef.current.target = macGroupRef.current;
+    }
+  }, []);
 
   const zoomToMacOS = () => {
     const controls = getOrbitControls();
@@ -75,6 +92,17 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
   return (
     <group {...props} dispose={null}>
+      <spotLight
+        ref={ceilingSpotLightRef}
+        position={[0, 2.4, 0]}
+        intensity={15}
+        angle={Math.PI / 2.5}
+        penumbra={0.7}
+        distance={8}
+        decay={2}
+        castShadow
+        shadow-mapSize={[1024, 1024]}
+      />
       <Floor width={5.5} depth={4.5} />
 
       <Wall dim={[5.5, 2.5, 0.2]} position={[0, 1.25, -2.35]} />
@@ -99,7 +127,8 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
       <GamingChair rotation={[0, -Math.PI / 3, 0]} position={[1.5, 0, -1.3]} />
 
-      <group position={[1, 0.72, -1.8]}>
+      <SpotLight ref={macLightRef} isOn={activeSpotLight == 'MacOS'} />
+      <group ref={macGroupRef} position={[1, 0.72, -1.8]}>
         <MacComputer ref={displayRef} />
         <MacOverlay
           position={[-0.2, 0.3, 0.5]}
@@ -107,6 +136,8 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
             e.stopPropagation();
             zoomToMacOS();
           }}
+          onPointerOverOverlay={() => setActiveSpotLight('MacOS')}
+          onPointerOutOverlay={() => setActiveSpotLight(null)}
         />
       </group>
 

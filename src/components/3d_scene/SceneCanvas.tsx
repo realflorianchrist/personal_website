@@ -20,6 +20,7 @@ export default function SceneCanvas() {
         camera={{
           position: [-3, 3, 3],
         }}
+        shadows
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
