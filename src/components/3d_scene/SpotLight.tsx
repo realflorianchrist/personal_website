@@ -37,7 +37,6 @@ export default function SpotLight({
   return (
     <spotLight
       ref={lightRef}
-      position={[1, 2.3, -0.5]}
       color='#fff0dd'
       intensity={0}
       angle={Math.PI / 5}

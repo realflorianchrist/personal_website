@@ -15,12 +15,16 @@ import WallShelf from '@/components/3d_scene/3d_models/bedroom/furniture/wall_sh
 import {
   getOrbitControls,
   pauseOrbitControls,
+  resumeOrbitControls,
 } from '@/services/orbitControlsService';
+import useCameraPositionStore, {
+  CameraPosition,
+} from '@/stores/cameraPositionStore';
 import useOverlayStore from '@/stores/overlayStore';
 import useSpotLightsStore from '@/stores/spotLightsStore';
 import { ThreeElements, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
 import SpotLight from '../../SpotLight';
 import MacOverlay from '../../overlays/MacOverlay';
@@ -28,8 +32,17 @@ import MacOverlay from '../../overlays/MacOverlay';
 export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   const { camera } = useThree();
 
+  const currentCameraPosition = useCameraPositionStore(
+    (state) => state.currentCameraPosition,
+  );
+  const setCurrentCameraPosition = useCameraPositionStore(
+    (state) => state.setCurrentCameraPosition,
+  );
   const setIsWelcomeOverlayVisible = useOverlayStore(
     (state) => state.setIsWelcomeOverlayVisible,
+  );
+  const setIsBackButtonOverlayVisible = useOverlayStore(
+    (state) => state.setIsBackButtonOverlayVisible,
   );
 
   const setActiveSpotLight = useSpotLightsStore(
@@ -49,21 +62,21 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     }
   }, []);
 
-  const zoomToMacOS = () => {
+  const zoomToDefault = () => {
     const controls = getOrbitControls();
 
     if (!controls || !displayRef.current) return;
 
-    pauseOrbitControls();
-    setIsWelcomeOverlayVisible(false);
+    setIsBackButtonOverlayVisible(false);
 
     const lookAtTarget = new Vector3();
+    const targetPosition = new Vector3(-3, 3, 3);
 
-    displayRef.current.getWorldPosition(lookAtTarget);
-
-    const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0, 0.27));
-
-    const timeline = gsap.timeline();
+    const timeline = gsap.timeline({
+      onComplete: () => {
+        resumeOrbitControls();
+      },
+    });
 
     timeline.to(
       camera.position,
@@ -89,6 +102,58 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
       0,
     );
   };
+
+  const zoomToMacOS = () => {
+    const controls = getOrbitControls();
+
+    if (!controls || !displayRef.current) return;
+
+    pauseOrbitControls();
+    setIsWelcomeOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+
+    displayRef.current.getWorldPosition(lookAtTarget);
+
+    const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0, 0.27));
+
+    const timeline = gsap.timeline({
+      onComplete: () => setIsBackButtonOverlayVisible(true),
+    });
+
+    timeline.to(
+      camera.position,
+      {
+        x: targetPosition.x,
+        y: targetPosition.y,
+        z: targetPosition.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+
+    timeline.to(
+      controls.target,
+      {
+        x: lookAtTarget.x,
+        y: lookAtTarget.y,
+        z: lookAtTarget.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+  };
+
+  const cameraActions = {
+    default: zoomToDefault,
+    MacOS: zoomToMacOS,
+  } satisfies Record<CameraPosition, () => void>;
+
+  useEffect(() => {
+    cameraActions[currentCameraPosition]();
+  }, [currentCameraPosition]);
 
   return (
     <group {...props} dispose={null}>
@@ -127,14 +192,18 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
       <GamingChair rotation={[0, -Math.PI / 3, 0]} position={[1.5, 0, -1.3]} />
 
-      <SpotLight ref={macLightRef} isOn={activeSpotLight == 'MacOS'} />
+      <SpotLight
+        ref={macLightRef}
+        isOn={activeSpotLight == 'MacOS'}
+        position={[1, 2.3, -0.5]}
+      />
       <group ref={macGroupRef} position={[1, 0.72, -1.8]}>
         <MacComputer ref={displayRef} />
         <MacOverlay
           position={[-0.2, 0.3, 0.5]}
           onOverlayClick={(e) => {
             e.stopPropagation();
-            zoomToMacOS();
+            setCurrentCameraPosition('MacOS');
           }}
           onPointerOverOverlay={() => setActiveSpotLight('MacOS')}
           onPointerOutOverlay={() => setActiveSpotLight(null)}
