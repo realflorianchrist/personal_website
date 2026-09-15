@@ -5,7 +5,7 @@ import Bed from '@/components/3d_scene/3d_models/bedroom/furniture/Bed';
 import Desk from '@/components/3d_scene/3d_models/bedroom/furniture/Desk';
 import GamingChair from '@/components/3d_scene/3d_models/bedroom/furniture/GamingChair';
 import GlassTable from '@/components/3d_scene/3d_models/bedroom/furniture/GlassTable';
-import Keyboard from '@/components/3d_scene/3d_models/bedroom/furniture/Keyboard';
+import Keyboard from '@/components/3d_scene/3d_models/bedroom/furniture/Keyboard/Keyboard';
 import Stool from '@/components/3d_scene/3d_models/bedroom/furniture/Stool';
 import TV from '@/components/3d_scene/3d_models/bedroom/furniture/TV';
 import Wardrobe from '@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe';
@@ -24,7 +24,7 @@ import useOverlayStore from '@/stores/overlayStore';
 import useSpotLightsStore from '@/stores/spotLightsStore';
 import { ThreeElements, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
 import SpotLight from '../../SpotLight';
 import MacOverlay from '../../overlays/MacOverlay';
@@ -50,15 +50,25 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   );
   const activeSpotLight = useSpotLightsStore((state) => state.activeSpotLight);
 
+  const [isKeyboardPlaying, setIsKeyboardPlaying] = useState(false);
+
   const ceilingSpotLightRef = useRef<ThreeSpotLight | null>(null!);
 
   const displayRef = useRef<Group | null>(null);
   const macGroupRef = useRef<Group | null>(null);
   const macLightRef = useRef<ThreeSpotLight | null>(null);
 
+  const keyboardRef = useRef<Group | null>(null);
+  const keyboardGroupRef = useRef<Group | null>(null);
+  const keyboardLightRef = useRef<ThreeSpotLight | null>(null);
+
   useLayoutEffect(() => {
     if (macLightRef.current && macGroupRef.current) {
       macLightRef.current.target = macGroupRef.current;
+    }
+
+    if (keyboardLightRef.current && keyboardGroupRef.current) {
+      keyboardLightRef.current.target = keyboardGroupRef.current;
     }
   }, []);
 
@@ -146,9 +156,55 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     );
   };
 
+  const zoomToKeyboard = () => {
+    const controls = getOrbitControls();
+
+    if (!controls || !keyboardRef.current) return;
+
+    pauseOrbitControls();
+    setIsWelcomeOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+
+    keyboardRef.current
+      .getWorldPosition(lookAtTarget)
+      .add(new Vector3(0, 0.5, 0));
+
+    const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0.5, -0.5));
+
+    const timeline = gsap.timeline({
+      onComplete: () => setIsBackButtonOverlayVisible(true),
+    });
+
+    timeline.to(
+      camera.position,
+      {
+        x: targetPosition.x,
+        y: targetPosition.y,
+        z: targetPosition.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+
+    timeline.to(
+      controls.target,
+      {
+        x: lookAtTarget.x,
+        y: lookAtTarget.y,
+        z: lookAtTarget.z,
+        duration: 2.5,
+        ease: 'power2.inOut',
+      },
+      0,
+    );
+  };
+
   const cameraActions = {
     default: zoomToDefault,
     MacOS: zoomToMacOS,
+    Keyboard: zoomToKeyboard,
   } satisfies Record<CameraPosition, () => void>;
 
   useEffect(() => {
@@ -216,7 +272,31 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
         position={[0, 0, 1.18]}
       />
 
-      <Keyboard rotation={[0, Math.PI, 0]} position={[-1.9, 0, 2]} />
+      <SpotLight
+        ref={keyboardLightRef}
+        isOn={activeSpotLight == 'Keyboard'}
+        position={[-0.5, 2.3, -0.5]}
+        angle={Math.PI / 10}
+        intensity={50}
+      />
+      <group
+        ref={keyboardGroupRef}
+        position={[-1.9, 0, 2]}
+        onClick={() => {
+          setCurrentCameraPosition('Keyboard');
+          setActiveSpotLight('Keyboard');
+          setIsKeyboardPlaying(!isKeyboardPlaying);
+        }}
+        // onPointerOver={() => setActiveSpotLight('Keyboard')}
+        // onPointerOut={() => setActiveSpotLight(null)}
+      >
+        <Keyboard
+          ref={keyboardRef}
+          playing={isKeyboardPlaying}
+          rotation={[0, Math.PI, 0]}
+        />
+        {/* overlay */}
+      </group>
 
       <Stool position={[-1.9, 0, 1.5]} />
 
