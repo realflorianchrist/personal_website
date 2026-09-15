@@ -30,7 +30,10 @@ import SpotLight from '../../SpotLight';
 import InfoOverlay3D from '../../overlays/InfoOverlay3D';
 import { rotate } from 'three/tsl';
 
-export default function Bedroom(props: Readonly<ThreeElements['group']>) {
+export default function Bedroom({
+  isSceneReady,
+  ...props
+}: Readonly<ThreeElements['group'] & { isSceneReady: boolean }>) {
   const { camera } = useThree();
 
   const currentCameraPosition = useCameraPositionStore(
@@ -76,8 +79,9 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   }, []);
 
   useEffect(() => {
+    if (!isSceneReady) return;
     rotateGamingChair(chairPosition);
-  }, [chairPosition]);
+  }, [chairPosition, isSceneReady]);
 
   const zoomToTarget = (
     lookAtTarget: Vector3,
@@ -235,8 +239,9 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   } satisfies Record<CameraPosition, () => void>;
 
   useEffect(() => {
+    if (!isSceneReady) return;
     cameraActions[currentCameraPosition]();
-  }, [currentCameraPosition]);
+  }, [currentCameraPosition, isSceneReady]);
 
   return (
     <group {...props} dispose={null}>

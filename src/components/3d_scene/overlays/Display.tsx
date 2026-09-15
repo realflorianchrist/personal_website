@@ -10,7 +10,7 @@ export default function Display({
       htmlScale={htmlScale}
       htmlProps={{
         sprite: false,
-        occlude: true,
+        occlude: false,
         zIndexRange: [10, 0],
         ...htmlProps,
       }}
