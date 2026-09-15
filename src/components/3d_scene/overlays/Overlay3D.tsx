@@ -5,6 +5,7 @@ import { ComponentProps } from 'react';
 type DreiHtmlProps = ComponentProps<typeof Html>;
 
 export type Overlay3DProps = ThreeElements['group'] & {
+  isVisable?: boolean;
   dimensions?: [width?: number, height?: number];
   htmlScale?: number;
   htmlProps?: DreiHtmlProps;
@@ -14,6 +15,7 @@ export type Overlay3DProps = ThreeElements['group'] & {
 };
 
 export default function Overlay3D({
+  isVisable = true,
   dimensions = [1, 1],
   htmlScale = 2,
   htmlProps,
@@ -26,6 +28,8 @@ export default function Overlay3D({
   const [w = 1, h = 1] = dimensions;
 
   const pixelsPerUnit = 400;
+
+  if (!isVisable) return null;
 
   return (
     <group {...props}>

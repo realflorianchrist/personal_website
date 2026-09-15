@@ -27,7 +27,7 @@ import gsap from 'gsap';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
 import SpotLight from '../../SpotLight';
-import MacOverlay from '../../overlays/MacOverlay';
+import MacInfoOverlay from '../../overlays/MacInfoOverlay';
 
 export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   const { camera } = useThree();
@@ -72,20 +72,17 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     }
   }, []);
 
-  const zoomToDefault = () => {
+  const zoomToTarget = (
+    lookAtTarget: Vector3,
+    targetPosition: Vector3,
+    onComplete: () => void,
+  ) => {
     const controls = getOrbitControls();
 
     if (!controls || !displayRef.current) return;
 
-    setIsBackButtonOverlayVisible(false);
-
-    const lookAtTarget = new Vector3();
-    const targetPosition = new Vector3(-3, 3, 3);
-
     const timeline = gsap.timeline({
-      onComplete: () => {
-        resumeOrbitControls();
-      },
+      onComplete: onComplete,
     });
 
     timeline.to(
@@ -113,6 +110,24 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     );
   };
 
+  const zoomToDefault = () => {
+    const controls = getOrbitControls();
+
+    if (!controls) return;
+
+    setIsBackButtonOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+    const targetPosition = new Vector3(-3, 3, 3);
+
+    const onComplete = () => {
+      setActiveSpotLight(null);
+      resumeOrbitControls();
+    };
+
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
+  };
+
   const zoomToMacOS = () => {
     const controls = getOrbitControls();
 
@@ -127,33 +142,11 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
     const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0, 0.27));
 
-    const timeline = gsap.timeline({
-      onComplete: () => setIsBackButtonOverlayVisible(true),
-    });
+    const onComplete = () => {
+      setIsBackButtonOverlayVisible(true);
+    };
 
-    timeline.to(
-      camera.position,
-      {
-        x: targetPosition.x,
-        y: targetPosition.y,
-        z: targetPosition.z,
-        duration: 2.5,
-        ease: 'power2.inOut',
-      },
-      0,
-    );
-
-    timeline.to(
-      controls.target,
-      {
-        x: lookAtTarget.x,
-        y: lookAtTarget.y,
-        z: lookAtTarget.z,
-        duration: 2.5,
-        ease: 'power2.inOut',
-      },
-      0,
-    );
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
   };
 
   const zoomToKeyboard = () => {
@@ -172,33 +165,11 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
     const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0.5, -0.5));
 
-    const timeline = gsap.timeline({
-      onComplete: () => setIsBackButtonOverlayVisible(true),
-    });
+    const onComplete = () => {
+      setIsBackButtonOverlayVisible(true);
+    };
 
-    timeline.to(
-      camera.position,
-      {
-        x: targetPosition.x,
-        y: targetPosition.y,
-        z: targetPosition.z,
-        duration: 2.5,
-        ease: 'power2.inOut',
-      },
-      0,
-    );
-
-    timeline.to(
-      controls.target,
-      {
-        x: lookAtTarget.x,
-        y: lookAtTarget.y,
-        z: lookAtTarget.z,
-        duration: 2.5,
-        ease: 'power2.inOut',
-      },
-      0,
-    );
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
   };
 
   const cameraActions = {
@@ -255,7 +226,7 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
       />
       <group ref={macGroupRef} position={[1, 0.72, -1.8]}>
         <MacComputer ref={displayRef} />
-        <MacOverlay
+        <MacInfoOverlay
           position={[-0.2, 0.3, 0.5]}
           onOverlayClick={(e) => {
             e.stopPropagation();
@@ -283,19 +254,26 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
         ref={keyboardGroupRef}
         position={[-1.9, 0, 2]}
         onClick={() => {
-          setCurrentCameraPosition('Keyboard');
-          setActiveSpotLight('Keyboard');
           setIsKeyboardPlaying(!isKeyboardPlaying);
         }}
-        // onPointerOver={() => setActiveSpotLight('Keyboard')}
-        // onPointerOut={() => setActiveSpotLight(null)}
       >
         <Keyboard
           ref={keyboardRef}
           playing={isKeyboardPlaying}
           rotation={[0, Math.PI, 0]}
         />
-        {/* overlay */}
+        <MacInfoOverlay
+          isVisable={currentCameraPosition != 'Keyboard'}
+          contentClassName={'hover:scale-70'}
+          position={[0, 0.75, -0.3]}
+          onOverlayClick={(e) => {
+            e.stopPropagation();
+            setCurrentCameraPosition('Keyboard');
+            setActiveSpotLight('Keyboard');
+          }}
+          onPointerOverOverlay={() => setActiveSpotLight('Keyboard')}
+          onPointerOutOverlay={() => setActiveSpotLight(null)}
+        />
       </group>
 
       <Stool position={[-1.9, 0, 1.5]} />

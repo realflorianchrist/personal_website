@@ -2,6 +2,7 @@ import Overlay3D, { Overlay3DProps } from './Overlay3D';
 
 export default function Display({
   htmlScale = 1 / 5,
+  htmlProps,
   ...props
 }: Overlay3DProps) {
   return (
@@ -11,6 +12,7 @@ export default function Display({
         sprite: false,
         occlude: true,
         zIndexRange: [10, 0],
+        ...htmlProps,
       }}
       {...props}
     >
