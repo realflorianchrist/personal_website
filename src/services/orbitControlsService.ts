@@ -20,7 +20,7 @@ export const setOrbitControls = (value: OrbitControls | null) => {
 export const getOrbitControls = () => controls;
 
 export const pauseOrbitControls = () => {
-  if (!controls) return;
+  if (!controls || previousState) return;
 
   previousState = {
     rotate: controls.enableRotate,

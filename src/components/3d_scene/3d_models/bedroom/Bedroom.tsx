@@ -28,7 +28,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Euler, Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
 import SpotLight from '../../SpotLight';
 import InfoOverlay3D from '../../overlays/InfoOverlay3D';
-import { rotate } from 'three/tsl';
 
 export default function Bedroom({
   isSceneReady,
