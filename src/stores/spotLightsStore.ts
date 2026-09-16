@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type SpotLightType = 'MacOS' | 'Keyboard';
+export type SpotLightType = 'MacOS' | 'Keyboard' | 'TV';
 
 type SpotLightsState = {
   activeSpotLight: SpotLightType | null;

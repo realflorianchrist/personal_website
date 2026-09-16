@@ -64,16 +64,22 @@ export default function Bedroom({
   const gamingChairRef = useRef<Group | null>(null);
 
   const keyboardRef = useRef<Group | null>(null);
-  const keyboardGroupRef = useRef<Group | null>(null);
   const keyboardLightRef = useRef<ThreeSpotLight | null>(null);
+
+  const tvRef = useRef<Group | null>(null);
+  const tvLightRef = useRef<ThreeSpotLight | null>(null);
 
   useLayoutEffect(() => {
     if (macLightRef.current && macGroupRef.current) {
       macLightRef.current.target = macGroupRef.current;
     }
 
-    if (keyboardLightRef.current && keyboardGroupRef.current) {
-      keyboardLightRef.current.target = keyboardGroupRef.current;
+    if (keyboardLightRef.current && keyboardRef.current) {
+      keyboardLightRef.current.target = keyboardRef.current;
+    }
+
+    if (tvLightRef.current && tvRef.current) {
+      tvLightRef.current.target = tvRef.current;
     }
   }, []);
 
@@ -318,7 +324,6 @@ export default function Bedroom({
         intensity={50}
       />
       <group
-        ref={keyboardGroupRef}
         position={[-1.9, 0, 2]}
         onClick={() => {
           setIsKeyboardPlaying(!isKeyboardPlaying);
@@ -350,11 +355,29 @@ export default function Bedroom({
 
       <BookShelf position={[2.55, 0, 0.7]} />
 
-      <TV
-        scale={0.012}
-        rotation={[0, (Math.PI * 3) / 4, 0]}
-        position={[2.7, 0.7, 1.45]}
+      <SpotLight
+        ref={tvLightRef}
+        isOn={activeSpotLight == 'TV'}
+        position={[-0.5, 2.3, -0.5]}
+        angle={Math.PI / 12}
+        intensity={50}
       />
+      <group position={[2.7, 0.7, 1.45]}>
+        <TV ref={tvRef} scale={0.012} rotation={[0, (Math.PI * 3) / 4, 0]} />
+        <InfoOverlay3D
+          // isVisable={currentCameraPosition != 'Keyboard'}
+          contentClassName={'hover:scale-70 cursor-pointer'}
+          position={[-0.5, 0, -0.3]}
+          onOverlayClick={(e) => {
+            e.stopPropagation();
+            // setCurrentCameraPosition('Keyboard');
+          }}
+          onPointerOverOverlay={() => setActiveSpotLight('TV')}
+          onPointerOutOverlay={() => setActiveSpotLight(null)}
+        >
+          Do you wanna play a game{}
+        </InfoOverlay3D>
+      </group>
 
       <GlassTable scale={0.3} position={[1.7, 0, 1.5]} />
     </group>
