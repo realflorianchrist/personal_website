@@ -19,7 +19,13 @@ export default function SceneCanvas() {
   }, []);
 
   return (
-    <div className={'relative isolate w-screen h-screen'}>
+    <div
+      className={'relative isolate w-screen h-screen'}
+      style={{
+        background:
+          'radial-gradient(ellipse at 50% 42%, #24151b 0%, #101013 45%, #09090b 80%)',
+      }}
+    >
       {!isSceneReady && <CanvasLoader fullscreen />}
       {isSceneReady && <WelcomeOverlay />}
       <BackButton />

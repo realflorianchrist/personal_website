@@ -375,7 +375,7 @@ export default function Bedroom({
           onPointerOverOverlay={() => setActiveSpotLight('TV')}
           onPointerOutOverlay={() => setActiveSpotLight(null)}
         >
-          Do you wanna play a game{}
+          Do you wanna play a game?
         </InfoOverlay3D>
       </group>
 
