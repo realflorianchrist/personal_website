@@ -237,10 +237,32 @@ export default function Bedroom({
     zoomToTarget(lookAtTarget, targetPosition, onComplete);
   };
 
+  const zoomToTV = () => {
+    const controls = getOrbitControls();
+
+    if (!controls || !tvRef.current) return;
+
+    pauseOrbitControls();
+    setIsWelcomeOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+
+    tvRef.current.getWorldPosition(lookAtTarget).add(new Vector3(0, 0.09, 0));
+
+    const targetPosition = lookAtTarget.clone().add(new Vector3(-0.6, 0, 0));
+
+    const onComplete = () => {
+      setIsBackButtonOverlayVisible(true);
+    };
+
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
+  };
+
   const cameraActions = {
     default: zoomToDefault,
     MacOS: zoomToMacOS,
     Keyboard: zoomToKeyboard,
+    TV: zoomToTV,
   } satisfies Record<CameraPosition, () => void>;
 
   useEffect(() => {
@@ -365,12 +387,12 @@ export default function Bedroom({
       <group position={[2.7, 0.7, 1.45]}>
         <TV ref={tvRef} scale={0.012} rotation={[0, (Math.PI * 3) / 4, 0]} />
         <InfoOverlay3D
-          // isVisable={currentCameraPosition != 'Keyboard'}
+          isVisable={currentCameraPosition != 'TV'}
           contentClassName={'hover:scale-70 cursor-pointer'}
           position={[-0.5, 0, -0.3]}
           onOverlayClick={(e) => {
             e.stopPropagation();
-            // setCurrentCameraPosition('Keyboard');
+            setCurrentCameraPosition('TV');
           }}
           onPointerOverOverlay={() => setActiveSpotLight('TV')}
           onPointerOutOverlay={() => setActiveSpotLight(null)}
