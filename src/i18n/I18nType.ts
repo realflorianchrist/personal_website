@@ -10,6 +10,7 @@ export type AboutMeSectionId =
 export type AboutMeExperienceItemId =
   | 'softwaredeveloperHSLU'
   | 'softwaredeveloper'
+  | 'vocationalBaccalaureate'
   | 'draftsman'
   | 'bachelor'
   | 'apprenticeship';

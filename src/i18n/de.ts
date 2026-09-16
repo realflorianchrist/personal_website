@@ -107,7 +107,7 @@ const AboutMe: AboutMeI18n = {
         Id: 'softwaredeveloperHSLU',
         Title: 'Fullstack Softwareentwickler | Zivildiensteinsatz',
         Company: 'Hochschule Luzern',
-        Period: '06.2026 – 09.2026',
+        Period: '06.2026 - 09.2026',
         Points: [
           'Entwicklung eines Rhino 8 Plugins mit C# und .NET für Modellierung, Simulation und Visualisierung',
           'Umsetzung interaktiver 3D Visualisierungen und technischer Benutzeroberflächen',
@@ -118,8 +118,8 @@ const AboutMe: AboutMeI18n = {
       {
         Id: 'softwaredeveloper',
         Title: 'Fullstack Softwareentwickler',
-        Company: 'Aegerter & Bosshardt',
-        Period: '2022 – Heute',
+        Company: 'Aegerter & Bosshardt AG',
+        Period: '2022 - Heute',
         Points: [
           'Entwicklung eines internen Dateiverwaltungssystems mit Java, Spring Boot, TypeScript und React',
           'Umsetzung von Backend Services und REST APIs mit Java und Spring Boot',
@@ -131,8 +131,8 @@ const AboutMe: AboutMeI18n = {
       {
         Id: 'draftsman',
         Title: 'Zeichner Fachrichtung Ingenieurbau',
-        Company: 'Aegerter & Bosshardt',
-        Period: '2015 – 2022',
+        Company: 'Aegerter & Bosshardt AG',
+        Period: '2015 - 2022',
         Points: [
           'Entwicklung und Weiterentwicklung interner Fullstack Anwendungen',
           'Umsetzung von Backend Services mit Java und Spring Boot',
@@ -153,14 +153,19 @@ const AboutMe: AboutMeI18n = {
         Id: 'bachelor',
         Title: 'Bachelor of Science FHNW',
         Institution: 'Fachhochschule Nordwestschweiz',
-        Period: '2022 – Heute',
+        Period: '2022 - Heute',
       },
-
+      {
+        Id: 'vocationalBaccalaureate',
+        Title: 'Berufsmatur',
+        Institution: 'BBZ BL',
+        Period: '2022 - Present',
+      },
       {
         Id: 'apprenticeship',
         Title: 'Zeichner EFZ Fachrichtung Ingenieurbau',
-        Institution: 'Aegerter & Bosshardt',
-        Period: '2015 – 2019',
+        Institution: 'Aegerter & Bosshardt AG',
+        Period: '2015 - 2019',
       },
     ],
   },

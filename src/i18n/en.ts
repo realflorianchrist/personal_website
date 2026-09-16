@@ -108,9 +108,9 @@ const AboutMe: AboutMeI18n = {
     Items: [
       {
         Id: 'softwaredeveloperHSLU',
-        Title: 'Fullstack Softwareentwickler',
-        Company: 'Hochschule Luzern',
-        Period: '06.2026 – 09.2026',
+        Title: 'Fullstack Softwaredeveloper',
+        Company: 'Lucerne University of Applied Sciences',
+        Period: '06.2026 - 09.2026',
         Points: [
           'Development of a Rhino 8 plugin using C# and .NET for modeling, simulation and visualization',
           'Implementation of interactive 3D visualizations and technical user interfaces',
@@ -120,9 +120,9 @@ const AboutMe: AboutMeI18n = {
       },
       {
         Id: 'softwaredeveloper',
-        Title: 'Fullstack Softwareentwickler',
-        Company: 'Aegerter & Bosshardt',
-        Period: '2022 – Heute',
+        Title: 'Fullstack Softwaredeveloper',
+        Company: 'Aegerter & Bosshardt AG',
+        Period: '2022 - Heute',
         Points: [
           'Development of an internal file management system using Java, Spring Boot, TypeScript and React',
           'Implementation of backend services and REST APIs using Java and Spring Boot',
@@ -133,9 +133,9 @@ const AboutMe: AboutMeI18n = {
       },
       {
         Id: 'draftsman',
-        Title: 'Zeichner Fachrichtung Ingenieurbau',
-        Company: 'Aegerter & Bosshardt',
-        Period: '2015 – 2022',
+        Title: 'Draftsman specializing in structural engineering',
+        Company: 'Aegerter & Bosshardt AG',
+        Period: '2015 - 2022',
         Points: [
           'Planning and design of civil engineering and infrastructure projects',
           'Creation of technical drawings, models and construction documentation',
@@ -155,16 +155,20 @@ const AboutMe: AboutMeI18n = {
       {
         Id: 'bachelor',
         Title: 'Bachelor of Science FHNW',
-        Institution:
-          'University of Applied Sciences and Arts Northwestern Switzerland',
-        Period: '2022 – Present',
+        Institution: 'University of Applied Sciences Northwestern Switzerland',
+        Period: '2022 - Present',
       },
-
+      {
+        Id: 'vocationalBaccalaureate',
+        Title: 'vocational baccalaureate',
+        Institution: 'BBZ BL',
+        Period: '2022 - Present',
+      },
       {
         Id: 'apprenticeship',
         Title: 'Federal VET Diploma in Civil Engineering Drafting',
-        Institution: 'Aegerter & Bosshardt',
-        Period: '2015 – 2019',
+        Institution: 'Aegerter & Bosshardt AG',
+        Period: '2015 - 2019',
       },
     ],
   },
