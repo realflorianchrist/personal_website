@@ -101,7 +101,7 @@
 
 @layer base {
   html {
-    @apply overscroll-none;
+    @apply overscroll-none scrollbar-gutter-stable;
   }
 
   body {
@@ -113,7 +113,7 @@
   }
 
   ::-webkit-scrollbar {
-    @apply w-1.5 scrollbar-gutter-stable;
+    @apply w-1.5 h-1.5;
   }
 
   ::-webkit-scrollbar-track {
@@ -128,7 +128,9 @@
   ::-webkit-scrollbar-corner {
     @apply hidden;
   }
+}
 
+@layer utilities {
   .mac-scroll::-webkit-scrollbar-track {
     @apply mb-4;
   }
