@@ -5,7 +5,7 @@ import Bed from '@/components/3d_scene/3d_models/bedroom/furniture/Bed';
 import Desk from '@/components/3d_scene/3d_models/bedroom/furniture/Desk';
 import GamingChair from '@/components/3d_scene/3d_models/bedroom/furniture/GamingChair';
 import GlassTable from '@/components/3d_scene/3d_models/bedroom/furniture/GlassTable';
-import Keyboard from '@/components/3d_scene/3d_models/bedroom/furniture/Keyboard';
+import Keyboard from '@/components/3d_scene/3d_models/bedroom/furniture/keyboard/Keyboard';
 import Stool from '@/components/3d_scene/3d_models/bedroom/furniture/Stool';
 import TV from '@/components/3d_scene/3d_models/bedroom/furniture/TV';
 import Wardrobe from '@/components/3d_scene/3d_models/bedroom/furniture/Wardrobe';
@@ -24,12 +24,15 @@ import useOverlayStore from '@/stores/overlayStore';
 import useSpotLightsStore from '@/stores/spotLightsStore';
 import { ThreeElements, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import { useEffect, useLayoutEffect, useRef } from 'react';
-import { Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Euler, Group, SpotLight as ThreeSpotLight, Vector3 } from 'three';
 import SpotLight from '../../SpotLight';
-import MacOverlay from '../../overlays/MacOverlay';
+import InfoOverlay3D from '../../overlays/InfoOverlay3D';
 
-export default function Bedroom(props: Readonly<ThreeElements['group']>) {
+export default function Bedroom({
+  isSceneReady,
+  ...props
+}: Readonly<ThreeElements['group'] & { isSceneReady: boolean }>) {
   const { camera } = useThree();
 
   const currentCameraPosition = useCameraPositionStore(
@@ -50,32 +53,52 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
   );
   const activeSpotLight = useSpotLightsStore((state) => state.activeSpotLight);
 
+  const [isKeyboardPlaying, setIsKeyboardPlaying] = useState(false);
+  const [chairPosition, setChairPosition] = useState<ChairPosition>('rotated');
+
   const ceilingSpotLightRef = useRef<ThreeSpotLight | null>(null!);
 
   const displayRef = useRef<Group | null>(null);
   const macGroupRef = useRef<Group | null>(null);
   const macLightRef = useRef<ThreeSpotLight | null>(null);
+  const gamingChairRef = useRef<Group | null>(null);
+
+  const keyboardRef = useRef<Group | null>(null);
+  const keyboardLightRef = useRef<ThreeSpotLight | null>(null);
+
+  const tvRef = useRef<Group | null>(null);
+  const tvLightRef = useRef<ThreeSpotLight | null>(null);
 
   useLayoutEffect(() => {
     if (macLightRef.current && macGroupRef.current) {
       macLightRef.current.target = macGroupRef.current;
     }
+
+    if (keyboardLightRef.current && keyboardRef.current) {
+      keyboardLightRef.current.target = keyboardRef.current;
+    }
+
+    if (tvLightRef.current && tvRef.current) {
+      tvLightRef.current.target = tvRef.current;
+    }
   }, []);
 
-  const zoomToDefault = () => {
+  useEffect(() => {
+    if (!isSceneReady) return;
+    rotateGamingChair(chairPosition);
+  }, [chairPosition, isSceneReady]);
+
+  const zoomToTarget = (
+    lookAtTarget: Vector3,
+    targetPosition: Vector3,
+    onComplete: () => void,
+  ) => {
     const controls = getOrbitControls();
 
     if (!controls || !displayRef.current) return;
 
-    setIsBackButtonOverlayVisible(false);
-
-    const lookAtTarget = new Vector3();
-    const targetPosition = new Vector3(-3, 3, 3);
-
     const timeline = gsap.timeline({
-      onComplete: () => {
-        resumeOrbitControls();
-      },
+      onComplete: onComplete,
     });
 
     timeline.to(
@@ -101,6 +124,26 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
       },
       0,
     );
+  };
+
+  const zoomToDefault = () => {
+    const controls = getOrbitControls();
+
+    if (!controls) return;
+
+    pauseOrbitControls();
+    setIsBackButtonOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+    const targetPosition = new Vector3(-3, 3, 3);
+
+    const onComplete = () => {
+      setActiveSpotLight(null);
+      resumeOrbitControls();
+    };
+
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
+    setChairPosition('rotated');
   };
 
   const zoomToMacOS = () => {
@@ -117,16 +160,41 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
 
     const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0, 0.27));
 
-    const timeline = gsap.timeline({
-      onComplete: () => setIsBackButtonOverlayVisible(true),
-    });
+    const onComplete = () => {
+      setIsBackButtonOverlayVisible(true);
+    };
+
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
+    setChairPosition('desk');
+  };
+
+  type ChairPosition = 'desk' | 'rotated';
+
+  const chairPositions = {
+    desk: {
+      position: new Vector3(1, 0, -1.3),
+      rotation: new Euler(0, -Math.PI, 0),
+    },
+    rotated: {
+      position: new Vector3(1.5, 0, -1.3),
+      rotation: new Euler(0, -Math.PI / 3, 0),
+    },
+  } satisfies Record<ChairPosition, { position: Vector3; rotation: Euler }>;
+
+  const rotateGamingChair = (position: ChairPosition) => {
+    if (!gamingChairRef.current) return;
+
+    let targetPos = chairPositions[position].position;
+    let targetRot = chairPositions[position].rotation;
+
+    const timeline = gsap.timeline();
 
     timeline.to(
-      camera.position,
+      gamingChairRef.current.position,
       {
-        x: targetPosition.x,
-        y: targetPosition.y,
-        z: targetPosition.z,
+        x: targetPos.x,
+        y: targetPos.y,
+        z: targetPos.z,
         duration: 2.5,
         ease: 'power2.inOut',
       },
@@ -134,11 +202,11 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     );
 
     timeline.to(
-      controls.target,
+      gamingChairRef.current.rotation,
       {
-        x: lookAtTarget.x,
-        y: lookAtTarget.y,
-        z: lookAtTarget.z,
+        x: targetRot.x,
+        y: targetRot.y,
+        z: targetRot.z,
         duration: 2.5,
         ease: 'power2.inOut',
       },
@@ -146,14 +214,39 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
     );
   };
 
+  const zoomToKeyboard = () => {
+    const controls = getOrbitControls();
+
+    if (!controls || !keyboardRef.current) return;
+
+    pauseOrbitControls();
+    setIsWelcomeOverlayVisible(false);
+
+    const lookAtTarget = new Vector3();
+
+    keyboardRef.current
+      .getWorldPosition(lookAtTarget)
+      .add(new Vector3(0, 0.5, 0));
+
+    const targetPosition = lookAtTarget.clone().add(new Vector3(0, 0.5, -0.5));
+
+    const onComplete = () => {
+      setIsBackButtonOverlayVisible(true);
+    };
+
+    zoomToTarget(lookAtTarget, targetPosition, onComplete);
+  };
+
   const cameraActions = {
     default: zoomToDefault,
     MacOS: zoomToMacOS,
+    Keyboard: zoomToKeyboard,
   } satisfies Record<CameraPosition, () => void>;
 
   useEffect(() => {
+    if (!isSceneReady) return;
     cameraActions[currentCameraPosition]();
-  }, [currentCameraPosition]);
+  }, [currentCameraPosition, isSceneReady]);
 
   return (
     <group {...props} dispose={null}>
@@ -190,7 +283,11 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
         position={[2.75, 0, -1.95]}
       />
 
-      <GamingChair rotation={[0, -Math.PI / 3, 0]} position={[1.5, 0, -1.3]} />
+      <GamingChair
+        ref={gamingChairRef}
+        rotation={[0, -Math.PI, 0]}
+        position={[1, 0, -1.3]}
+      />
 
       <SpotLight
         ref={macLightRef}
@@ -199,7 +296,8 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
       />
       <group ref={macGroupRef} position={[1, 0.72, -1.8]}>
         <MacComputer ref={displayRef} />
-        <MacOverlay
+        <InfoOverlay3D
+          contentClassName={'cursor-pointer'}
           position={[-0.2, 0.3, 0.5]}
           onOverlayClick={(e) => {
             e.stopPropagation();
@@ -207,7 +305,9 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
           }}
           onPointerOverOverlay={() => setActiveSpotLight('MacOS')}
           onPointerOutOverlay={() => setActiveSpotLight(null)}
-        />
+        >
+          Entdecke meine Projekte und lerne mich kennen.
+        </InfoOverlay3D>
       </group>
 
       <Bed
@@ -216,17 +316,68 @@ export default function Bedroom(props: Readonly<ThreeElements['group']>) {
         position={[0, 0, 1.18]}
       />
 
-      <Keyboard rotation={[0, Math.PI, 0]} position={[-1.9, 0, 2]} />
+      <SpotLight
+        ref={keyboardLightRef}
+        isOn={activeSpotLight == 'Keyboard'}
+        position={[-0.5, 2.3, -0.5]}
+        angle={Math.PI / 10}
+        intensity={50}
+      />
+      <group
+        position={[-1.9, 0, 2]}
+        onClick={() => {
+          setIsKeyboardPlaying(!isKeyboardPlaying);
+        }}
+      >
+        <Keyboard
+          ref={keyboardRef}
+          playing={isKeyboardPlaying}
+          rotation={[0, Math.PI, 0]}
+        />
+        <InfoOverlay3D
+          isVisable={currentCameraPosition != 'Keyboard'}
+          contentClassName={'hover:scale-70 cursor-pointer'}
+          position={[0, 0.75, -0.3]}
+          onOverlayClick={(e) => {
+            e.stopPropagation();
+            setCurrentCameraPosition('Keyboard');
+            setActiveSpotLight('Keyboard');
+            setIsKeyboardPlaying(true);
+          }}
+          onPointerOverOverlay={() => setActiveSpotLight('Keyboard')}
+          onPointerOutOverlay={() => setActiveSpotLight(null)}
+        >
+          Eine kleine Pause mit Musik.
+        </InfoOverlay3D>
+      </group>
 
       <Stool position={[-1.9, 0, 1.5]} />
 
       <BookShelf position={[2.55, 0, 0.7]} />
 
-      <TV
-        scale={0.012}
-        rotation={[0, (Math.PI * 3) / 4, 0]}
-        position={[2.7, 0.7, 1.45]}
+      <SpotLight
+        ref={tvLightRef}
+        isOn={activeSpotLight == 'TV'}
+        position={[-0.5, 2.3, -0.5]}
+        angle={Math.PI / 12}
+        intensity={50}
       />
+      <group position={[2.7, 0.7, 1.45]}>
+        <TV ref={tvRef} scale={0.012} rotation={[0, (Math.PI * 3) / 4, 0]} />
+        <InfoOverlay3D
+          // isVisable={currentCameraPosition != 'Keyboard'}
+          contentClassName={'hover:scale-70 cursor-pointer'}
+          position={[-0.5, 0, -0.3]}
+          onOverlayClick={(e) => {
+            e.stopPropagation();
+            // setCurrentCameraPosition('Keyboard');
+          }}
+          onPointerOverOverlay={() => setActiveSpotLight('TV')}
+          onPointerOutOverlay={() => setActiveSpotLight(null)}
+        >
+          Do you wanna play a game{}
+        </InfoOverlay3D>
+      </group>
 
       <GlassTable scale={0.3} position={[1.7, 0, 1.5]} />
     </group>

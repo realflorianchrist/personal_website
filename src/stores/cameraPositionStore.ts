@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type CameraPosition = 'default' | 'MacOS';
+export type CameraPosition = 'default' | 'MacOS' | 'Keyboard';
 
 type OverlayState = {
   currentCameraPosition: CameraPosition;

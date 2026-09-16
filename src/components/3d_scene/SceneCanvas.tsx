@@ -1,22 +1,27 @@
 'use client';
-import CanvasLoader from '@/components/3d_scene/CanvasLoader/CanvasLoader';
 import Scene from '@/components/3d_scene/Scene';
 import { setOrbitControls } from '@/services/orbitControlsService';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useCallback } from 'react';
+import { Suspense, useCallback, useState } from 'react';
 import type { OrbitControls as Controls } from 'three-stdlib';
 import BackButton from './overlays/BackButton';
 import WelcomeOverlay from './overlays/WelcomeOverlay';
+import PrepareScene from './PrepareScene';
+import CanvasLoader from './canvas_loader/CanvasLoader';
 
 export default function SceneCanvas() {
+  const [isSceneReady, setIsSceneReady] = useState(false);
+  const handleSceneReady = useCallback(() => setIsSceneReady(true), []);
+
   const handleControlsRef = useCallback((controls: Controls | null) => {
     setOrbitControls(controls);
   }, []);
 
   return (
-    <div className={'w-screen h-screen'}>
-      <WelcomeOverlay />
+    <div className={'relative isolate w-screen h-screen'}>
+      {!isSceneReady && <CanvasLoader fullscreen />}
+      {isSceneReady && <WelcomeOverlay />}
       <BackButton />
       <Canvas
         camera={{
@@ -24,7 +29,7 @@ export default function SceneCanvas() {
         }}
         shadows
       >
-        <Suspense fallback={<CanvasLoader />}>
+        <Suspense fallback={null}>
           <OrbitControls
             ref={handleControlsRef}
             minDistance={2}
@@ -39,7 +44,8 @@ export default function SceneCanvas() {
             zoomSpeed={0.6}
             panSpeed={0.5}
           />
-          <Scene />
+          <Scene isSceneReady={isSceneReady} />
+          <PrepareScene onReady={handleSceneReady} />
         </Suspense>
       </Canvas>
     </div>

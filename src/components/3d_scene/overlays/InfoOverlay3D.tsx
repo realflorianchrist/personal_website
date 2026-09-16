@@ -6,6 +6,7 @@ export type InfoOverlay3DProps = Overlay3DProps & { contentClassName?: string };
 export default function InfoOverlay3D({
   dimensions = [1, 1],
   htmlScale = 2.5,
+  htmlProps,
   contentClassName,
   children,
   ...props
@@ -16,6 +17,7 @@ export default function InfoOverlay3D({
       htmlScale={htmlScale}
       htmlProps={{
         zIndexRange: [20, 11],
+        ...htmlProps,
       }}
       {...props}
     >
