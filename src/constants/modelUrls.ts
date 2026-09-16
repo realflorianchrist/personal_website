@@ -13,20 +13,20 @@ const modelUrls = {
   tv: "/3d_models/tv.glb",
   glassTable: "/3d_models/glass_table.glb",
 
-  bed: "/3d_models/bed.glb",
+  bed: "/3d_models/bed_1k.glb",
 
   keyboard: "/3d_models/keyboard.glb",
   stool: "/3d_models/stool.glb",
 
   kallax: "/3d_models/kallax.glb",
   ps5: "/3d_models/ps5.glb",
-  ps5Controller: "/3d_models/ps5_controller.glb",
+  ps5Controller: "/3d_models/ps5_controller_1k.glb",
   books: "/3d_models/books.glb",
-  football: "/3d_models/football.glb",
+  football: "/3d_models/football_1k.glb",
 
   shelf: "/3d_models/floating_shelf.glb",
-  spiderman: "/3d_models/spider-man.glb",
-  ezio: "/3d_models/ezio.glb",
+  spiderman: "/3d_models/spider-man_1k.glb",
+  ezio: "/3d_models/ezio_1k.glb",
   itachi: "/3d_models/itachi.glb",
   obito: "/3d_models/obito.glb",
 };
