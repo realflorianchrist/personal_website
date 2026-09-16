@@ -1,5 +1,4 @@
 'use client';
-import CanvasLoader from '@/components/3d_scene/CanvasLoader/CanvasLoader';
 import Scene from '@/components/3d_scene/Scene';
 import { setOrbitControls } from '@/services/orbitControlsService';
 import { OrbitControls } from '@react-three/drei';
@@ -9,6 +8,7 @@ import type { OrbitControls as Controls } from 'three-stdlib';
 import BackButton from './overlays/BackButton';
 import WelcomeOverlay from './overlays/WelcomeOverlay';
 import PrepareScene from './PrepareScene';
+import CanvasLoader from './canvas_loader/CanvasLoader';
 
 export default function SceneCanvas() {
   const [isSceneReady, setIsSceneReady] = useState(false);
